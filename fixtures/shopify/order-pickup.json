@@ -1,0 +1,20 @@
+{
+  "$extends": "order-paid",
+  "$description": "Local pickup. Pickup copy and labels, no shipping address, free pickup.",
+  "order_name": "#1007",
+  "delivery_method": "pick-up",
+  "shipping_price": 0,
+  "total_price": 8559,
+  "shipping_method": { "title": "Pickup at Boca Raton studio" },
+  "shipping_address": null,
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 8559,
+      "payment_details": { "credit_card_company": "Visa", "credit_card_last_four_digits": "4242" }
+    }
+  ]
+}

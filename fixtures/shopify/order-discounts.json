@@ -1,0 +1,46 @@
+{
+  "$extends": "order-paid",
+  "$description": "Line-level discount, order-level code, and free-shipping discount together. Strikethrough prices, discount tags, and 'You saved'.",
+  "order_name": "#1002",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Blueberry Pomegranate" },
+      "quantity": 2,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 15998,
+      "final_line_price": 14398,
+      "discount_allocations": [
+        {
+          "amount": 1600,
+          "discount_application": { "title": "Bundle10", "target_selection": "entitled", "target_type": "line_item" }
+        }
+      ],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    }
+  ],
+  "discount_applications": [
+    { "title": "Bundle10", "target_selection": "entitled", "target_type": "line_item", "total_allocated_amount": 1600 },
+    { "title": "Order5", "target_selection": "all", "target_type": "line_item", "total_allocated_amount": 500 },
+    { "title": "Freeshipping", "target_selection": "all", "target_type": "shipping_line", "total_allocated_amount": 650 }
+  ],
+  "subtotal_price": 14398,
+  "shipping_price": 0,
+  "tax_price": 1112,
+  "total_discounts": 2750,
+  "total_price": 15010,
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 15010,
+      "payment_details": { "credit_card_company": "Visa", "credit_card_last_four_digits": "4242" }
+    }
+  ]
+}

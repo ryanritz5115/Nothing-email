@@ -1,0 +1,8 @@
+{
+  "$extends": "order-paid",
+  "$description": "Local delivery with delivery instructions. Delivery copy and labels.",
+  "order_name": "#1008",
+  "delivery_method": "local",
+  "delivery_instructions": "Leave with the front desk.",
+  "shipping_method": { "title": "Local delivery" }
+}

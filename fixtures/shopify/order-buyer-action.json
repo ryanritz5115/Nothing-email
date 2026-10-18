@@ -1,0 +1,6 @@
+{
+  "$extends": "order-pending-payment",
+  "$description": "Pending payment that needs the buyer to act (e.g. 3D Secure or a redirect payment method).",
+  "order_name": "#1005",
+  "buyer_action_required": true
+}

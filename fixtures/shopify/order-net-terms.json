@@ -1,0 +1,13 @@
+{
+  "$extends": "order-paid",
+  "$description": "B2B order on Net 30 with a PO number. Nothing paid yet; amount due shows with a due date.",
+  "order_name": "#1011",
+  "transactions": [],
+  "gateway": null,
+  "total_outstanding": 9209,
+  "po_number": "PO-4471",
+  "payment_terms": {
+    "payment_terms_name": "Net 30",
+    "next_payment": { "due_at": "2026-11-17T12:00:00Z" }
+  }
+}

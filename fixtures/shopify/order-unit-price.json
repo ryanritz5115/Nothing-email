@@ -1,0 +1,22 @@
+{
+  "$extends": "order-paid",
+  "$description": "Line with unit price measurement (shown in some regions, e.g. price per 100g).",
+  "order_name": "#1012",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Blueberry Pomegranate" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 7999,
+      "final_line_price": 7999,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price": 2857,
+      "unit_price_measurement": { "reference_value": 100, "reference_unit": "g" },
+      "gift_card": false
+    }
+  ]
+}

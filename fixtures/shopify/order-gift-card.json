@@ -1,0 +1,56 @@
+{
+  "$extends": "order-paid",
+  "$description": "Gift card purchased for a recipient, and the order split across a gift card and a credit card.",
+  "order_name": "#1009",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Blueberry Pomegranate" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 7999,
+      "final_line_price": 7999,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    },
+    {
+      "title": "Porrada Gift Card - $50",
+      "product": { "title": "Porrada Gift Card" },
+      "variant": { "title": "$50" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/000000/ffffff/png?text=Gift",
+      "original_line_price": 5000,
+      "final_line_price": 5000,
+      "discount_allocations": [],
+      "properties": { "Recipient email": "teammate@example.com", "__shopify_send_gift_card_to_recipient": "true" },
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": true
+    }
+  ],
+  "subtotal_price": 12999,
+  "tax_price": 560,
+  "total_price": 14209,
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "gift_card",
+      "gateway_display_name": "Gift card",
+      "amount": 2500,
+      "payment_details": { "gift_card": { "last_four_characters": "x7k2" } }
+    },
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 11709,
+      "payment_details": { "credit_card_company": "American Express", "credit_card_last_four_digits": "1005" }
+    }
+  ]
+}

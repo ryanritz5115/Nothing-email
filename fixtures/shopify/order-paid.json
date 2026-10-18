@@ -1,0 +1,68 @@
+{
+  "$description": "Baseline: one pouch at full price, card payment, standard shipping. Every other fixture extends this one.",
+  "order_name": "#1001",
+  "order_status_url": "https://porradanutra.com/orders/preview",
+  "requires_shipping": true,
+  "delivery_method": "shipping",
+  "has_pending_payment": false,
+  "buyer_action_required": false,
+  "taxes_included": false,
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Blueberry Pomegranate" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 7999,
+      "final_line_price": 7999,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    }
+  ],
+  "discount_applications": [],
+  "subtotal_price": 7999,
+  "shipping_price": 650,
+  "tax_price": 560,
+  "total_duties": null,
+  "total_tip": 0,
+  "total_discounts": 0,
+  "total_price": 9209,
+  "total_outstanding": 0,
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": { "credit_card_company": "Visa", "credit_card_last_four_digits": "4242" }
+    }
+  ],
+  "payment_terms": null,
+  "gateway": "shopify_payments",
+  "po_number": null,
+  "delivery_instructions": null,
+  "shipping_method": { "title": "Standard Shipping" },
+  "shipping_address": {
+    "name": "Marcus Silva",
+    "address1": "123 Ocean Blvd",
+    "address2": "Apt 4",
+    "city": "Boca Raton",
+    "province_code": "FL",
+    "zip": "33432",
+    "country": "United States"
+  },
+  "billing_address": {
+    "name": "Marcus Silva",
+    "address1": "123 Ocean Blvd",
+    "address2": "Apt 4",
+    "city": "Boca Raton",
+    "province_code": "FL",
+    "zip": "33432",
+    "country": "United States"
+  }
+}

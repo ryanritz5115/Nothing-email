@@ -1,0 +1,15 @@
+{
+  "$extends": "order-paid",
+  "$description": "Card authorized but not captured yet (manual capture, e.g. pre-sale). Shows 'Authorized, not yet charged'.",
+  "order_name": "#1006",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "authorization",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": { "credit_card_company": "Visa", "credit_card_last_four_digits": "4242" }
+    }
+  ]
+}

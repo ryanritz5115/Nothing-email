@@ -1,0 +1,39 @@
+{
+  "$extends": "order-paid",
+  "$description": "International order with duties and tax-inclusive pricing.",
+  "order_name": "#1010",
+  "taxes_included": true,
+  "shipping_price": 1800,
+  "tax_price": 1333,
+  "total_duties": 1240,
+  "total_price": 11039,
+  "shipping_method": { "title": "International Express" },
+  "shipping_address": {
+    "name": "Lucas Ferreira",
+    "address1": "Rua Augusta 1200",
+    "address2": null,
+    "city": "São Paulo",
+    "province_code": "SP",
+    "zip": "01304-001",
+    "country": "Brazil"
+  },
+  "billing_address": {
+    "name": "Lucas Ferreira",
+    "address1": "Rua Augusta 1200",
+    "address2": null,
+    "city": "São Paulo",
+    "province_code": "SP",
+    "zip": "01304-001",
+    "country": "Brazil"
+  },
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 11039,
+      "payment_details": { "credit_card_company": "Visa", "credit_card_last_four_digits": "4242" }
+    }
+  ]
+}

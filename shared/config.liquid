@@ -1,0 +1,77 @@
+{%- comment -%}
+=====================================================================
+  PORRADA EMAIL · SHARED CONFIG
+  Included first by every template. Single source of truth for
+  colors, type, spacing, sizes, images, and links.
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} Colors {%- endcomment -%}
+{%- assign c_black   = '#000000' -%}
+{%- assign c_white   = '#FFFFFF' -%}
+{%- assign c_gray    = '#555555' -%}
+{%- assign c_brand   = '#77163F' -%}
+{%- assign c_divider = '#E6E6E6' -%}{%- comment -%} hairline dividers only {%- endcomment -%}
+
+{%- comment -%} Type {%- endcomment -%}
+{%- assign font_serif     = "'Times New Roman', Times, serif" -%}
+{%- assign font_sans      = "Arial, Helvetica, sans-serif" -%}
+{%- assign size_serif     = '32px' -%}
+{%- assign size_body      = '16px' -%}
+{%- assign size_small     = '12px' -%}
+{%- assign weight_regular = '400' -%}
+{%- assign weight_bold    = '700' -%}
+{%- assign lh_serif       = '1.15' -%}
+{%- assign lh_body        = '1.5' -%}
+{%- assign lh_small       = '1.6' -%}
+
+{%- comment -%} Spacing scale {%- endcomment -%}
+{%- assign space_2xs    = '4px' -%}
+{%- assign space_xs     = '8px' -%}
+{%- assign space_sm     = '12px' -%}
+{%- assign space_md     = '16px' -%}
+{%- assign space_lg     = '24px' -%}
+{%- assign space_xl     = '32px' -%}
+{%- assign space_2xl    = '48px' -%}
+{%- assign space_3xl    = '64px' -%}
+{%- assign space_gutter = '20px' -%}{%- comment -%} left/right page padding {%- endcomment -%}
+
+{%- comment -%} Sizes (unitless where used as width attributes) {%- endcomment -%}
+{%- assign container_width    = '600' -%}
+{%- assign logo_width         = '170' -%}
+{%- assign product_image_size = '58' -%}
+{%- assign card_icon_width    = '26' -%}
+{%- assign discount_icon_size = '12' -%}
+{%- assign totals_width       = '60%' -%}
+{%- assign radius_button      = '999px' -%}
+{%- assign radius_image       = '8px' -%}
+{%- assign button_padding     = '16px 28px' -%}
+
+{%- comment -%}
+  Images. Placeholders render in local preview.
+  Replace with Klaviyo CDN URLs before pasting into Shopify.
+{%- endcomment -%}
+{%- assign img_logo            = 'https://placehold.co/340x136/ffffff/000000/png?text=Porrada' -%}
+{%- assign img_discount_tag    = 'https://placehold.co/24x24/ffffff/555555/png?text=%25' -%}
+{%- assign img_card_visa       = 'https://placehold.co/52x32/ffffff/1a1f71/png?text=VISA' -%}
+{%- assign img_card_mastercard = '' -%}
+{%- assign img_card_amex       = '' -%}
+{%- assign img_card_discover   = '' -%}
+{%- assign img_card_jcb        = '' -%}
+{%- assign img_card_diners     = '' -%}
+{%- assign img_card_unionpay   = '' -%}
+{%- comment -%} Any card brand left blank renders as text only. {%- endcomment -%}
+
+{%- comment -%} Links. Hardcoded: in a headless store shop.url can resolve to the wrong domain. {%- endcomment -%}
+{%- assign store_url     = 'https://porradanutra.com' -%}
+{%- assign support_url   = 'https://porradanutra.com/contact' -%}
+{%- assign support_email = 'support@porradanutra.com' -%}
+
+{%- comment -%} ===================== STYLE TOKENS ===================== {%- endcomment -%}
+{%- comment -%} Compose inline styles from tokens. Append color per use: style="{{ st_body }} color:{{ c_black }};" {%- endcomment -%}
+
+{%- capture st_serif -%}margin:0; font-family:{{ font_serif }}; font-size:{{ size_serif }}; font-weight:{{ weight_regular }}; line-height:{{ lh_serif }};{%- endcapture -%}
+{%- capture st_body -%}margin:0; font-family:{{ font_sans }}; font-size:{{ size_body }}; font-weight:{{ weight_regular }}; line-height:{{ lh_body }};{%- endcapture -%}
+{%- capture st_body_bold -%}margin:0; font-family:{{ font_sans }}; font-size:{{ size_body }}; font-weight:{{ weight_bold }}; line-height:{{ lh_body }};{%- endcapture -%}
+{%- capture st_small -%}margin:0; font-family:{{ font_sans }}; font-size:{{ size_small }}; font-weight:{{ weight_regular }}; line-height:{{ lh_small }};{%- endcapture -%}
+{%- capture st_small_bold -%}margin:0; font-family:{{ font_sans }}; font-size:{{ size_small }}; font-weight:{{ weight_bold }}; line-height:{{ lh_small }};{%- endcapture -%}

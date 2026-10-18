@@ -1,0 +1,17 @@
+{
+  "name": "porrada-email",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Source of truth for Porrada transactional email templates (Shopify + Recharge)",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx scripts/preview.ts",
+    "build": "tsx scripts/build.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "liquidjs": "^10.30.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.6.0"
+  }
+}

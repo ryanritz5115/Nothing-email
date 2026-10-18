@@ -1,0 +1,48 @@
+{
+  "$extends": "order-paid",
+  "$description": "Subscription line with selling plan name, plus a sample line with a visible property and a hidden underscore property.",
+  "order_name": "#1003",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Blueberry Pomegranate" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 6799,
+      "final_line_price": 6799,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": { "selling_plan": { "name": "Delivers every 4 weeks" } },
+      "unit_price_measurement": null,
+      "gift_card": false
+    },
+    {
+      "title": "Focus Sample",
+      "product": { "title": "Focus Sample" },
+      "variant": { "title": "Default Title" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Sample",
+      "original_line_price": 0,
+      "final_line_price": 0,
+      "discount_allocations": [],
+      "properties": { "Included with": "Starter bundle", "_bundle_id": "b-7781" },
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    }
+  ],
+  "subtotal_price": 6799,
+  "tax_price": 476,
+  "total_price": 7925,
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 7925,
+      "payment_details": { "credit_card_company": "Mastercard", "credit_card_last_four_digits": "5454" }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$extends": "order-paid",
+  "$description": "Nothing ships (gift card only). No shipping row, address, or method.",
+  "order_name": "#1013",
+  "requires_shipping": false,
+  "line_items": [
+    {
+      "title": "Porrada Gift Card - $50",
+      "product": { "title": "Porrada Gift Card" },
+      "variant": { "title": "$50" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/000000/ffffff/png?text=Gift",
+      "original_line_price": 5000,
+      "final_line_price": 5000,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": true
+    }
+  ],
+  "subtotal_price": 5000,
+  "shipping_price": 0,
+  "tax_price": 0,
+  "total_price": 5000,
+  "shipping_address": null,
+  "shipping_method": null,
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 5000,
+      "payment_details": { "credit_card_company": "Visa", "credit_card_last_four_digits": "4242" }
+    }
+  ]
+}

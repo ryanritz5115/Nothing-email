@@ -1,0 +1,28 @@
+{%- comment -%}
+  Support footer. Full-bleed black row. The linear-gradient keeps it
+  black in clients that force dark mode on background-color.
+{%- endcomment -%}
+    <tr>
+      <td align="center" bgcolor="{{ c_black }}" style="background-color:{{ c_black }}; background-image:linear-gradient({{ c_black }},{{ c_black }});">
+        <table role="presentation" width="{{ container_width }}" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:{{ container_width }}px;">
+          <tr>
+            <td style="padding:{{ space_3xl }} {{ space_gutter }};">
+              <p style="{{ st_small_bold }} color:{{ c_white }};">Support</p>
+              <h2 style="{{ st_serif }} color:{{ c_white }}; padding-top:{{ space_xs }};">Need help with your order?</h2>
+              <p style="{{ st_body }} color:{{ c_white }}; padding-top:{{ space_sm }};">Click below to contact support.</p>
+
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:{{ space_lg }};">
+                <tr>
+                  <td align="center" bgcolor="{{ c_white }}" style="border-radius:{{ radius_button }}; background-color:{{ c_white }};">
+                    <a href="{{ support_url }}" target="_blank" style="display:inline-block; padding:{{ button_padding }}; font-family:{{ font_sans }}; font-size:{{ size_body }}; font-weight:{{ weight_bold }}; line-height:1; color:{{ c_black }}; text-decoration:none; border-radius:{{ radius_button }};">Contact Support</a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="{{ st_body }} color:{{ c_white }}; padding-top:{{ space_md }};">or email us directly at</p>
+              <p style="{{ st_body_bold }} color:{{ c_white }};"><a href="mailto:{{ support_email }}" style="color:{{ c_white }}; text-decoration:none;">{{ support_email }}</a></p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>

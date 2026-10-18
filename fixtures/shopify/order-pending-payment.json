@@ -1,0 +1,9 @@
+{
+  "$extends": "order-paid",
+  "$description": "Payment still processing (e.g. bank deposit or delayed method). No successful transactions yet; amount due shows.",
+  "order_name": "#1004",
+  "has_pending_payment": true,
+  "transactions": [],
+  "gateway": "Bank Deposit",
+  "total_outstanding": 9209
+}

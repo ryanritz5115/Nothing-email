@@ -4,9 +4,9 @@
    filter: Recharge does not document amount_with_currency for this notification. #}
 {% include 'shared/config' %}
 {% set email_title = 'Your subscription payment went through' %}
-{% set preheader = 'Your Porrada recurring payment is confirmed. Here is your order update.' %}
+{% set preheader = 'Your ' ~ brand_name ~ ' recurring payment is confirmed. Here is your order update.' %}
 {% set recharge_contact_email = support_email %}
-{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, your {% else %}Your {% endif %}Porrada recurring payment went through. You can review your order details below and manage your subscription in your account.{% endset %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, your {% else %}Your {% endif %}{{ brand_name }} recurring payment went through. You can review your order details below and manage your subscription in your account.{% endset %}
 {% include 'shared/document-start' %}
 
           <tr>

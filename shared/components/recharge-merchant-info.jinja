@@ -12,7 +12,7 @@
 {% if shop_address is string and shop_address|trim %}
   <tr>
     <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
-      {% set detail_label = 'Porrada' %}
+      {% set detail_label = brand_name %}
       {% set detail_value = shop_address|e %}
       {% include 'shared/components/detail' %}
     </td>

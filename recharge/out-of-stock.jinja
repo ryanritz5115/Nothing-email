@@ -6,7 +6,7 @@
 {% set email_title = 'A stock update for your subscription' %}
 {% set preheader = 'An item in your recurring order is out of stock. Review your account or get in touch for help.' %}
 {% set recharge_contact_email = support_email %}
-{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, an {% else %}An {% endif %}item in your Porrada recurring order is out of stock, so we could not process the full order as planned. You can check your account for the latest order details.{% endset %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, an {% else %}An {% endif %}item in your {{ brand_name }} recurring order is out of stock, so we could not process the full order as planned. You can check your account for the latest order details.{% endset %}
 {% include 'shared/document-start' %}
 
           <tr>

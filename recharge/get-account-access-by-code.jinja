@@ -1,12 +1,12 @@
 {# Recharge > Notifications > Get account access by code.
    Keep the supplied code intact, including leading zeroes. No tokens or codes in URLs.
-   Account navigation is deliberately Porrada's /account route. #}
+   Account navigation is deliberately the store's /account route. #}
 {% include 'shared/config' %}
 {% set recharge_contact_email = support_email %}
 {% set recharge_has_access_code = (access_code is string and access_code|trim) or access_code is integer %}
 {% set email_title = 'Your account access code' if recharge_has_access_code else "Let's get you signed in" %}
-{% set preheader = 'Use your code to continue signing in to your Porrada account.' if recharge_has_access_code else 'Return to your sign-in screen to request a new access code.' %}
-{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, you{% else %}You{% endif %}{% if recharge_has_access_code %} requested a code to sign in. Enter this code on the sign-in screen where you requested it.{% else %} requested access to your Porrada account. A code was not included in this email. Return to the sign-in screen where you requested your code and request a new one.{% endif %}{% endset %}
+{% set preheader = 'Use your code to continue signing in to your ' ~ brand_name ~ ' account.' if recharge_has_access_code else 'Return to your sign-in screen to request a new access code.' %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, you{% else %}You{% endif %}{% if recharge_has_access_code %} requested a code to sign in. Enter this code on the sign-in screen where you requested it.{% else %} requested access to your {{ brand_name }} account. A code was not included in this email. Return to the sign-in screen where you requested your code and request a new one.{% endif %}{% endset %}
 {% include 'shared/document-start' %}
 
           <tr>

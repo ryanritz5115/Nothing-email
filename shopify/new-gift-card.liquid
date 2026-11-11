@@ -7,11 +7,11 @@
 {%- include 'shared/config' -%}
 
 {%- assign email_title = "You've got a gift!" -%}
-{%- assign preheader = 'Your Porrada gift card is ready. Add it to your cart to use it at checkout.' -%}
+{%- assign preheader = 'Your ' | append: brand_name | append: ' gift card is ready. Add it to your cart to use it at checkout.' -%}
 {%- assign footer_support_title = 'Need help with your gift card?' -%}
 {%- assign sender_email = gift_card.customer.email | strip -%}
 {%- assign sender_phone = gift_card.customer.phone | strip -%}
-{%- assign sender_shop_name = shop.name | strip | default: 'Porrada' -%}
+{%- assign sender_shop_name = shop.name | strip | default: brand_name -%}
 {%- assign sender_name = gift_card.customer.name | strip | default: sender_email | default: sender_phone | default: sender_shop_name -%}
 {%- assign recipient_full_name = gift_card.recipient.name | strip -%}
 {%- assign recipient_email = gift_card.recipient.email | strip -%}
@@ -23,7 +23,7 @@
   {%- assign encoded_share_link = share_link | url_encode -%}
   {%- assign copy_link = gift_share_url | append: '?link=' | append: encoded_share_link -%}
 {%- else -%}
-  {%- assign preheader = 'Your Porrada gift card details. Contact support if you need help accessing your code.' -%}
+  {%- assign preheader = 'Your ' | append: brand_name | append: ' gift card details. Contact support if you need help accessing your code.' -%}
 {%- endif -%}
 
 {%- capture email_styles -%}

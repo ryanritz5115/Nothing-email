@@ -3,9 +3,9 @@
    Paste the built dist/recharge/subscription-activation.html file into Recharge. #}
 {% include 'shared/config' %}
 {% set email_title = 'Your subscription is active' %}
-{% set preheader = 'Your Porrada subscription is active. Review your items and billing details.' %}
+{% set preheader = 'Your ' ~ brand_name ~ ' subscription is active. Review your items and billing details.' %}
 {% set recharge_contact_email = support_email %}
-{% set email_body %}{% if name is string and name|trim %}Hi {{ name|e }}, you're all set. {% else %}You're all set. {% endif %}Your Porrada subscription is active. Review your items and billing details below.{% endset %}
+{% set email_body %}{% if name is string and name|trim %}Hi {{ name|e }}, you're all set. {% else %}You're all set. {% endif %}Your {{ brand_name }} subscription is active. Review your items and billing details below.{% endset %}
 {% include 'shared/document-start' %}
 
           <tr>

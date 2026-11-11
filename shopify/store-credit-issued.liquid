@@ -7,7 +7,7 @@
 {%- include 'shared/config' -%}
 
 {%- assign email_title = "You've got store credit!" -%}
-{%- assign preheader = 'Store credit has been added to your Porrada account. Use it at checkout.' -%}
+{%- assign preheader = 'Store credit has been added to your ' | append: brand_name | append: ' account. Use it at checkout.' -%}
 {%- assign footer_support_title = 'Need help with your store credit?' -%}
 {%- capture email_styles -%}
   {%- include 'shared/components/credit-styles' -%}

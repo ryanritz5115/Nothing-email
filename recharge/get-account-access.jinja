@@ -1,12 +1,12 @@
 {# Recharge > Notifications > Get account access.
    The documented account invite may vary by customer status. No undocumented flags
-   are assumed here: Porrada's /account route owns sign-in and account setup.
+   are assumed here: the store's /account route owns sign-in and account setup.
    Do not restore a tokenized subscription_url, login_url or activation URL. #}
 {% include 'shared/config' %}
-{% set email_title = 'Access your Porrada account' %}
+{% set email_title = 'Access your ' ~ brand_name ~ ' account' %}
 {% set preheader = 'Open your account and follow the steps to sign in.' %}
 {% set recharge_contact_email = support_email %}
-{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, you{% else %}You{% endif %} asked for help accessing your Porrada account. Open your account below and follow the sign-in steps.{% endset %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, you{% else %}You{% endif %} asked for help accessing your {{ brand_name }} account. Open your account below and follow the sign-in steps.{% endset %}
 {% include 'shared/document-start' %}
 
           <tr>

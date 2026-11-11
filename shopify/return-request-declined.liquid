@@ -39,7 +39,7 @@
               {%- if return.decline['note'] != blank -%}
                 {%- assign message_content = return.decline['note'] -%}
                 {%- assign message_use_custom = false -%}
-                {%- assign message_heading = 'Message from Porrada' -%}
+                {%- assign message_heading = 'Message from ' | append: brand_name -%}
                 {%- include 'shared/components/customer-message' -%}
               {%- endif -%}
 

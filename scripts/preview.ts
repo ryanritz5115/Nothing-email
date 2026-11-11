@@ -1,6 +1,6 @@
-import { existsSync, watch } from 'node:fs';
-import { createServer, type ServerResponse } from 'node:http';
-import { join } from 'node:path';
+import { existsSync, watch } from "node:fs";
+import { createServer, type ServerResponse } from "node:http";
+import { join } from "node:path";
 import {
   PLATFORMS,
   ROOT,
@@ -14,7 +14,7 @@ import {
   renderTemplate,
   templatePath,
   type Platform,
-} from './lib.ts';
+} from "./lib.ts";
 
 const PORT = Number(process.env.PORT ?? 3000);
 const engine = createEngine();
@@ -26,13 +26,13 @@ const engine = createEngine();
 const clients = new Set<ServerResponse>();
 let reloadTimer: NodeJS.Timeout | undefined;
 
-for (const dir of ['shared', 'shopify', 'recharge', 'fixtures']) {
+for (const dir of ["shared", "shopify", "recharge", "fixtures"]) {
   const path = join(ROOT, dir);
   if (!existsSync(path)) continue;
   watch(path, { recursive: true }, () => {
     clearTimeout(reloadTimer);
     reloadTimer = setTimeout(() => {
-      for (const res of clients) res.write('data: reload\n\n');
+      for (const res of clients) res.write("data: reload\n\n");
     }, 80);
   });
 }
@@ -42,7 +42,11 @@ for (const dir of ['shared', 'shopify', 'recharge', 'fixtures']) {
 /* ------------------------------------------------------------------ */
 
 const escapeHtml = (s: string) =>
-  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 
 const shellStyles = `
   *{box-sizing:border-box}
@@ -83,28 +87,34 @@ function indexPage(): string {
   const sections = PLATFORMS.map((platform) => {
     const templates = listTemplates(platform);
     const items = templates.length
-      ? templates.map((t) => `<li><a href="/t/${platform}/${t}">${t}</a></li>`).join('')
+      ? templates
+          .map((t) => `<li><a href="/t/${platform}/${t}">${t}</a></li>`)
+          .join("")
       : `<li class="muted">No templates yet</li>`;
     return `<h2>${platform}</h2><ul>${items}</ul>`;
-  }).join('');
+  }).join("");
   return page(
-    'Porrada email',
-    `<header><strong>Porrada email</strong><span class="muted">Local preview</span></header><main>${sections}</main>`,
+    "Nothing email",
+    `<header><strong>Nothing email</strong><span class="muted">Local preview</span></header><main>${sections}</main>`,
   );
 }
 
-function templatePage(platform: Platform, name: string, fixture: string | undefined): string {
+function templatePage(
+  platform: Platform,
+  name: string,
+  fixture: string | undefined,
+): string {
   const fixtures = listFixtures(platform, name);
   const active = fixtures.find((f) => f.name === fixture);
-  const query = fixture ? `?fixture=${encodeURIComponent(fixture)}` : '';
+  const query = fixture ? `?fixture=${encodeURIComponent(fixture)}` : "";
 
   const pills = fixtures.length
     ? fixtures
         .map(
           (f) =>
-            `<a class="pill${f.name === fixture ? ' on' : ''}" title="${escapeHtml(f.description)}" href="/t/${platform}/${name}?fixture=${encodeURIComponent(f.name)}">${f.name}</a>`,
+            `<a class="pill${f.name === fixture ? " on" : ""}" title="${escapeHtml(f.description)}" href="/t/${platform}/${name}?fixture=${encodeURIComponent(f.name)}">${f.name}</a>`,
         )
-        .join('')
+        .join("")
     : `<span class="muted">No fixtures in fixtures/${platform}/${name}/ yet</span>`;
 
   return page(
@@ -116,7 +126,7 @@ function templatePage(platform: Platform, name: string, fixture: string | undefi
     </header>
     <main>
       <div class="pills">${pills}</div>
-      ${active?.description ? `<p class="desc">${escapeHtml(active.description)}</p>` : ''}
+      ${active?.description ? `<p class="desc">${escapeHtml(active.description)}</p>` : ""}
       <div class="frames">
         <div class="frame"><label>Mobile · 375px</label><iframe width="375" src="/render/${platform}/${name}${query}"></iframe></div>
         <div class="frame"><label>Desktop · 680px</label><iframe width="680" src="/render/${platform}/${name}${query}"></iframe></div>
@@ -136,42 +146,68 @@ function errorHtml(error: unknown): string {
 /* ------------------------------------------------------------------ */
 
 function send(res: ServerResponse, status: number, type: string, body: string) {
-  res.writeHead(status, { 'Content-Type': `${type}; charset=utf-8`, 'Cache-Control': 'no-store' });
+  res.writeHead(status, {
+    "Content-Type": `${type}; charset=utf-8`,
+    "Cache-Control": "no-store",
+  });
   res.end(body);
 }
 
 const server = createServer(async (req, res) => {
-  const url = new URL(req.url ?? '/', `http://localhost:${PORT}`);
-  const parts = url.pathname.split('/').filter(Boolean);
+  const url = new URL(req.url ?? "/", `http://localhost:${PORT}`);
+  const parts = url.pathname.split("/").filter(Boolean);
 
-  if (url.pathname === '/events') {
-    res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', Connection: 'keep-alive' });
-    res.write('\n');
+  if (url.pathname === "/events") {
+    res.writeHead(200, {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      Connection: "keep-alive",
+    });
+    res.write("\n");
     clients.add(res);
-    req.on('close', () => clients.delete(res));
+    req.on("close", () => clients.delete(res));
     return;
   }
 
-  if (parts.length === 0) return send(res, 200, 'text/html', indexPage());
+  if (parts.length === 0) return send(res, 200, "text/html", indexPage());
 
   const [route, platform, name] = parts;
-  if (!['t', 'render', 'src'].includes(route) || !platform || !name) {
-    return send(res, 404, 'text/plain', 'Not found');
+  if (!["t", "render", "src"].includes(route) || !platform || !name) {
+    return send(res, 404, "text/plain", "Not found");
   }
-  if (!isPlatform(platform) || !isSafeName(name) || !existsSync(templatePath(platform, name))) {
-    return send(res, 404, 'text/plain', `Template not found: ${platform}/${name}`);
+  if (
+    !isPlatform(platform) ||
+    !isSafeName(name) ||
+    !existsSync(templatePath(platform, name))
+  ) {
+    return send(
+      res,
+      404,
+      "text/plain",
+      `Template not found: ${platform}/${name}`,
+    );
   }
 
-  const requested = url.searchParams.get('fixture');
-  const fixture = requested && isSafeName(requested) ? requested : defaultFixture(platform, name);
+  const requested = url.searchParams.get("fixture");
+  const fixture =
+    requested && isSafeName(requested)
+      ? requested
+      : defaultFixture(platform, name);
 
   try {
-    if (route === 't') return send(res, 200, 'text/html', templatePage(platform, name, fixture));
-    if (route === 'src') return send(res, 200, 'text/plain', flatten(templatePath(platform, name)));
+    if (route === "t")
+      return send(res, 200, "text/html", templatePage(platform, name, fixture));
+    if (route === "src")
+      return send(
+        res,
+        200,
+        "text/plain",
+        flatten(templatePath(platform, name)),
+      );
     const html = await renderTemplate(engine, platform, name, fixture);
-    return send(res, 200, 'text/html', html);
+    return send(res, 200, "text/html", html);
   } catch (error) {
-    return send(res, 200, 'text/html', errorHtml(error));
+    return send(res, 200, "text/html", errorHtml(error));
   }
 });
 

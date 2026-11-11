@@ -8,24 +8,27 @@
 {%- endcomment -%}
 {%- comment -%}
 =====================================================================
-  PORRADA EMAIL · SHARED CONFIG
+  EMAIL · SHARED CONFIG
   Included first by every template. Single source of truth for
   colors, type, spacing, sizes, images, and links.
 =====================================================================
 {%- endcomment -%}
 
+{%- comment -%} Brand. The name every template's copy and alt text uses. {%- endcomment -%}
+{%- assign brand_name = 'Nothing' -%}
+
 {%- comment -%} Colors {%- endcomment -%}
 {%- assign c_black   = '#000000' -%}
-{%- assign c_white   = '#FFFFFF' -%}
+{%- assign c_white   = '#F7F7F5' -%}
 {%- assign c_gray    = '#555555' -%}
-{%- assign c_brand   = '#77163F' -%}
+{%- assign c_brand   = '#000000' -%}
 {%- assign c_shadow   = '0px 4px 8px 0px rgba(0,0,0,0.15)' -%}
 {%- assign c_divider = '#f1f1f1' -%}{%- comment -%} hairline dividers only {%- endcomment -%}
 {%- comment -%} Template-owned default; Recharge does not supply a design tone. {%- endcomment -%}
 {%- assign tone = 'light' -%}
 
 {%- comment -%} Type {%- endcomment -%}
-{%- assign font_serif     = "'Times New Roman', Times, serif" -%}
+{%- assign font_serif     = "system-ui, Arial, Helvetica, sans-serif" -%}
 {%- assign font_sans      = "system-ui, Arial, Helvetica, sans-serif" -%}
 {%- assign size_serif     = '32px' -%}
 {%- assign size_body      = '16px' -%}
@@ -70,7 +73,7 @@
   Images. Placeholders render in local preview.
   Replace with Klaviyo CDN URLs before pasting into Shopify.
 {%- endcomment -%}
-{%- assign img_logo            = 'https://cdn.shopify.com/s/files/1/0723/7333/8327/files/Email_Header_V2.2_1.png?v=1792345041' -%}
+{%- assign img_logo            = 'https://cdn.shopify.com/s/files/1/0861/4454/9100/files/Frame_132131591111.webp?v=1794436039' -%}
 {%- assign img_discount_tag    = 'https://cdn.shopify.com/s/files/1/0723/7333/8327/files/Frame_1321315911.png?v=1792345254' -%}
 {%- assign img_card_visa       = 'https://cdn.shopify.com/shopifycloud/shopify/assets/themes_support/notifications/visa-e96781bbd9d5a604ec37ca3959c7200b62b58790536de883a9f29852191da219.png' -%}
 {%- assign img_card_mastercard = '' -%}
@@ -79,23 +82,23 @@
 {%- assign img_card_jcb        = '' -%}
 {%- assign img_card_diners     = '' -%}
 {%- assign img_card_unionpay   = '' -%}
-{%- assign img_footer_logo = 'https://cdn.klaviyomail.com/company/Wf5b2j/images/0a44421c-59c8-4953-a4f2-d60b82362d3b.png' -%}
+{%- assign img_footer_logo = 'https://cdn.shopify.com/s/files/1/0861/4454/9100/files/Screenshot_2026-11-11_at_5.20.24_PM_1.webp?v=1794436125' -%}
 {%- assign img_tiktok      = 'https://cdn.klaviyomail.com/company/Wf5b2j/images/e36d1f2c-59e8-463b-af78-6ad1c517e707.png' -%}
 {%- assign img_facebook    = 'https://cdn.klaviyomail.com/company/Wf5b2j/images/043e8f86-b83a-4c76-98a6-8a19ba74549b.png' -%}
 {%- assign img_instagram   = 'https://cdn.klaviyomail.com/company/Wf5b2j/images/71ecb587-0dc8-4fdd-8fe5-743dab3a7e11.png' -%}
-{%- assign img_gift_card   = 'https://cdn.shopify.com/s/files/1/0723/7333/8327/files/gc.webp?v=1787496553' -%}
-{%- assign img_store_credit   = 'https://cdn.shopify.com/s/files/1/0723/7333/8327/files/Store_credit.webp?v=1793842788' -%}
+{%- assign img_gift_card   = 'https://cdn.shopify.com/s/files/1/0861/4454/9100/files/Store_creditnothing.webp?v=1794436566' -%}
+{%- assign img_store_credit   = 'https://cdn.shopify.com/s/files/1/0861/4454/9100/files/Store_creditnothing.webp?v=1794436566' -%}
 {%- comment -%} Any card brand left blank renders as text only. {%- endcomment -%}
 
 {%- comment -%} Links. Hardcoded: in a headless store shop.url can resolve to the wrong domain. {%- endcomment -%}
-{%- assign store_url     = 'https://porradanutra.com' -%}
-{%- assign account_url   = 'https://porradanutra.com/account' -%}
-{%- assign support_url   = 'https://porradanutra.com/support' -%}
-{%- assign orders_url   = 'https://porradanutra.com/account/orders' -%}
-{%- assign support_email = 'support@porradanutra.com' -%}
-{%- assign tiktok_url    = 'https://www.tiktok.com/@porradanutra' -%}
-{%- assign facebook_url  = 'https://www.facebook.com/porradanutra' -%}
-{%- assign instagram_url = 'https://www.instagram.com/porradanutra/' -%}
+{%- assign store_url     = 'https://nothingsmells.com' -%}
+{%- assign account_url   = 'https://nothingsmells.com/account' -%}
+{%- assign support_url   = 'https://nothingsmells.com/support' -%}
+{%- assign orders_url   = 'https://nothingsmells.com/account/orders' -%}
+{%- assign support_email = 'support@nothingsmells.com' -%}
+{%- assign tiktok_url    = 'https://www.tiktok.com/@nothingsmells' -%}
+{%- assign facebook_url  = 'https://www.facebook.com/nothingsmells' -%}
+{%- assign instagram_url = 'https://www.instagram.com/nothingsmells/' -%}
 {%- assign gift_cart_url = store_url | append: '/api/cart/add' -%}
 {%- assign gift_share_url = store_url | append: '/link-copy' -%}
 
@@ -115,8 +118,8 @@
 {%- assign gc_width = '450' -%}
 {%- assign gc_image_width = '402' -%}
 {%- assign gc_radius_image = '14px' -%}
-{%- assign gc_font_serif = "'Times New Roman',Times,Georgia,serif" -%}
-{%- assign gc_font_sans = "'Helvetica Neue',Helvetica,Arial,sans-serif" -%}
+{%- assign gc_font_serif = "system-ui,'Helvetica Neue',Helvetica,Arial,sans-serif" -%}
+{%- assign gc_font_sans = "system-ui,'Helvetica Neue',Helvetica,Arial,sans-serif" -%}
 {%- assign gc_c_text = '#111111' -%}
 {%- assign gc_c_body = '#444444' -%}
 {%- assign gc_c_message = '#666666' -%}
@@ -307,7 +310,7 @@
           <tr>
             <td style="padding:0 0 {{ space_lg }};">
               <a href="{{ store_url }}" target="_blank">
-                <img src="{{ img_logo }}" width="{{ container_width }}" alt="Porrada Performance Nutrition" style="display:block; width:100%; max-width:{{ container_width }}px; height:auto;">
+                <img src="{{ img_logo }}" width="{{ container_width }}" alt="{{ brand_name }}" style="display:block; width:100%; max-width:{{ container_width }}px; height:auto;">
               </a>
             </td>
           </tr>
@@ -1137,7 +1140,7 @@
       </td>
     </tr>
 
-<!-- ===== Porrada email header / footer bar ===== -->
+<!-- ===== Brand email header / footer bar ===== -->
 <style>
   @media only screen and (max-width: 480px) {
     .pr-pad    { padding: 20px 20px !important; }
@@ -1146,16 +1149,16 @@
   }
 </style>
 
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" style="<meta charset='utf-8'>background-color:#000000; background-image:linear-gradient(#000000,#000000);">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" style="<meta charset='utf-8'>background-color:{{c_white}}; background-image:linear-gradient({{ c_white }},{{ c_white }});">
   <tr>
     <td align="center">
-      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;<meta charset='utf-8'>background-color:#000000; background-image:linear-gradient(#000000,#000000);">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;<meta charset='utf-8'>background-color:{{c_white}}; background-image:linear-gradient({{ c_white }},{{ c_white }});">
         <tr>
           <!-- Wordmark -->
           <td class="pr-pad" width="60%" valign="middle" align="left" style="padding:44px 0 44px 24px;">
            
-              <img src="https://cdn.klaviyomail.com/company/Wf5b2j/images/0a44421c-59c8-4953-a4f2-d60b82362d3b.png" width="300" alt="Porrada Performance Nutrition"
-                   style="display:block;width:100%;max-width:300px;height:auto;border:0;outline:none;text-decoration:none;">
+              <img src="{{img_footer_logo}}" width="200" alt="{{ brand_name }}"
+                   style="display:block;width:100%;max-width:200px;height:auto;border:0;outline:none;text-decoration:none;">
           
           </td>
 
@@ -1189,7 +1192,7 @@
     </td>
   </tr>
 </table>
-<!-- ===== /Porrada email header / footer bar ===== -->
+<!-- ===== /Brand email header / footer bar ===== -->
 {%- assign footer_support_title = nil -%}
 
 

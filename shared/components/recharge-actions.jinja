@@ -1,4 +1,4 @@
-{# All account and subscription management routes use Porrada's /account.
+{# All account and subscription management routes use the store's /account.
    Optional input recharge_action_label, reset after rendering. #}
 {% set button_label = recharge_action_label if recharge_action_label|default('') else 'Manage your subscription' %}
 {% set button_url = account_url %}

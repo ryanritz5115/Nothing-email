@@ -1,11 +1,11 @@
 {# Recharge > Notifications > Customer token account link.
-   Porrada explicitly routes all account actions to /account. The supplied magic
+   The store explicitly routes all account actions to /account. The supplied magic
    link is not used, so this email must not promise an instant or tokenized login. #}
 {% include 'shared/config' %}
 {% set email_title = 'Your account sign-in request' %}
-{% set preheader = 'Continue to your Porrada account to sign in.' %}
+{% set preheader = 'Continue to your ' ~ brand_name ~ ' account to sign in.' %}
 {% set recharge_contact_email = support_email %}
-{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, you{% else %}You{% endif %} requested access to your Porrada account. Use the button below to open your account and complete the sign-in steps.{% endset %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, you{% else %}You{% endif %} requested access to your {{ brand_name }} account. Use the button below to open your account and complete the sign-in steps.{% endset %}
 {% include 'shared/document-start' %}
 
           <tr>
@@ -17,7 +17,7 @@
 
               {% set card_body %}
                 {% set detail_label = 'Continue signing in' %}
-                {% set detail_value = 'Use the email address associated with your Porrada subscription.' %}
+                {% set detail_value = 'Use the email address associated with your ' ~ brand_name ~ ' subscription.' %}
                 {% set detail_emphasis = true %}
                 {% include 'shared/components/detail' %}
 

@@ -3,9 +3,9 @@
    Item loops, cancellation dates and reasons are not exposed by this contract. #}
 {% include 'shared/config' %}
 {% set email_title = 'Your subscriptions are canceled' %}
-{% set preheader = 'Your Porrada subscriptions are canceled. Here is what happens next.' %}
+{% set preheader = 'Your ' ~ brand_name ~ ' subscriptions are canceled. Here is what happens next.' %}
 {% set recharge_contact_email = support_email %}
-{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, your {% else %}Your {% endif %}Porrada subscriptions are canceled. You have no active subscriptions on your account.{% endset %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, your {% else %}Your {% endif %}{{ brand_name }} subscriptions are canceled. You have no active subscriptions on your account.{% endset %}
 {% include 'shared/document-start' %}
 
           <tr>

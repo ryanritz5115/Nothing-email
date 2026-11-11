@@ -13,7 +13,7 @@
   {% endif %}
 {% endif %}
 {% set email_title = 'Your next order is coming up' %}
-{% set preheader = 'Review your upcoming Porrada order and make any changes in your account before it processes.' %}
+{% set preheader = 'Review your upcoming ' ~ brand_name ~ ' order and make any changes in your account before it processes.' %}
 {% set preview_text = preheader %}
 {% set recharge_contact_email = support_email %}
 {% set email_body %}{% if upcoming_customer.first_name is defined and upcoming_customer.first_name and upcoming_customer.first_name|trim %}Hi {{ upcoming_customer.first_name|e }}, here's{% else %}Here's{% endif %} a look at your upcoming subscription order. Review the details below and visit your account if you need to make a change before it processes.{% endset %}

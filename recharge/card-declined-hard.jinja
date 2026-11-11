@@ -6,7 +6,7 @@
 {% set email_title = 'Update your subscription payment method' %}
 {% set preheader = 'Your subscription payment needs updated payment details before it can be retried.' %}
 {% set recharge_contact_email = support_email %}
-{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, we {% else %}We {% endif %}could not process your Porrada subscription payment. This payment needs your attention before we can try again. Please update your payment method in your account.{% endset %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, we {% else %}We {% endif %}could not process your {{ brand_name }} subscription payment. This payment needs your attention before we can try again. Please update your payment method in your account.{% endset %}
 {% include 'shared/document-start' %}
 {% include 'shared/components/recharge-decline-notice' %}
 {% set recharge_show_legal = false %}

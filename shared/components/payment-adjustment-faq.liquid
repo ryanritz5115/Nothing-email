@@ -1,0 +1,65 @@
+{%- comment -%}
+  Cancellation/refund questions. Body rows. Requires payment-adjustment.
+  Inputs, reset after use:
+    adjustment_is_cancellation  true adds order-cancellation help
+{%- endcomment -%}
+{%- assign section_title = 'Good to know' -%}
+{%- include 'shared/components/section-heading' -%}
+<tr>
+  <td style="padding:0 {{ space_gutter }};">
+    {%- if payment_has_pending_refund or payment_has_problem_refund or payment_has_unknown_refund -%}
+      {%- assign detail_label = 'What do the payment statuses mean?' -%}
+      {%- assign detail_value = 'Processed means the refund payment finished processing. Pending means it was not complete when recorded. Failed attempt means that payment did not complete. Status not available means it is not confirmed here. Check the history for later updates, or contact us for help.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- if payment_has_shopify_payments_refund -%}
+      {%- assign detail_label = 'When will the money appear?' -%}
+      {%- assign detail_value = 'After a Shopify Payments refund is processed, your bank may take up to 10 business days to show it. Contact us if it takes longer.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- elsif payment_has_external_refund -%}
+      {%- assign detail_label = 'When will the money appear?' -%}
+      {%- assign detail_value = 'Your payment provider controls when a processed refund appears. Contact us if you need help checking the status.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- elsif financial_status == 'refunded' and payment_has_refund_records == false -%}
+      {%- assign detail_label = 'When will the money appear?' -%}
+      {%- assign detail_value = 'Refund timing depends on the payment method. Contact us if you need help checking where the refund was sent.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- if payment_has_gift_card_refund -%}
+      {%- assign detail_label = 'Paid with a gift card?' -%}
+      {%- assign detail_value = 'A processed gift card refund returns to that gift card. Keep your gift card code to use the balance again.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- if payment_has_store_credit_refund -%}
+      {%- assign detail_label = 'Refunded as store credit?' -%}
+      {%- assign detail_value = 'Processed store credit is added to your customer account. Sign in with the email used for this order to check your balance.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- if payment_has_subscription -%}
+      {%- assign detail_label = 'Have a subscription?' -%}
+      {%- assign detail_value = 'This email only covers this order. It does not confirm a change to future subscription orders. Contact us if you need help with your subscription.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- if adjustment_is_cancellation -%}
+      {%- assign detail_label = "Didn't expect this cancellation?" -%}
+      {%- assign detail_value = 'Contact us with your order number and we can help you check what happened.' -%}
+    {%- else -%}
+      {%- assign detail_label = 'Questions about this refund?' -%}
+      {%- assign detail_value = 'Contact us with your order number if the amount looks wrong or you need help with the next step for any items being returned.' -%}
+    {%- endif -%}
+    {%- include 'shared/components/detail' -%}
+  </td>
+</tr>
+{%- assign adjustment_is_cancellation = false -%}

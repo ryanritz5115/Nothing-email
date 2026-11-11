@@ -1,0 +1,13 @@
+{
+  "$extends": "order-updated",
+  "$description": "All remaining quantities are zero. The empty summary is explicit and a refund remains owed. A zero total is rendered as zero rather than treated as missing.",
+  "order_name": "#1610",
+  "line_items": [
+    { "title": "Removed pouch", "quantity": 1, "current_quantity": 0, "original_line_price": 7999, "final_line_price": 7999 }
+  ],
+  "subtotal_price": 0,
+  "shipping_price": 0,
+  "tax_price": 0,
+  "total_price": 0,
+  "total_outstanding": -9209
+}

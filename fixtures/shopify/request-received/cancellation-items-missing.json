@@ -1,0 +1,7 @@
+{
+  "$extends": "cancellation-requested",
+  "$description": "A cancellation request exists but its item array is unavailable. No whole-order item fallback or completed-cancellation claim is allowed.",
+  "order_name": "#1806",
+  "order": { "name": "#1806" },
+  "requested_edit": { "line_items": null }
+}

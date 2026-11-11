@@ -1,0 +1,15 @@
+{
+  "$extends": "label-ready",
+  "$description": "Tracking alone does not prove a return label is available to print.",
+  "return": {
+    "deliveries": [
+      {
+        "type": "manual",
+        "carrier_name": "USPS",
+        "tracking_number": "9400111899560000000000",
+        "tracking_url": "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899560000000000",
+        "return_label": null
+      }
+    ]
+  }
+}

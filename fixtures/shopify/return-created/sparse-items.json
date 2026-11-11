@@ -1,0 +1,35 @@
+{
+  "$extends": "label-ready",
+  "$description": "Zero quantities and missing titles do not create empty product rows. Title-only and title_without_variant-only records stay readable.",
+  "return": {
+    "line_items": [
+      {
+        "quantity": 0,
+        "title_without_variant": "Removed item"
+      },
+      {
+        "quantity": 1
+      },
+      {
+        "title_without_variant": "Missing quantity"
+      },
+      {
+        "quantity": 1,
+        "title_without_variant": "Custom return item"
+      },
+      {
+        "quantity": 2,
+        "title": "Title-only return item"
+      }
+    ],
+    "exchange_line_items": [
+      {
+        "quantity": 1,
+        "title_without_variant": "Custom exchange item",
+        "variant": {
+          "title": "Default Title"
+        }
+      }
+    ]
+  }
+}

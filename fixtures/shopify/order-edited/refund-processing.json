@@ -1,0 +1,9 @@
+{
+  "$extends": "refund-due",
+  "$description": "A refund transaction is pending. Its amount appears as processing and is never presented as successfully refunded.",
+  "order_name": "#1606",
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 17768, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" },
+    { "status": "pending", "kind": "refund", "amount": 8559, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

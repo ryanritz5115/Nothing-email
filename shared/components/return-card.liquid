@@ -1,0 +1,59 @@
+{%- comment -%}
+  Return facts card, inside the hero cell. Requires shared/return.
+  Inputs, reset after use:
+    return_status_label, return_status_value  optional leading fact
+    return_show_shipping_details             true for approved/created only
+  A return label does not establish that it is prepaid or that money was refunded.
+{%- endcomment -%}
+{%- assign return_card_has_content = false -%}
+{%- capture card_body -%}
+  {%- if return_status_label != blank and return_status_value != blank -%}
+    {%- assign detail_label = return_status_label -%}
+    {%- assign detail_value = return_status_value -%}
+    {%- include 'shared/components/detail' -%}
+    {%- assign return_card_has_content = true -%}
+  {%- endif -%}
+  {%- if return_show_shipping_details -%}
+    {%- if return_amount_due > 0 -%}
+      {%- assign detail_label = 'Outstanding order balance' -%}
+      {%- assign detail_value = return_amount_due | money_with_currency -%}
+      {%- assign detail_emphasis = true -%}
+      {%- if return_card_has_content -%}{%- assign detail_space_above = space_md -%}{%- endif -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign return_card_has_content = true -%}
+    {%- elsif return_payment_url != blank and return_balance_known == false -%}
+      {%- assign detail_label = 'Payment details' -%}
+      {%- assign detail_value = 'Use the payment link to review any balance before paying.' -%}
+      {%- if return_card_has_content -%}{%- assign detail_space_above = space_md -%}{%- endif -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign return_card_has_content = true -%}
+    {%- endif -%}
+    {%- for return_delivery_entry in return.deliveries -%}
+      {%- if return_delivery_entry.return_label.public_file_url != blank or return_delivery_entry.tracking_number != blank or return_delivery_entry.tracking_url != blank -%}
+        {%- capture detail_label -%}
+          {%- if return_delivery_count > 1 -%}Return package {{ forloop.index }}{%- else -%}Return shipping{%- endif -%}
+          {%- if return_delivery_entry.carrier_name != blank %} &#183; {{ return_delivery_entry.carrier_name | escape }}{%- endif -%}
+        {%- endcapture -%}
+        {%- capture detail_value -%}
+          {%- if return_delivery_entry.return_label.public_file_url != blank -%}
+            <a href="{{ return_delivery_entry.return_label.public_file_url | escape }}" target="_blank" style="font-weight:{{ weight_bold }}; color:{{ c_brand }}; text-decoration:none;">Print return label</a>
+            {%- if return_delivery_entry.tracking_number != blank or return_delivery_entry.tracking_url != blank -%}<br>{%- endif -%}
+          {%- endif -%}
+          {%- if return_delivery_entry.tracking_url != blank -%}
+            <a href="{{ return_delivery_entry.tracking_url | escape }}" target="_blank" style="font-weight:{{ weight_bold }}; color:{{ c_brand }}; text-decoration:none; overflow-wrap:anywhere; word-break:break-word;">{%- if return_delivery_entry.tracking_number != blank -%}{{ return_delivery_entry.tracking_number | escape }}{%- else -%}Track your return{%- endif -%}</a>
+          {%- elsif return_delivery_entry.tracking_number != blank -%}
+            {{ return_delivery_entry.tracking_number | escape }}
+          {%- endif -%}
+        {%- endcapture -%}
+        {%- if return_card_has_content -%}{%- assign detail_space_above = space_md -%}{%- endif -%}
+        {%- include 'shared/components/detail' -%}
+        {%- assign return_card_has_content = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+{%- if return_card_has_content -%}{%- include 'shared/components/card' -%}{%- endif -%}
+{%- assign card_body = '' -%}
+{%- assign return_status_label = '' -%}
+{%- assign return_status_value = '' -%}
+{%- assign return_show_shipping_details = false -%}

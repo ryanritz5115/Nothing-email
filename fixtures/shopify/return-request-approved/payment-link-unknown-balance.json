@@ -1,0 +1,8 @@
+{
+  "$extends": "label-ready",
+  "$description": "A collection URL with no disclosed order balance can be reviewed, but no fabricated zero amount or asserted balance is shown.",
+  "return": {
+    "order_total_outstanding": null,
+    "checkout_payment_collection_url": "https://porradanutra.com/checkouts/review-payment"
+  }
+}

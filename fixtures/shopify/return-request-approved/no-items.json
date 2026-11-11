@@ -1,0 +1,8 @@
+{
+  "$extends": "label-ready",
+  "$description": "No return or exchange items are provided. Never substitute the original whole-order line list.",
+  "return": {
+    "line_items": [],
+    "exchange_line_items": []
+  }
+}

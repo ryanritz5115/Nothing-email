@@ -1,0 +1,6 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Supplied positive discount amount without a code still appears.",
+  "total_discounts": "3.40",
+  "total_price": "30.60"
+}

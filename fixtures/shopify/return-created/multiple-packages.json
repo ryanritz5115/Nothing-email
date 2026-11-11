@@ -1,0 +1,26 @@
+{
+  "$extends": "label-ready",
+  "$description": "Two return packages have different labels and carriers. Each keeps its own instructions and links.",
+  "return": {
+    "deliveries": [
+      {
+        "type": "shopify_label",
+        "carrier_name": "USPS",
+        "tracking_number": "9400111899560000000000",
+        "tracking_url": "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899560000000000",
+        "return_label": {
+          "public_file_url": "https://example.com/returns/1001/package-1-label.pdf"
+        }
+      },
+      {
+        "type": "manual",
+        "carrier_name": "UPS",
+        "tracking_number": "1Z999AA10123456784",
+        "tracking_url": "https://www.ups.com/track?tracknum=1Z999AA10123456784",
+        "return_label": {
+          "public_file_url": "https://example.com/returns/1001/package-2-label.pdf"
+        }
+      }
+    ]
+  }
+}

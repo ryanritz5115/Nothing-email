@@ -1,0 +1,9 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "No final total means no invented upcoming total; supplied subtotal and taxes remain.",
+  "charge": {
+    "total_price": null,
+    "total_tax": "2.12",
+    "total_duties": "1.00"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$extends": "payment-action-needed",
+  "$description": "Customer text stays escaped. Internal errors and all dynamic portal/account links are ignored.",
+  "first_name": "<Ryan & Team>",
+  "link": "https://wrong.example/portal",
+  "billing_link": "https://wrong.example/billing",
+  "portalURL": "https://wrong.example/hard-decline",
+  "error": "INTERNAL_PROCESSOR_ERROR_DO_NOT_SHOW",
+  "out_of_stock_items": [
+    {
+      "title": "Undocumented payload must not be dumped"
+    }
+  ],
+  "shop_url": "https://wrong.example/store"
+}

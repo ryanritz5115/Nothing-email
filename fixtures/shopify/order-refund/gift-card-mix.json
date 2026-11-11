@@ -1,0 +1,44 @@
+{
+  "$extends": "full-refund",
+  "$description": "Refund split between a gift card and card. Each destination retains its own amount and processing status.",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "gift_card",
+      "gateway_display_name": "Gift card",
+      "amount": 2000,
+      "payment_details": null
+    },
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 7209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    },
+    {
+      "status": "success",
+      "kind": "refund",
+      "gateway": "gift_card",
+      "gateway_display_name": "Gift card",
+      "amount": 2000,
+      "payment_details": null
+    },
+    {
+      "status": "success",
+      "kind": "refund",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 7209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

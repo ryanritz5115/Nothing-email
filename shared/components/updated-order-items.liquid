@@ -1,0 +1,36 @@
+{%- comment -%}
+  Updated order items. Body rows using current quantities after removals.
+  Per-line prices are omitted because quantity-based historical line prices
+  can include removed units; Shopify's order totals follow this section.
+  Requires updated_item_count and updated_items_known, computed before the
+  document starts. Missing item data is distinct from a known empty order.
+{%- endcomment -%}
+{%- assign section_title = 'Updated order summary' -%}
+{%- include 'shared/components/section-heading' -%}
+<tr>
+  <td style="padding:0 {{ space_gutter }};">
+    {%- if updated_items_known == false -%}
+      {%- assign detail_label = 'Order items' -%}
+      {%- assign detail_value = 'View your order for the latest items, or contact us for help confirming your order.' -%}
+      {%- include 'shared/components/detail' -%}
+    {%- elsif updated_item_count > 0 -%}
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        {%- for line in subtotal_line_items -%}
+          {%- assign updated_quantity = line.quantity -%}
+          {%- if line.current_quantity != nil -%}
+            {%- assign updated_quantity = line.current_quantity -%}
+          {%- endif -%}
+          {%- if updated_quantity > 0 -%}
+            {%- assign item = line -%}
+            {%- assign item_quantity = updated_quantity -%}
+            {%- include 'shared/components/line-item' -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </table>
+    {%- else -%}
+      {%- assign detail_label = 'Items on your order' -%}
+      {%- assign detail_value = 'There are no items remaining on this order.' -%}
+      {%- include 'shared/components/detail' -%}
+    {%- endif -%}
+  </td>
+</tr>

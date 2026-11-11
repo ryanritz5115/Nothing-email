@@ -1,0 +1,5 @@
+{
+  "$extends": "access-code",
+  "$description": "A missing code prompts a new request on the original sign-in screen instead of inventing a code.",
+  "access_code": null
+}

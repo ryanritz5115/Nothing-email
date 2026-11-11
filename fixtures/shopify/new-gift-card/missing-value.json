@@ -1,0 +1,7 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "An unavailable initial value stays unknown instead of displaying an invented $0.00.",
+  "gift_card": {
+    "initial_value": null
+  }
+}

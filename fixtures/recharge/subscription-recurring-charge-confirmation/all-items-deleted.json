@@ -1,0 +1,20 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Original deleted rows cannot remain in the included-items section.",
+  "line_item_modifications": [
+    {
+      "line_item_id": 1,
+      "modification_type": "delete",
+      "modifications": [
+        {
+          "attribute": "product_title",
+          "previous_value": "Porrada Creatine Monohydrate"
+        },
+        {
+          "attribute": "quantity",
+          "previous_value": 2
+        }
+      ]
+    }
+  ]
+}

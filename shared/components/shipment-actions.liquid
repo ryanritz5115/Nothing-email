@@ -1,0 +1,28 @@
+{%- comment -%}
+  Shipment actions. "Track your package" when there's one package with a
+  tracking link, otherwise "View your order" or support when no order link
+  is available. Place inside the hero <td>,
+  after the shipment card. Requires shared/shipment.
+{%- endcomment -%}
+{%- if track_url != '' -%}
+  {%- assign button_label = 'Track your package' -%}
+  {%- assign button_url   = track_url -%}
+  {%- if orders_url != blank -%}
+    {%- assign link_prefix  = 'or' -%}
+    {%- assign link_label   = 'View your order' -%}
+    {%- assign link_url     = orders_url -%}
+  {%- endif -%}
+{%- elsif orders_url != blank -%}
+  {%- assign button_label = 'View your order' -%}
+  {%- assign button_url   = orders_url -%}
+  {%- assign link_prefix  = 'or' -%}
+  {%- assign link_label   = 'Visit our store' -%}
+  {%- assign link_url     = store_url -%}
+{%- else -%}
+  {%- assign button_label = 'Contact Support' -%}
+  {%- assign button_url   = support_url -%}
+  {%- assign link_prefix  = 'or' -%}
+  {%- assign link_label   = 'Visit our store' -%}
+  {%- assign link_url     = store_url -%}
+{%- endif -%}
+{%- include 'shared/components/actions' -%}

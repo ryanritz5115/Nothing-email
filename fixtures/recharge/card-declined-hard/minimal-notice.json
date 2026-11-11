@@ -1,0 +1,9 @@
+{
+  "$extends": "payment-action-needed",
+  "$description": "All optional customer, order, item, amount, link, and merchant fields are explicitly null. Shared support, clear status, and the configured account route remain.",
+  "first_name": null,
+  "shop_email": null,
+  "shop_address": null,
+  "link": null,
+  "billing_link": null
+}

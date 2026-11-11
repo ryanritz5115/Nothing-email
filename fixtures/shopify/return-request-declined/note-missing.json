@@ -1,0 +1,7 @@
+{
+  "$extends": "declined-note",
+  "$description": "The customer-facing decline note is unavailable. The email offers support without inventing a reason for the decision.",
+  "order_name": "#1902",
+  "order": { "name": "#1902" },
+  "return": { "decline": { "note": null } }
+}

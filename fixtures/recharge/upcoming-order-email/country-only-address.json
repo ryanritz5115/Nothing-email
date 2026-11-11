@@ -1,0 +1,17 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "A partial address is shown without empty name, company, street, or city lines.",
+  "charge": {
+    "shipping_address": {
+      "first_name": null,
+      "last_name": null,
+      "company": null,
+      "address1": null,
+      "address2": null,
+      "city": null,
+      "province": null,
+      "zip": null,
+      "country": "United States"
+    }
+  }
+}

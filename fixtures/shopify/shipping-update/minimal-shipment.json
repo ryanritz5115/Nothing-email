@@ -1,0 +1,9 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "No shipment item list, address, or shipping method. Do not show empty sections.",
+  "shipping_address": null,
+  "shipping_method": null,
+  "fulfillment": {
+    "fulfillment_line_items": []
+  }
+}

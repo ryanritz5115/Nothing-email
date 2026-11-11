@@ -1,0 +1,52 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "Tracking update for only part of the order. Counts show 1 of 2 and copy scopes the update to this shipment.",
+  "fulfillment_status": "partial",
+  "fulfillment": {
+    "item_count": 2,
+    "fulfillment_line_items": [
+      {
+        "quantity": 1,
+        "line_item": {
+          "title": "Focus - Blueberry Pomegranate",
+          "product": {
+            "title": "Focus"
+          },
+          "variant": {
+            "title": "Blueberry Pomegranate"
+          },
+          "quantity": 2,
+          "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+          "original_line_price": 15998,
+          "final_line_price": 15998,
+          "discount_allocations": [],
+          "properties": {},
+          "selling_plan_allocation": null,
+          "unit_price_measurement": null,
+          "gift_card": false
+        }
+      },
+      {
+        "quantity": 1,
+        "line_item": {
+          "title": "Fortify",
+          "product": {
+            "title": "Fortify"
+          },
+          "variant": {
+            "title": "Default Title"
+          },
+          "quantity": 1,
+          "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Fortify",
+          "original_line_price": 5000,
+          "final_line_price": 5000,
+          "discount_allocations": [],
+          "properties": {},
+          "selling_plan_allocation": null,
+          "unit_price_measurement": null,
+          "gift_card": false
+        }
+      }
+    ]
+  }
+}

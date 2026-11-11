@@ -1,0 +1,19 @@
+{
+  "$extends": "refunded",
+  "$description": "Verification cancellation avoids exposing internal fraud labels to the customer.",
+  "cancel_reason": "fraud",
+  "financial_status": "voided",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "authorization",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

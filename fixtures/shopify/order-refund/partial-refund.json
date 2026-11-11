@@ -1,0 +1,73 @@
+{
+  "$extends": "full-refund",
+  "$description": "Only one of two ordered pouches is refunded. Event amount is independent of the original line price.",
+  "amount": 7999,
+  "financial_status": "partially_refunded",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": {
+        "title": "Focus"
+      },
+      "variant": {
+        "title": "Blueberry Pomegranate"
+      },
+      "quantity": 2,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 15998,
+      "final_line_price": 15998,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    }
+  ],
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 17768,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    },
+    {
+      "status": "success",
+      "kind": "refund",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 7999,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ],
+  "refund_line_items": [
+    {
+      "quantity": 1,
+      "line_item": {
+        "title": "Focus - Blueberry Pomegranate",
+        "product": {
+          "title": "Focus"
+        },
+        "variant": {
+          "title": "Blueberry Pomegranate"
+        },
+        "quantity": 2,
+        "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+        "original_line_price": 15998,
+        "final_line_price": 15998,
+        "discount_allocations": [],
+        "properties": {},
+        "selling_plan_allocation": null,
+        "unit_price_measurement": null,
+        "gift_card": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "$extends": "access-code",
+  "$description": "The sparse notification has no identity, code or platform links; the account and support remain available.",
+  "first_name": null,
+  "email": null,
+  "access_code": null,
+  "shop_email": null,
+  "link": null,
+  "subscription_url": null,
+  "login_url": null
+}

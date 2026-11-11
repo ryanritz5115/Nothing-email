@@ -1,0 +1,51 @@
+{%- comment -%}
+  Refund payment history. Body rows, using the order-wide transactions.
+  Each payment keeps its own status. Never imply that a pending or failed
+  payment completed, or that a previous refund is part of the current one.
+  Requires shared/payment-adjustment. No inputs.
+{%- endcomment -%}
+{%- if payment_has_refund_records -%}
+  {%- assign section_title = 'Refund payments' -%}
+  {%- include 'shared/components/section-heading' -%}
+  <tr>
+    <td style="padding:0 {{ space_gutter }};">
+      {%- assign detail_label = 'Payment history for this order' -%}
+      {%- assign detail_value = 'This list includes any earlier refunds. Each payment has its own status and may arrive separately.' -%}
+      {%- include 'shared/components/detail' -%}
+
+      {%- for refund_transaction in transactions -%}
+        {%- if refund_transaction.kind == 'refund' -%}
+          {%- capture refund_method -%}
+            {%- if refund_transaction.gateway == 'gift_card' -%}
+              Gift card
+            {%- elsif refund_transaction.gateway == 'shopify_store_credit' -%}
+              Store credit
+            {%- elsif refund_transaction.payment_details.credit_card_company != blank -%}
+              {{ refund_transaction.payment_details.credit_card_company | escape }}{%- if refund_transaction.payment_details.credit_card_last_four_digits != blank %} ending in {{ refund_transaction.payment_details.credit_card_last_four_digits | escape }}{%- endif -%}
+            {%- elsif refund_transaction.gateway_display_name != blank -%}
+              {{ refund_transaction.gateway_display_name | escape }}
+            {%- else -%}
+              Payment method
+            {%- endif -%}
+          {%- endcapture -%}
+          {%- capture refund_payment_value -%}
+            {%- if refund_transaction.amount != nil -%}
+              {{ refund_transaction.amount | money_with_currency }}
+            {%- else -%}
+              Amount not available
+            {%- endif %} &#183; {% case refund_transaction.status -%}
+              {%- when 'success' -%}Processed
+              {%- when 'pending' -%}Pending
+              {%- when 'failure', 'error' -%}Failed attempt
+              {%- else -%}Status not available
+            {%- endcase -%}
+          {%- endcapture -%}
+          {%- assign detail_label = refund_method -%}
+          {%- assign detail_value = refund_payment_value -%}
+          {%- assign detail_space_above = space_md -%}
+          {%- include 'shared/components/detail' -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </td>
+  </tr>
+{%- endif -%}

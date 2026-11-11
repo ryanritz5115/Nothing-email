@@ -1,0 +1,22 @@
+{# Shared account-access next steps. No customer email, portal token or internal
+   account status is exposed. Input recharge_access_mode: 'code' or 'account'. #}
+{% set section_title = 'Good to know' %}
+{% include 'shared/components/section-heading' %}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% if recharge_access_mode == 'code' %}
+                {% set detail_label = 'Code not working?' %}
+                {% set detail_value %}Return to the sign-in screen where you requested your code and request a new one. Use the newest code. You can also open <a href="{{ account_url }}" style="color:{{ c_brand }}; font-weight:{{ weight_bold }};">your account</a> to start signing in again.{% endset %}
+              {% else %}
+                {% set detail_label = "Can't find your subscriptions?" %}
+                {% set detail_value %}Check that you signed in with the email address used for your subscription purchase. If you still need help, email <a href="mailto:{{ recharge_contact_email|e }}" style="color:{{ c_brand }}; font-weight:{{ weight_bold }};">{{ recharge_contact_email|e }}</a>.{% endset %}
+              {% endif %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = "Didn't request this?" %}
+              {% set detail_value = 'You can ignore this email if you did not ask to sign in.' %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+            </td>
+          </tr>
+{% set recharge_access_mode = '' %}

@@ -1,0 +1,16 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Modern flow euro decimal currency values keep the correct units and currency.",
+  "charge": {
+    "currency": "EUR",
+    "subtotal_price": "34.50",
+    "total_price": "39.00",
+    "line_items": [
+      {
+        "title": "Porrada Creatine Monohydrate",
+        "quantity": 1,
+        "total_price": "34.50"
+      }
+    ]
+  }
+}

@@ -94,7 +94,7 @@ function indexPage(): string {
 }
 
 function templatePage(platform: Platform, name: string, fixture: string | undefined): string {
-  const fixtures = listFixtures(platform);
+  const fixtures = listFixtures(platform, name);
   const active = fixtures.find((f) => f.name === fixture);
   const query = fixture ? `?fixture=${encodeURIComponent(fixture)}` : '';
 
@@ -105,7 +105,7 @@ function templatePage(platform: Platform, name: string, fixture: string | undefi
             `<a class="pill${f.name === fixture ? ' on' : ''}" title="${escapeHtml(f.description)}" href="/t/${platform}/${name}?fixture=${encodeURIComponent(f.name)}">${f.name}</a>`,
         )
         .join('')
-    : `<span class="muted">No fixtures in fixtures/${platform}/ yet</span>`;
+    : `<span class="muted">No fixtures in fixtures/${platform}/${name}/ yet</span>`;
 
   return page(
     `${name} · ${platform}`,
@@ -163,7 +163,7 @@ const server = createServer(async (req, res) => {
   }
 
   const requested = url.searchParams.get('fixture');
-  const fixture = requested && isSafeName(requested) ? requested : defaultFixture(platform);
+  const fixture = requested && isSafeName(requested) ? requested : defaultFixture(platform, name);
 
   try {
     if (route === 't') return send(res, 200, 'text/html', templatePage(platform, name, fixture));

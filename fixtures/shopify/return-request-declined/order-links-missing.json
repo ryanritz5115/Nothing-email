@@ -1,0 +1,8 @@
+{
+  "$extends": "declined-note",
+  "$description": "All Shopify customer and order URLs are unavailable. The primary action still uses configured orders_url.",
+  "order_name": "#1909",
+  "order": { "name": "#1909", "order_status_url": null },
+  "customer_order_url": null,
+  "order_status_url": null
+}

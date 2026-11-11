@@ -1,0 +1,29 @@
+{
+  "$extends": "refunded",
+  "$description": "Subscription scope is retained when subtotal lines are absent but the original order line is still available.",
+  "subtotal_line_items": [],
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": {
+        "title": "Focus"
+      },
+      "variant": {
+        "title": "Blueberry Pomegranate"
+      },
+      "quantity": 0,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 7999,
+      "final_line_price": 7999,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": {
+        "selling_plan": {
+          "name": "Monthly subscription"
+        }
+      },
+      "unit_price_measurement": null,
+      "gift_card": false
+    }
+  ]
+}

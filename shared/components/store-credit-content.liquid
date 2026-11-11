@@ -1,0 +1,53 @@
+{%- comment -%}
+  Store credit issuance in the shared gift design. Requires shared config.
+  The issued amount is separate from the customer's total account balance.
+{%- endcomment -%}
+<table role="presentation" width="{{ gc_width }}" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:{{ gc_width }}px; border-collapse:collapse;">
+  <tr>
+    <td class="pr-gc-gutter pr-gc-title" align="center" style="padding:{{ gc_pad_title }}; {{ st_gc_title }}">
+      You&rsquo;ve got store credit!
+    </td>
+  </tr>
+  <tr>
+    <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_intro }}; {{ st_gc_body }}">
+      Store credit has been added to your Porrada account.
+    </td>
+  </tr>
+  <tr>
+    <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_image }};">
+      <img src="{{ img_store_credit }}" alt="Porrada store credit" width="{{ gc_image_width }}" style="display:block; width:100%; max-width:{{ gc_image_width }}px; height:auto; border-radius:{{ gc_radius_image }}; margin:0 auto;">
+    </td>
+  </tr>
+  {%- if issued_store_credit.amount != blank -%}
+    <tr>
+      <td class="pr-gc-gutter pr-gc-amount" align="center" style="padding:{{ gc_pad_amount }}; {{ st_gc_amount }}">
+        {{ issued_store_credit.amount | money }}
+      </td>
+    </tr>
+  {%- endif -%}
+  {%- if issued_store_credit.expires_at != blank -%}
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_note }}; {{ st_gc_note }}">
+        Expires {{ issued_store_credit.expires_at | date: '%B %e, %Y' }}
+      </td>
+    </tr>
+  {%- endif -%}
+  <tr>
+    <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_action }};">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+        <tr>
+          <td align="center" bgcolor="{{ c_brand }}" style="border-radius:{{ radius_button }}; background-color:{{ c_brand }};">
+            <a href="{{ account_url }}" target="_blank" style="{{ st_gc_button }}">View store credit</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="pr-gc-gutter pr-gc-heading" align="center" style="padding:{{ gc_pad_heading }}; {{ st_gc_heading }}">How to Redeem</td>
+  </tr>
+  {%- assign gc_step_number = '1' -%}
+  {%- assign gc_step_title = 'Use store credit at checkout' -%}
+  {%- assign gc_step_body = 'Sign in to your account, then choose store credit as your payment method at checkout.' -%}
+  {%- include 'shared/components/gift-card-step' -%}
+</table>

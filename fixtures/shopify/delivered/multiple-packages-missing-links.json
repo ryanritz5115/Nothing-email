@@ -1,0 +1,10 @@
+{
+  "$extends": "multiple-packages",
+  "$description": "Two tracking numbers but only the first has a URL, and Shopify supplies no order page URL. Preserve the second as text and offer configured orders_url with a storefront link.",
+  "order_status_url": null,
+  "fulfillment": {
+    "tracking_urls": [
+      "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223197428490"
+    ]
+  }
+}

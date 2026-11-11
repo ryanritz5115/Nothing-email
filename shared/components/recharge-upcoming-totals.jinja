@@ -1,0 +1,41 @@
+{# Modern Upcoming order email totals use nested charge values.
+   Recharge's subtotal_price already includes product discounts. Label it explicitly,
+   and do not subtract total_discounts again. Shipping_lines has no documented child
+   price contract here, so the supplied final total is used without rebuilding it.
+   upcoming_total_value is formatted once by the template, with one currency code. #}
+{% if upcoming_charge.currency is defined and upcoming_charge.currency and upcoming_charge.currency|trim and ((upcoming_charge.subtotal_price is defined and upcoming_charge.subtotal_price is not none and upcoming_charge.subtotal_price|string|trim != '') or (upcoming_charge.total_tax is defined and upcoming_charge.total_tax is not none and upcoming_charge.total_tax|string|trim != '') or (upcoming_charge.total_duties is defined and upcoming_charge.total_duties is not none and upcoming_charge.total_duties|string|trim != '') or (upcoming_charge.total_price is defined and upcoming_charge.total_price is not none and upcoming_charge.total_price|string|trim != '')) %}
+  <tr>
+    <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        <tr>
+          <td width="{{ totals_spacer_width }}" style="width:{{ totals_spacer_width }};"></td>
+          <td width="{{ totals_width }}" style="width:{{ totals_width }};">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+              {% if upcoming_charge.subtotal_price is defined and upcoming_charge.subtotal_price is not none and upcoming_charge.subtotal_price|string|trim != '' %}
+                {% set total_label = 'Subtotal after discounts' if upcoming_charge.total_discounts|default(0, true)|float != 0 else 'Subtotal' %}
+                {% set total_value = upcoming_charge.subtotal_price|amount_with_currency(upcoming_charge.currency) %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+              {% if upcoming_charge.total_tax is defined and upcoming_charge.total_tax is not none and upcoming_charge.total_tax|string|trim != '' %}
+                {% set total_label = 'Taxes' %}
+                {% set total_value = upcoming_charge.total_tax|amount_with_currency(upcoming_charge.currency) %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+              {% if upcoming_charge.total_duties is defined and upcoming_charge.total_duties is not none and upcoming_charge.total_duties|string|trim != '' %}
+                {% set total_label = 'Duties' %}
+                {% set total_value = upcoming_charge.total_duties|amount_with_currency(upcoming_charge.currency) %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+              {% if upcoming_total_value %}
+                {% set total_label = 'Upcoming total' %}
+                {% set total_value = upcoming_total_value %}
+                {% set total_emphasis = true %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+{% endif %}

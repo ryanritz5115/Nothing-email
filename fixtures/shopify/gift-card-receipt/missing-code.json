@@ -1,0 +1,5 @@
+{
+  "$extends": "receipt-sent",
+  "$description": "The receipt can show recipient and gift details without a supplied code. Omit the blank code row.",
+  "gift_card": { "code": null }
+}

@@ -1,0 +1,28 @@
+{
+  "$extends": "refunded",
+  "$description": "An errored refund payment with no amount must still be flagged, without formatting an absent value as zero.",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    },
+    {
+      "status": "error",
+      "kind": "refund",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": null,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

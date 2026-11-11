@@ -1,0 +1,10 @@
+{
+  "$extends": "account-request",
+  "$description": "No customer status is assumed when the notification supplies no identity or links. Account setup and sign-in are handled on the account page.",
+  "first_name": null,
+  "email": null,
+  "shop_email": null,
+  "link": null,
+  "subscription_url": null,
+  "login_url": null
+}

@@ -1,0 +1,20 @@
+{
+  "$extends": "refunded",
+  "$description": "A pending, uncollected payment at cancellation. No instruction to finish payment, and no refund promise.",
+  "cancel_reason": "declined",
+  "financial_status": "pending",
+  "has_pending_payment": true,
+  "transactions": [
+    {
+      "status": "pending",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

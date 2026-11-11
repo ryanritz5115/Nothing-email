@@ -1,0 +1,101 @@
+{%- comment -%}
+  Return/exchange financial summary. Body rows. Reads only the return's
+  own documented amounts, never original order totals. Each optional
+  amount is guarded, so absent data is never rendered as zero or Free.
+  return.total_price is a signed net cost for this return, distinct from
+  return.order_total_outstanding (the order's remaining balance).
+  The order's negative balance is an estimated refund, never proof that a
+  refund was sent. The net cost alone does not determine money still owed.
+  Contracts:
+    https://help.shopify.com/en/manual/fulfillment/setup/notifications/exchange-notifications/return-approved
+    https://help.shopify.com/en/manual/fulfillment/setup/notifications/exchange-notifications/return-created
+{%- endcomment -%}
+{%- assign return_has_financials = false -%}
+{%- if return.line_items_subtotal_price != nil and return.line_items_subtotal_price != blank -%}
+  {%- assign return_has_financials = true -%}
+{%- endif -%}
+{%- if return.total_tax_price != nil and return.total_tax_price != blank -%}
+  {%- assign return_has_financials = true -%}
+{%- endif -%}
+{%- if return.total_price != nil and return.total_price != blank -%}
+  {%- assign return_has_financials = true -%}
+{%- endif -%}
+{%- if return_balance_known -%}
+  {%- assign return_has_financials = true -%}
+{%- endif -%}
+{%- for return_fee in return.fees -%}
+  {%- if return_fee.subtotal != nil and return_fee.subtotal != blank -%}
+    {%- assign return_has_financials = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if return_has_financials -%}
+  {%- assign section_title = 'Return and exchange summary' -%}
+  {%- include 'shared/components/section-heading' -%}
+  <tr>
+    <td style="padding:0 {{ space_gutter }};">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        <tr>
+          <td width="{{ totals_spacer_width }}" style="width:{{ totals_spacer_width }}; font-size:0; line-height:0;">&nbsp;</td>
+          <td width="{{ totals_width }}" style="width:{{ totals_width }};">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+              {%- if return.line_items_subtotal_price != nil and return.line_items_subtotal_price != blank -%}
+                {%- assign total_label = 'Subtotal' -%}
+                {%- capture total_value -%}{%- if return.line_items_subtotal_price < 0 -%}-{{ return.line_items_subtotal_price | abs | money }}{%- else -%}{{ return.line_items_subtotal_price | money }}{%- endif -%}{%- endcapture -%}
+                {%- include 'shared/components/total-row' -%}
+              {%- endif -%}
+
+              {%- for return_fee in return.fees -%}
+                {%- if return_fee.subtotal != nil and return_fee.subtotal != blank -%}
+                  {%- if return_fee.title != blank -%}
+                    {%- assign total_label = return_fee.title | escape -%}
+                  {%- else -%}
+                    {%- assign total_label = 'Return fee' -%}
+                  {%- endif -%}
+                  {%- capture total_value -%}{%- if return_fee.subtotal < 0 -%}-{{ return_fee.subtotal | abs | money }}{%- else -%}{{ return_fee.subtotal | money }}{%- endif -%}{%- endcapture -%}
+                  {%- include 'shared/components/total-row' -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              {%- if return.total_tax_price != nil and return.total_tax_price != blank -%}
+                {%- assign total_label = 'Estimated taxes' -%}
+                {%- capture total_value -%}{%- if return.total_tax_price < 0 -%}-{{ return.total_tax_price | abs | money }}{%- else -%}{{ return.total_tax_price | money }}{%- endif -%}{%- endcapture -%}
+                {%- include 'shared/components/total-row' -%}
+              {%- endif -%}
+
+              {%- if return.total_price != nil and return.total_price != blank -%}
+                {%- assign total_label = 'Total change' -%}
+                {%- capture total_value -%}{%- if return.total_price < 0 -%}-{{ return.total_price | abs | money_with_currency }}{%- else -%}{{ return.total_price | money_with_currency }}{%- endif -%}{%- endcapture -%}
+                {%- include 'shared/components/total-row' -%}
+              {%- endif -%}
+              {%- if return_balance_known -%}
+                <tr><td colspan="2" style="height:{{ space_sm }}; font-size:0; line-height:0;">&nbsp;</td></tr>
+                <tr><td colspan="2" style="border-top:1px solid {{ c_divider }}; height:{{ space_sm }}; font-size:0; line-height:0;">&nbsp;</td></tr>
+                {%- if return.order_total_outstanding < 0 -%}
+                  {%- assign total_label = 'Estimated refund' -%}
+                  {%- assign total_value = return.order_total_outstanding | abs | money_with_currency -%}
+                {%- elsif return.order_total_outstanding > 0 -%}
+                  {%- assign total_label = 'Outstanding order balance' -%}
+                  {%- assign total_value = return.order_total_outstanding | money_with_currency -%}
+                {%- else -%}
+                  {%- assign total_label = 'Order balance' -%}
+                  {%- assign total_value = return.order_total_outstanding | money_with_currency -%}
+                {%- endif -%}
+                {%- assign total_emphasis = true -%}
+                {%- include 'shared/components/total-row' -%}
+              {%- endif -%}
+            </table>
+          </td>
+        </tr>
+      </table>
+      {%- assign detail_label = 'About these amounts' -%}
+      {%- if return_balance_known and return.order_total_outstanding < 0 -%}
+        {%- assign detail_value = 'The refund shown is an estimate for this return. Starting a return does not confirm that a refund has been issued. Contact us if an amount looks wrong.' -%}
+      {%- else -%}
+        {%- assign detail_value = 'These amounts cover this return and any exchange items. Check your order for the latest balance. Contact us if an amount looks wrong.' -%}
+      {%- endif -%}
+      {%- assign detail_space_above = space_lg -%}
+      {%- include 'shared/components/detail' -%}
+    </td>
+  </tr>
+{%- endif -%}

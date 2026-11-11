@@ -1,0 +1,6 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Preserve supplied three-decimal amount and display the supplied currency code without conversion.",
+  "charge_currency": "KWD",
+  "total_price": "19.345"
+}

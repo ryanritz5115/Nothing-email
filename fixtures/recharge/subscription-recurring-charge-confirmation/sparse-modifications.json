@@ -1,0 +1,72 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Missing/invalid modification identities and attributes keep unknown data unknown and do not invent removed quantities.",
+  "line_items": [
+    {
+      "name": "Fallback name",
+      "quantity": 3
+    }
+  ],
+  "line_item_modifications": [
+    {
+      "line_item_id": 0,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 3,
+          "value": 2
+        }
+      ]
+    },
+    {
+      "line_item_id": 99,
+      "modification_type": "update",
+      "modifications": []
+    },
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 2,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "line_item_id": 10,
+      "modification_type": "delete",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": null
+        },
+        {
+          "attribute": "product_title",
+          "previous_value": "   "
+        },
+        {
+          "attribute": "variant_title",
+          "previous_value": ""
+        }
+      ]
+    },
+    {
+      "line_item_id": 11,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 5,
+          "value": null
+        }
+      ]
+    },
+    {
+      "modification_type": "unsupported",
+      "modifications": []
+    }
+  ]
+}

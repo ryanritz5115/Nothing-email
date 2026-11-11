@@ -1,0 +1,38 @@
+{%- comment -%}
+  Shipping details. Section rows: shipping address on the left, shipping
+  method and PO number on the right. Skipped when there's none of them.
+  Place as body rows. Requires shared/shipment.
+{%- endcomment -%}
+{%- if shipping_address or shipping_method or po_number -%}
+  {%- assign section_title = 'Shipping details' -%}
+  {%- include 'shared/components/section-heading' -%}
+
+  <tr>
+    <td style="padding:0 {{ space_gutter }};">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        <tr>
+          {%- if shipping_address -%}
+            <td width="50%" valign="top" style="width:50%; padding-right:{{ space_md }};">
+              {%- assign detail_label = 'Shipping address' -%}
+              {%- assign detail_value = ship_address_lines -%}
+              {%- include 'shared/components/detail' -%}
+            </td>
+          {%- endif -%}
+          <td width="50%" valign="top" style="width:50%;">
+            {%- if shipping_method -%}
+              {%- assign detail_label = 'Shipping method' -%}
+              {%- assign detail_value = shipping_method.title -%}
+              {%- include 'shared/components/detail' -%}
+            {%- endif -%}
+            {%- if po_number -%}
+              {%- assign detail_label = 'PO number' -%}
+              {%- assign detail_value = po_number -%}
+              {%- if shipping_method -%}{%- assign detail_space_above = space_md -%}{%- endif -%}
+              {%- include 'shared/components/detail' -%}
+            {%- endif -%}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+{%- endif -%}

@@ -1,0 +1,7 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "A missing line-item list does not fall back to legacy items.",
+  "charge": {
+    "line_items": null
+  }
+}

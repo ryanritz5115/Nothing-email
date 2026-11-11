@@ -1,0 +1,17 @@
+{
+  "$extends": "label-ready",
+  "$description": "A tracking number without a URL remains plain text rather than an empty link.",
+  "return": {
+    "deliveries": [
+      {
+        "type": "shopify_label",
+        "carrier_name": "USPS",
+        "tracking_number": "9400111899560000000000",
+        "tracking_url": null,
+        "return_label": {
+          "public_file_url": "https://example.com/returns/1001/package-1-label.pdf"
+        }
+      }
+    ]
+  }
+}

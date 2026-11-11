@@ -1,0 +1,7 @@
+{
+  "$extends": "return-requested",
+  "$description": "Without nested order data, top-level order_name supplies the identity. The action uses configured orders_url regardless of Shopify order links.",
+  "order_name": "#1811",
+  "order": null,
+  "customer_order_url": null
+}

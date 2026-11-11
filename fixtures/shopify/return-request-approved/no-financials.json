@@ -1,0 +1,11 @@
+{
+  "$extends": "label-ready",
+  "$description": "Absent return amounts suppress the entire financial summary, even though original order totals exist in the fixture.",
+  "return": {
+    "order_total_outstanding": null,
+    "line_items_subtotal_price": null,
+    "fees": [],
+    "total_tax_price": null,
+    "total_price": null
+  }
+}

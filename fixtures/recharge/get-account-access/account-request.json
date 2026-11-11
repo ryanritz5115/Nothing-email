@@ -1,0 +1,9 @@
+{
+  "$description": "A customer asks for account access. Porrada's account page handles sign-in without exposing the supplied portal links.",
+  "first_name": "Taylor",
+  "email": "taylor@example.com",
+  "shop_email": "support@porradanutra.com",
+  "link": "https://portal.example.com/customer/token-do-not-use",
+  "subscription_url": "https://portal.example.com/subscriptions/token-do-not-use",
+  "login_url": "https://portal.example.com/login/token-do-not-use"
+}

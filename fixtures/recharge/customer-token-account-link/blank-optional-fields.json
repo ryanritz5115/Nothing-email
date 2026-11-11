@@ -1,0 +1,7 @@
+{
+  "$extends": "sign-in-request",
+  "$description": "Blank customer identity and support fields use neutral copy and configured Porrada support.",
+  "first_name": "  ",
+  "email": "  ",
+  "shop_email": "  "
+}

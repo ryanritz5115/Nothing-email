@@ -1,0 +1,6 @@
+{
+  "$extends": "sign-in-request",
+  "$description": "A name containing HTML characters is escaped; support links keep the configured address despite an alternate merchant email.",
+  "first_name": "Taylor & <Team>",
+  "shop_email": "help+access@porradanutra.com"
+}

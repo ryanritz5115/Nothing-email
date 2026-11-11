@@ -1,0 +1,17 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Zero totals and a zero-priced product stay visible as supplied.",
+  "charge": {
+    "subtotal_price": "0.00",
+    "total_price": "0.00",
+    "total_tax": "0.00",
+    "total_duties": "0.00",
+    "line_items": [
+      {
+        "title": "Porrada subscription item",
+        "quantity": 1,
+        "total_price": "0.00"
+      }
+    ]
+  }
+}

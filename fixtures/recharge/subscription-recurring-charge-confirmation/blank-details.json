@@ -1,0 +1,12 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Whitespace-only optional fields and null amount do not output empty details.",
+  "first_name": "   ",
+  "shop_email": "   ",
+  "shop_address": "   ",
+  "order_number": "   ",
+  "charge_date": "   ",
+  "charge_currency": "   ",
+  "total_price": null,
+  "line_items": []
+}

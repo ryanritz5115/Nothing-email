@@ -1,0 +1,29 @@
+{
+  "$extends": "refunded",
+  "$description": "Uncaptured authorization canceled before a charge. A temporary bank hold is distinguished from a refund.",
+  "financial_status": "voided",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "authorization",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    },
+    {
+      "status": "success",
+      "kind": "void",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

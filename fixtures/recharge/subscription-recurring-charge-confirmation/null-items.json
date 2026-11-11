@@ -1,0 +1,6 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Null lists are treated as unavailable rather than iterated.",
+  "line_items": null,
+  "line_item_modifications": null
+}

@@ -1,0 +1,10 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Blank numeric fields stay hidden instead of rendering as zero.",
+  "subtotal_price": "",
+  "total_shipping": " ",
+  "total_tax": "",
+  "total_duties": " ",
+  "total_discounts": "",
+  "total_price": ""
+}

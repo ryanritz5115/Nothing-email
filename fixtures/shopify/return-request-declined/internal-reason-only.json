@@ -1,0 +1,9 @@
+{
+  "$extends": "declined-note",
+  "$description": "Only an internal decline reason, an order note, and an unrelated custom_message exist. None may replace the missing customer-facing decline note.",
+  "order_name": "#1906",
+  "order": { "name": "#1906" },
+  "note": "INTERNAL_ORDER_NOTE_MUST_NOT_APPEAR",
+  "custom_message": "UNRELATED_CUSTOM_MESSAGE_MUST_NOT_APPEAR",
+  "return": { "decline": { "note": null, "reason": "FINAL_SALE" } }
+}

@@ -1,0 +1,17 @@
+{
+  "$extends": "all-items",
+  "$description": "Two tracking numbers on the same shipment, with links for both and a PO number. Shows plural tracking label and order CTA.",
+  "po_number": "PO-4471",
+  "fulfillment": {
+    "tracking_company": "USPS",
+    "tracking_numbers": [
+      "9400111899223197428490",
+      "9400111899223197428506"
+    ],
+    "tracking_url": "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223197428490",
+    "tracking_urls": [
+      "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223197428490",
+      "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223197428506"
+    ]
+  }
+}

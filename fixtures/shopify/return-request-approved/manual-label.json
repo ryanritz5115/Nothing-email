@@ -1,0 +1,17 @@
+{
+  "$extends": "label-ready",
+  "$description": "A manually supplied label uses its own carrier and download link.",
+  "return": {
+    "deliveries": [
+      {
+        "type": "manual",
+        "carrier_name": "UPS",
+        "tracking_number": "1Z999AA10123456784",
+        "tracking_url": "https://www.ups.com/track?tracknum=1Z999AA10123456784",
+        "return_label": {
+          "public_file_url": "https://example.com/returns/1001/package-1-label.pdf"
+        }
+      }
+    ]
+  }
+}

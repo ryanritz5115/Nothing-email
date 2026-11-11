@@ -1,0 +1,5 @@
+{
+  "$extends": "access-code",
+  "$description": "An access code beginning with zeroes must display exactly as supplied.",
+  "access_code": "0017"
+}

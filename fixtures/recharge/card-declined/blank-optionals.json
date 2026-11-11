@@ -1,0 +1,7 @@
+{
+  "$extends": "payment-declined",
+  "$description": "Whitespace-only first name and merchant details use clean fallback copy and configured support.",
+  "first_name": "   ",
+  "shop_email": "   ",
+  "shop_address": "   "
+}

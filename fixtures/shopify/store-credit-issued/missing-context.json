@@ -1,0 +1,6 @@
+{
+  "$extends": "credit-issued",
+  "$description": "No store credit object or customer context. The account button and single checkout instruction remain available without invented amounts or dates.",
+  "issued_store_credit": null,
+  "customer": null
+}

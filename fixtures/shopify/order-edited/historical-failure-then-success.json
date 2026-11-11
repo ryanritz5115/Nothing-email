@@ -1,0 +1,12 @@
+{
+  "$extends": "all-items-removed",
+  "$description": "An earlier refund attempt failed, then a retry successfully refunded the entire order. The zero balance and total refunded are shown without treating historical failure as a current problem.",
+  "order_name": "#1619",
+  "financial_status": "refunded",
+  "total_outstanding": 0,
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 9209, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" },
+    { "status": "failure", "kind": "refund", "amount": 9209, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" },
+    { "status": "success", "kind": "refund", "amount": 9209, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

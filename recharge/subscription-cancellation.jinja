@@ -1,0 +1,54 @@
+{# Recharge > Notifications > Subscription cancellation.
+   Customer-wide notification: sent only once all subscriptions are inactive.
+   Item loops, cancellation dates and reasons are not exposed by this contract. #}
+{% include 'shared/config' %}
+{% set email_title = 'Your subscriptions are canceled' %}
+{% set preheader = 'Your Porrada subscriptions are canceled. Here is what happens next.' %}
+{% set recharge_contact_email = support_email %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, your {% else %}Your {% endif %}Porrada subscriptions are canceled. You have no active subscriptions on your account.{% endset %}
+{% include 'shared/document-start' %}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set stack_eyebrow = 'Subscription update' %}
+              {% set stack_title = email_title %}
+              {% set stack_body = email_body %}
+              {% include 'shared/components/text-stack' %}
+
+              {% set card_body %}
+                {% set detail_label = 'Subscription status' %}
+                {% set detail_value = 'Canceled' %}
+                {% set detail_emphasis = true %}
+                {% include 'shared/components/detail' %}
+              {% endset %}
+              {% include 'shared/components/card' %}
+
+              {% set recharge_action_label = 'View your account' %}
+              {% include 'shared/components/recharge-actions' %}
+            </td>
+          </tr>
+
+          {% set section_title = 'What happens next' %}
+          {% include 'shared/components/section-heading' %}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set detail_label = 'What about future renewals?' %}
+              {% set detail_value = 'Your canceled subscriptions will not renew. Orders already placed and any remaining prepaid shipments are handled separately.' %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Does this cancel or refund an existing order?' %}
+              {% set detail_value = 'Canceling a subscription does not cancel or refund an order already placed. Contact us if you need help with an order or a charge already in progress.' %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Canceled by mistake?' %}
+              {% set detail_value %}Email <a href="mailto:{{ recharge_contact_email|e }}" style="color:{{ c_brand }}; font-weight:{{ weight_bold }};">{{ recharge_contact_email|e }}</a> and we'll help you review your options.{% endset %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+            </td>
+          </tr>
+
+          {% set recharge_show_legal = false %}
+          {% include 'shared/components/recharge-merchant-info' %}
+{% set footer_support_title = 'Need help with your subscription?' %}
+{% include 'shared/document-end' %}

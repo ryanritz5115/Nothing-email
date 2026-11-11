@@ -1,0 +1,59 @@
+{# Recharge > Email > Out of stock. Stock behavior is store-configurable:
+   an entire order can be held, or quantities/items can be adjusted. This event
+   does not establish that all items are unpaid or that a subscription ended.
+   out_of_stock_items is not rendered: its shape is not publicly documented. #}
+{% include 'shared/config' %}
+{% set email_title = 'A stock update for your subscription' %}
+{% set preheader = 'An item in your recurring order is out of stock. Review your account or get in touch for help.' %}
+{% set recharge_contact_email = support_email %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, an {% else %}An {% endif %}item in your Porrada recurring order is out of stock, so we could not process the full order as planned. You can check your account for the latest order details.{% endset %}
+{% include 'shared/document-start' %}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set stack_eyebrow = 'Subscription update' %}
+              {% set stack_title = email_title %}
+              {% set stack_body = email_body %}
+              {% include 'shared/components/text-stack' %}
+
+              {% set card_body %}
+                {% set detail_label = 'Order update' %}
+                {% set detail_value = 'An item is out of stock' %}
+                {% set detail_emphasis = true %}
+                {% include 'shared/components/detail' %}
+                {% set detail_label = 'Need help with this order?' %}
+                {% set detail_value = 'Contact us to review the affected items and your options.' %}
+                {% set detail_space_above = space_md %}
+                {% include 'shared/components/detail' %}
+              {% endset %}
+              {% include 'shared/components/card' %}
+
+              {% set recharge_action_label = 'View your account' %}
+              {% include 'shared/components/recharge-actions' %}
+            </td>
+          </tr>
+
+          {% set section_title = 'What happens next' %}
+          {% include 'shared/components/section-heading' %}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set detail_label = 'What happens to my order?' %}
+              {% set detail_value = 'An order can be held for stock, or available items can be processed separately. Review your account for the current order details, and check any payment confirmation for items that were processed.' %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'When will it ship?' %}
+              {% set detail_value = 'We do not have a confirmed restock or shipping date in this update. Look for a separate shipping email with tracking when your order ships.' %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Want help reviewing your options?' %}
+              {% set detail_value %}Email <a href="mailto:{{ recharge_contact_email|e }}" style="color:{{ c_brand }}; font-weight:{{ weight_bold }};">{{ recharge_contact_email|e }}</a>. We'll help you review the stock issue and your subscription.{% endset %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+            </td>
+          </tr>
+
+          {% set recharge_show_legal = false %}
+          {% include 'shared/components/recharge-merchant-info' %}
+{% set footer_support_title = 'Need help with your subscription?' %}
+{% include 'shared/document-end' %}

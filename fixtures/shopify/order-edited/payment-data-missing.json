@@ -1,0 +1,8 @@
+{
+  "$extends": "order-updated",
+  "$description": "No balance, transaction data, or Shopify order URL is supplied. The email makes no paid-in-full claim and uses the configured orders_url action.",
+  "order_name": "#1609",
+  "total_outstanding": null,
+  "transactions": [],
+  "order_status_url": null
+}

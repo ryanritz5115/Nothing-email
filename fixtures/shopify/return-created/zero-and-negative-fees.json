@@ -1,0 +1,17 @@
+{
+  "$extends": "label-ready",
+  "$description": "A real zero fee stays zero, a fee credit stays negative, and fee titles are escaped.",
+  "return": {
+    "fees": [
+      {
+        "title": "Return & handling",
+        "subtotal": 0
+      },
+      {
+        "title": "Fee credit",
+        "subtotal": -500
+      }
+    ],
+    "total_price": -9059
+  }
+}

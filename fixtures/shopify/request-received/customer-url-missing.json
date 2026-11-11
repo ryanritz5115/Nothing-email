@@ -1,0 +1,7 @@
+{
+  "$extends": "return-requested",
+  "$description": "Without a Shopify customer order URL, the action still uses configured orders_url and ignores nested order.order_status_url.",
+  "order_name": "#1810",
+  "order": { "name": "#1810" },
+  "customer_order_url": null
+}

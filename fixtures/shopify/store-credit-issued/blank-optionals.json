@@ -1,0 +1,5 @@
+{
+  "$extends": "credit-issued",
+  "$description": "Whitespace-only amount and expiry fields are absent. Do not render a zero amount or an empty expiry label.",
+  "issued_store_credit": { "amount": "  ", "expires_at": "  " }
+}

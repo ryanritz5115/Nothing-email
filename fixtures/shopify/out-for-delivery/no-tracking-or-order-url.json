@@ -1,0 +1,5 @@
+{
+  "$extends": "no-tracking",
+  "$description": "Shopify supplies no tracking or order page URL. Use the configured orders_url action and a storefront link without an empty href.",
+  "order_status_url": null
+}

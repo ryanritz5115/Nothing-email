@@ -1,0 +1,5 @@
+{
+  "$extends": "label-ready",
+  "$description": "A Shopify customer account order URL is supplied but ignored; order navigation uses configured orders_url.",
+  "customer_order_url": "https://account.porradanutra.com/orders/1001"
+}

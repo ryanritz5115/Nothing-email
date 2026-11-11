@@ -1,0 +1,8 @@
+{
+  "$description": "Customer-wide cancellation: no subscriptions remain active. Portal link and support remain available, with no order-refund or prepaid-shipment guarantees. Account actions use Porrada’s /account route.",
+  "first_name": "Ryan",
+  "email": "ryan@example.com",
+  "shop_email": "support@porradanutra.com",
+  "link": "https://porradanutra.com/tools/recurring/portal/example-token",
+  "shop_address": "Porrada, 123 Main Street, New York, NY 10001, United States"
+}

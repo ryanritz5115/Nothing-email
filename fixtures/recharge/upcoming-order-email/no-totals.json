@@ -1,0 +1,16 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "All monetary facts missing or blank: there is no empty totals table or fabricated zero.",
+  "charge": {
+    "subtotal_price": null,
+    "total_price": "   ",
+    "total_tax": null,
+    "total_duties": "",
+    "line_items": [
+      {
+        "title": "Porrada Creatine Monohydrate",
+        "quantity": 1
+      }
+    ]
+  }
+}

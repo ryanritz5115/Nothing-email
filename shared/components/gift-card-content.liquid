@@ -1,0 +1,112 @@
+{%- comment -%}
+  Gift card body, preserving the supplied 450px design. The surrounding
+  document owns the header, support section, and brand footer.
+  Requires shared config plus gift-card identity and URL logic from new-gift-card.
+{%- endcomment -%}
+<table role="presentation" width="{{ gc_width }}" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:{{ gc_width }}px; border-collapse:collapse;">
+  <tr>
+    <td class="pr-gc-gutter pr-gc-title" align="center" style="padding:{{ gc_pad_title }}; {{ st_gc_title }}">
+      You&rsquo;ve got a gift!
+    </td>
+  </tr>
+  <tr>
+    <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_intro }}; {{ st_gc_body }}">
+      {%- if gift_card.recipient != blank -%}
+        {%- if recipient_name != blank -%}Hi {{ recipient_name | escape }}, {% endif -%}
+        {{ sender_name | escape }} sent you a gift card.
+      {%- else -%}
+        Your gift card is ready.
+      {%- endif %}
+      {%- if gift_code != blank %} Add it to your cart below and it&rsquo;ll be waiting at checkout.{% else %} Contact support below for help accessing your gift card code.{% endif -%}
+    </td>
+  </tr>
+  {%- if gift_card.recipient != blank and gift_card.message != blank -%}
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_message }}; {{ st_gc_message }}">
+        &ldquo;{{ gift_card.message | escape | newline_to_br }}&rdquo;
+      </td>
+    </tr>
+  {%- endif -%}
+  <tr>
+    <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_image }};">
+      <img src="{{ img_gift_card }}" alt="Porrada gift card" width="{{ gc_image_width }}" style="display:block; width:100%; max-width:{{ gc_image_width }}px; height:auto; border-radius:{{ gc_radius_image }}; margin:0 auto;">
+    </td>
+  </tr>
+  {%- if gift_card.initial_value != blank -%}
+    <tr>
+      <td class="pr-gc-gutter pr-gc-amount" align="center" style="padding:{{ gc_pad_amount }}; {{ st_gc_amount }}">
+        {{ gift_card.initial_value | money }}
+      </td>
+    </tr>
+  {%- endif -%}
+  {%- if gift_card.expires_on != blank -%}
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_note }}; {{ st_gc_note }}">
+        Expires {{ gift_card.expires_on | date: '%B %e, %Y' }}
+      </td>
+    </tr>
+  {%- endif -%}
+  <tr>
+    <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_action }};">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+        <tr>
+          <td align="center" bgcolor="{{ c_brand }}" style="border-radius:{{ radius_button }}; background-color:{{ c_brand }};">
+            {%- if gift_code != blank -%}
+              <a href="{{ share_link | escape }}" target="_blank" style="{{ st_gc_button }}">Add Gift Card to Cart</a>
+            {%- else -%}
+              <a href="{{ support_url }}" target="_blank" style="{{ st_gc_button }}">Contact Support</a>
+            {%- endif -%}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {%- if gift_code != blank -%}
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_share }};">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+          <tr>
+            <td align="center" bgcolor="{{ c_white }}" style="background-color:{{ c_white }};">
+              <a href="{{ copy_link | escape }}" target="_blank" style="{{ st_gc_share }}">Copy Gift Card Link to Share</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_code }}; {{ st_gc_code_label }}">
+        Gift card code<br>
+        <span style="{{ st_gc_code }}">{{ gift_code | format_code | escape }}</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="pr-gc-gutter pr-gc-heading" align="center" style="padding:{{ gc_pad_heading }}; {{ st_gc_heading }}">How to Redeem</td>
+    </tr>
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_intro }}; {{ st_gc_body }}">
+        Three steps and you&rsquo;re done. Your gift card balance applies automatically at checkout.
+      </td>
+    </tr>
+    {%- assign gc_step_number = '1' -%}
+    {%- assign gc_step_title = 'Click &ldquo;Add Gift Card to Cart&rdquo; Above' -%}
+    {%- assign gc_step_body = 'The button drops your gift card straight into your cart, so there&rsquo;s no code to type in later.' -%}
+    {%- include 'shared/components/gift-card-step' -%}
+    {%- assign gc_step_number = '2' -%}
+    {%- assign gc_step_title = 'Add Products to Cart' -%}
+    {%- assign gc_step_body = 'Shop the full range and add whatever you want. Your gift card sits in the cart while you browse.' -%}
+    {%- include 'shared/components/gift-card-step' -%}
+    {%- assign gc_step_number = '3' -%}
+    {%- assign gc_step_title = 'Checkout' -%}
+    {%- assign gc_step_body = 'Your balance is applied at checkout. Anything left over stays on the card for next time.' -%}
+    {%- include 'shared/components/gift-card-step' -%}
+  {%- endif -%}
+  {%- if gift_card.pass_url != blank -%}
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_wallet }};">
+        <a href="{{ gift_card.pass_url | escape }}" target="_blank">
+          <img src="{{ 'gift-card/add-to-apple-wallet.png' | shopify_asset_url }}" alt="Add to Apple Wallet" width="{{ gc_wallet_width }}" height="{{ gc_wallet_height }}" style="display:block; width:{{ gc_wallet_width }}px; height:{{ gc_wallet_height }}px; margin:0 auto;">
+        </a>
+      </td>
+    </tr>
+  {%- endif -%}
+</table>

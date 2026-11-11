@@ -1,0 +1,21 @@
+{
+  "$extends": "refunded",
+  "$description": "Invalid item records stay hidden. A line with only its title still renders without an image or variant.",
+  "line_items": [
+    {
+      "quantity": 0,
+      "title": "Removed item"
+    },
+    {
+      "quantity": 1
+    },
+    {
+      "title": "Missing quantity"
+    },
+    {
+      "quantity": 1,
+      "title": "Porrada sample",
+      "image": null
+    }
+  ]
+}

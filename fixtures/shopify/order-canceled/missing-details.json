@@ -1,0 +1,11 @@
+{
+  "$extends": "refunded",
+  "$description": "No date, reason, Shopify order link, payment status, transactions or items. Use the configured orders_url action and keep optional sections hidden.",
+  "cancelled_at": null,
+  "cancel_reason": null,
+  "order_status_url": null,
+  "financial_status": null,
+  "transactions": null,
+  "line_items": [],
+  "subtotal_line_items": []
+}

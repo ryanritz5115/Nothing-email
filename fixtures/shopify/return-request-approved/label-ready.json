@@ -1,0 +1,47 @@
+{
+  "$extends": "order-confirmation/order-paid",
+  "$description": "Approved return with a downloadable USPS label, exact return lines, and an estimated refund. The original order shipping is not included in the estimate.",
+  "order": {
+    "name": "#1001",
+    "order_status_url": "https://porradanutra.com/orders/return-preview"
+  },
+  "customer_order_url": null,
+  "return": {
+    "line_items": [
+      {
+        "title": "Focus - Blueberry Pomegranate",
+        "variant": {
+          "title": "Blueberry Pomegranate"
+        },
+        "quantity": 1,
+        "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+        "original_line_price": 7999,
+        "final_line_price": 7999,
+        "discount_allocations": [],
+        "properties": {},
+        "selling_plan_allocation": null,
+        "unit_price_measurement": null,
+        "gift_card": false,
+        "title_without_variant": "Focus"
+      }
+    ],
+    "exchange_line_items": [],
+    "deliveries": [
+      {
+        "type": "shopify_label",
+        "carrier_name": "USPS",
+        "tracking_number": "9400111899560000000000",
+        "tracking_url": "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899560000000000",
+        "return_label": {
+          "public_file_url": "https://example.com/returns/1001/package-1-label.pdf"
+        }
+      }
+    ],
+    "checkout_payment_collection_url": null,
+    "order_total_outstanding": -8559,
+    "line_items_subtotal_price": -7999,
+    "fees": [],
+    "total_tax_price": -560,
+    "total_price": -8559
+  }
+}

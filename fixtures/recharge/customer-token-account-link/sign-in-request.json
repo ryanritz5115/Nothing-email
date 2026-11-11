@@ -1,0 +1,9 @@
+{
+  "$description": "A requested token-account notification routes to Porrada's account page without promising that this plain URL signs the customer in.",
+  "first_name": "Taylor",
+  "email": "taylor@example.com",
+  "shop_email": "support@porradanutra.com",
+  "link": "https://portal.example.com/customer/token-do-not-use",
+  "subscription_url": "https://portal.example.com/subscriptions/token-do-not-use",
+  "login_url": "https://portal.example.com/login/token-do-not-use"
+}

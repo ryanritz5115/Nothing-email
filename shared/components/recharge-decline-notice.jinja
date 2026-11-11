@@ -1,0 +1,54 @@
+{# Both decline notices use the same layout. recharge_hard_decline selects the
+   correct retry guidance; neither mode invents a retry date or cancellation. #}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set stack_eyebrow = 'Subscription payment' %}
+              {% set stack_title = email_title %}
+              {% set stack_body = email_body %}
+              {% include 'shared/components/text-stack' %}
+
+              {% set card_body %}
+                {% set detail_label = 'Payment status' %}
+                {% set detail_value = 'Action needed' %}
+                {% set detail_emphasis = true %}
+                {% include 'shared/components/detail' %}
+                {% set detail_label = 'Next step' %}
+                {% set detail_value = 'Update your payment method in your account' %}
+                {% set detail_space_above = space_md %}
+                {% include 'shared/components/detail' %}
+              {% endset %}
+              {% include 'shared/components/card' %}
+
+              {% set recharge_action_label = 'Update payment method' %}
+              {% include 'shared/components/recharge-actions' %}
+            </td>
+          </tr>
+
+          {% set section_title = 'What happens next' %}
+          {% include 'shared/components/section-heading' %}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set detail_label = 'What should I do?' %}
+              {% set detail_value = 'Open your account and review your saved payment details. Update the payment method if needed. If the details are correct, your payment provider may be able to explain the decline.' %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Will you try the payment again?' %}
+              {% if recharge_hard_decline %}
+                {% set detail_value = 'This payment will not be retried automatically until you update your payment method. Once it is updated, the charge can be retried using the new details.' %}
+              {% else %}
+                {% set detail_value = 'We may try the payment again based on our retry schedule. Please review your payment method now to help prevent another decline.' %}
+              {% endif %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'What happens to my order?' %}
+              {% set detail_value = 'We need a successful payment before this recurring order can be processed. This notice does not confirm that your subscription has been canceled.' %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Need a hand?' %}
+              {% set detail_value %}Email <a href="mailto:{{ recharge_contact_email|e }}" style="color:{{ c_brand }}; font-weight:{{ weight_bold }};">{{ recharge_contact_email|e }}</a> and we'll help you review the payment issue. Please do not send full card details by email.{% endset %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+            </td>
+          </tr>

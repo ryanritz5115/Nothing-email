@@ -1,0 +1,5 @@
+{
+  "$extends": "order-message",
+  "$description": "A longer manual message keeps readable paragraph spacing and wraps a long case identifier on phones.",
+  "custom_message": "Hi Marcus,\n\nWe are checking the shipping details you shared. Please keep this message with your order records.\n\nYour case reference: PORRADA-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\nYou can contact support using the button below if you have any questions.\n\nThe Porrada team"
+}

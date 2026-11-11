@@ -1,0 +1,6 @@
+{
+  "$extends": "balance-due",
+  "$description": "A balance remains and payment terms provide a due date. The date appears only when supplied.",
+  "order_name": "#1603",
+  "payment_terms": { "next_payment": { "due_at": "2026-11-17T12:00:00Z" } }
+}

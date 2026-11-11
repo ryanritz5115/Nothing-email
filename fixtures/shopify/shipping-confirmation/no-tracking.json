@@ -1,0 +1,11 @@
+{
+  "$extends": "all-items",
+  "$description": "Shipped without tracking or a delivery estimate. No card, no tracking answer; the button falls back to View your order.",
+  "fulfillment": {
+    "tracking_company": null,
+    "tracking_numbers": [],
+    "tracking_url": null,
+    "tracking_urls": [],
+    "estimated_delivery_at": null
+  }
+}

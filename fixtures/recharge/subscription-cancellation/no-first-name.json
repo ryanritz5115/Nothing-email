@@ -1,0 +1,5 @@
+{
+  "$extends": "subscriptions-canceled",
+  "$description": "Greeting remains natural when first_name is unavailable.",
+  "first_name": null
+}

@@ -1,0 +1,5 @@
+{
+  "$extends": "order-message",
+  "$description": "An order number is present, but Shopify supplies no order link. Use the configured orders_url action.",
+  "order_status_url": null
+}

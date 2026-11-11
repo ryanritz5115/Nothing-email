@@ -1,0 +1,100 @@
+{
+  "$extends": "order-confirmation/order-paid",
+  "$description": "Base: the whole order ships in one package, with UPS tracking and an estimated delivery date. Every other shipping fixture extends this one.",
+  "item_count": 3,
+  "fulfillment_status": "fulfilled",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": {
+        "title": "Focus"
+      },
+      "variant": {
+        "title": "Blueberry Pomegranate"
+      },
+      "quantity": 2,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 15998,
+      "final_line_price": 15998,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    },
+    {
+      "title": "Fortify",
+      "product": {
+        "title": "Fortify"
+      },
+      "variant": {
+        "title": "Default Title"
+      },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Fortify",
+      "original_line_price": 5000,
+      "final_line_price": 5000,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    }
+  ],
+  "fulfillment": {
+    "item_count": 3,
+    "tracking_company": "UPS",
+    "tracking_numbers": [
+      "1Z999AA10123456784"
+    ],
+    "tracking_url": "https://www.ups.com/track?tracknum=1Z999AA10123456784",
+    "tracking_urls": [
+      "https://www.ups.com/track?tracknum=1Z999AA10123456784"
+    ],
+    "estimated_delivery_at": "2026-10-23T12:00:00-04:00",
+    "fulfillment_line_items": [
+      {
+        "quantity": 2,
+        "line_item": {
+          "title": "Focus - Blueberry Pomegranate",
+          "product": {
+            "title": "Focus"
+          },
+          "variant": {
+            "title": "Blueberry Pomegranate"
+          },
+          "quantity": 2,
+          "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+          "original_line_price": 15998,
+          "final_line_price": 15998,
+          "discount_allocations": [],
+          "properties": {},
+          "selling_plan_allocation": null,
+          "unit_price_measurement": null,
+          "gift_card": false
+        }
+      },
+      {
+        "quantity": 1,
+        "line_item": {
+          "title": "Fortify",
+          "product": {
+            "title": "Fortify"
+          },
+          "variant": {
+            "title": "Default Title"
+          },
+          "quantity": 1,
+          "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Fortify",
+          "original_line_price": 5000,
+          "final_line_price": 5000,
+          "discount_allocations": [],
+          "properties": {},
+          "selling_plan_allocation": null,
+          "unit_price_measurement": null,
+          "gift_card": false
+        }
+      }
+    ]
+  }
+}

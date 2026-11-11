@@ -1,0 +1,12 @@
+{
+  "$extends": "no-tracking",
+  "$description": "Sparse carrier event: no quantities, shipment item list, shipping address, method, or PO number. Omits empty sections.",
+  "item_count": null,
+  "shipping_address": null,
+  "shipping_method": null,
+  "po_number": null,
+  "fulfillment": {
+    "item_count": null,
+    "fulfillment_line_items": []
+  }
+}

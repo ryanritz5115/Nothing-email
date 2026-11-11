@@ -1,0 +1,6 @@
+{
+  "$extends": "refunded",
+  "$description": "An authorized order with no transaction history is not described as a captured payment.",
+  "financial_status": "authorized",
+  "transactions": null
+}

@@ -1,0 +1,8 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Supplied shipping, tax, and duties are displayed without recalculating the final total.",
+  "total_shipping": "4.95",
+  "total_tax": "2.76",
+  "total_duties": "1.50",
+  "total_price": "43.21"
+}

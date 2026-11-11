@@ -1,0 +1,61 @@
+{# Official Recharge partial-fulfillment fields: update points to an original
+   line item; delete preserves product and variant titles in modifications.
+   Update rows require a confirmed reduction between nonnegative whole-number
+   quantities. An increase, unchanged quantity, or malformed update is not a
+   removal. A supported delete still establishes that the item was removed. #}
+{% set recharge_removed_rows %}
+  {% for change in line_item_modifications|default([], true) %}
+    {% if change.modification_type|default('') in ['update', 'delete'] %}
+      {% set recharge_removed = namespace(title='Subscription item', variant='', quantity=none) %}
+      {% if change.modification_type|default('') == 'update' %}
+        {% set recharge_original_index = change.line_item_id|default(-1, true)|int(-1) - 1 %}
+        {% if recharge_original_index >= 0 and recharge_original_index < line_items|default([], true)|length %}
+          {% set recharge_original_item = line_items[recharge_original_index] %}
+          {% if recharge_original_item.product_title is string and recharge_original_item.product_title|trim %}
+            {% set recharge_removed.title = recharge_original_item.product_title %}
+          {% elif recharge_original_item.title is string and recharge_original_item.title|trim %}
+            {% set recharge_removed.title = recharge_original_item.title %}
+          {% elif recharge_original_item.name is string and recharge_original_item.name|trim %}
+            {% set recharge_removed.title = recharge_original_item.name %}
+          {% endif %}
+          {% set recharge_removed.variant = recharge_original_item.variant_title|default('') %}
+        {% endif %}
+      {% endif %}
+      {% for attribute in change.modifications|default([], true) %}
+        {% if attribute.attribute|default('') == 'quantity' and attribute.previous_value is defined and attribute.previous_value is not none and attribute.previous_value|string|trim != '' %}
+          {% if change.modification_type|default('') == 'delete' %}
+            {% set recharge_removed.quantity = attribute.previous_value|default(none) %}
+          {% elif attribute.value is defined and attribute.value is not none and attribute.value|string|trim != '' and attribute.previous_value is not sameas true and attribute.previous_value is not sameas false and attribute.value is not sameas true and attribute.value is not sameas false %}
+            {% set recharge_previous_quantity = attribute.previous_value|int(-1) %}
+            {% set recharge_current_quantity = attribute.value|int(-1) %}
+            {% if recharge_previous_quantity >= 0 and recharge_current_quantity >= 0 and recharge_previous_quantity > recharge_current_quantity and recharge_previous_quantity == attribute.previous_value|float(-1) and recharge_current_quantity == attribute.value|float(-1) %}
+              {% set recharge_removed.quantity = recharge_previous_quantity - recharge_current_quantity %}
+            {% endif %}
+          {% endif %}
+        {% elif change.modification_type|default('') == 'delete' and attribute.attribute|default('') == 'product_title' and attribute.previous_value is string and attribute.previous_value|trim %}
+          {% set recharge_removed.title = attribute.previous_value|default(none) %}
+        {% elif change.modification_type|default('') == 'delete' and attribute.attribute|default('') == 'variant_title' %}
+          {% set recharge_removed.variant = attribute.previous_value|default(none) %}
+        {% endif %}
+      {% endfor %}
+      {% if change.modification_type|default('') == 'delete' or recharge_removed.quantity is not none %}
+        {% set recharge_row_title = recharge_removed.title %}
+        {% set recharge_row_variant = recharge_removed.variant %}
+        {% set recharge_row_quantity = recharge_removed.quantity %}
+        {% include 'shared/components/recharge-order-item' %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endset %}
+{% if recharge_removed_rows|trim %}
+  {% set section_title = 'Items not included' %}
+  {% include 'shared/components/section-heading' %}
+  <tr>
+    <td style="padding:0 {{ space_gutter }};">
+      {% set detail_label = 'Out of stock' %}
+      {% set detail_value = 'These items or quantities were removed from this order. You were not charged for them, and they were not included in tax or shipping calculations.' %}
+      {% include 'shared/components/detail' %}
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">{{ recharge_removed_rows }}</table>
+    </td>
+  </tr>
+{% endif %}

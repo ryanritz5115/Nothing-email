@@ -1,0 +1,34 @@
+{%- comment -%}
+  Items for this return, exchange, or cancellation request only. Body rows. Shopify return lines
+  are flat objects and use title_without_variant. No original-order prices.
+  Inputs, reset after use: return_items, return_items_title.
+{%- endcomment -%}
+{%- assign return_visible_item_count = 0 -%}
+{%- for return_item in return_items -%}
+  {%- if return_item.quantity and return_item.quantity > 0 -%}
+    {%- if return_item.title_without_variant != blank or return_item.title != blank or return_item.product.title != blank -%}
+      {%- assign return_visible_item_count = return_visible_item_count | plus: 1 -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if return_visible_item_count > 0 -%}
+  {%- assign section_title = return_items_title -%}
+  {%- include 'shared/components/section-heading' -%}
+  <tr>
+    <td style="padding:0 {{ space_gutter }};">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        {%- for return_item in return_items -%}
+          {%- if return_item.quantity and return_item.quantity > 0 -%}
+            {%- if return_item.title_without_variant != blank or return_item.title != blank or return_item.product.title != blank -%}
+              {%- assign item = return_item -%}
+              {%- assign item_quantity = return_item.quantity -%}
+              {%- include 'shared/components/line-item' -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </table>
+    </td>
+  </tr>
+{%- endif -%}
+{%- assign return_items = nil -%}
+{%- assign return_items_title = '' -%}

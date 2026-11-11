@@ -1,0 +1,30 @@
+{
+  "$extends": "refunded",
+  "$description": "Inventory cancellation after a partial refund. Never imply the full collected payment was returned.",
+  "cancel_reason": "inventory",
+  "financial_status": "partially_refunded",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    },
+    {
+      "status": "success",
+      "kind": "refund",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 3000,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

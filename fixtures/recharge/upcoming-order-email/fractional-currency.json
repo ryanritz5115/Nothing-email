@@ -1,0 +1,16 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "KWD retains its three decimal currency precision.",
+  "charge": {
+    "currency": "KWD",
+    "subtotal_price": "10.125",
+    "total_price": "11.500",
+    "line_items": [
+      {
+        "title": "Porrada Creatine Monohydrate",
+        "quantity": 1,
+        "total_price": "10.125"
+      }
+    ]
+  }
+}

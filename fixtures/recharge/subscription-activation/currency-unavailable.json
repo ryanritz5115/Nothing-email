@@ -1,0 +1,5 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Missing currency hides monetary amounts rather than assuming USD.",
+  "charge_currency": null
+}

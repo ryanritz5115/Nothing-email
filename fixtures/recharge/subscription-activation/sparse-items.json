@@ -1,0 +1,28 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Missing product titles, item prices, quantities, and unknown billing intervals do not create false schedule or money claims.",
+  "line_items": [
+    {
+      "product_title": " ",
+      "variant_title": "Default Title"
+    },
+    {
+      "product_title": "Porrada Hydration",
+      "quantity": 1,
+      "price": "",
+      "charge_interval_frequency": 1
+    },
+    {
+      "product_title": "Porrada Creatine Monohydrate",
+      "price": "34.00",
+      "charge_interval_frequency": "",
+      "order_interval_unit": "month"
+    },
+    {
+      "product_title": "Porrada Sample",
+      "price": null,
+      "charge_interval_frequency": 0,
+      "next_charge_date": null
+    }
+  ]
+}

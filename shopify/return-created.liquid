@@ -1,0 +1,46 @@
+{%- comment -%}
+=====================================================================
+  RETURN CREATED
+  Shopify > Settings > Notifications > Return created
+  Paste dist/shopify/return-created.liquid, not this file.
+=====================================================================
+{%- endcomment -%}
+{%- include 'shared/config' -%}
+{%- include 'shared/return' -%}
+
+{%- assign email_title = "We've created your return" -%}
+{%- if return_order_name != blank -%}
+  {%- assign preheader = 'Return created for order ' | append: return_order_name | append: '. Check the next steps for your return.' -%}
+{%- else -%}
+  {%- assign preheader = 'Your return has been created. Check the next steps for your return.' -%}
+{%- endif -%}
+{%- assign email_body = "We've created your return. Check the next steps below." -%}
+
+{%- include 'shared/document-start' -%}
+<tr>
+  <td style="padding:0 {{ space_gutter }};">
+    {%- if return_order_name != blank -%}
+      {%- assign stack_eyebrow = 'Order ' | append: return_order_name -%}
+    {%- endif -%}
+    {%- assign stack_title = email_title -%}
+    {%- assign stack_body = email_body -%}
+    {%- include 'shared/components/text-stack' -%}
+
+    {%- assign return_status_label = 'Return status' -%}
+    {%- assign return_status_value = 'Created' -%}
+    {%- assign return_show_shipping_details = true -%}
+    {%- include 'shared/components/return-card' -%}
+    {%- assign return_action_mode = 'instructions' -%}
+    {%- include 'shared/components/return-actions' -%}
+  </td>
+</tr>
+
+{%- include 'shared/components/return-instructions' -%}
+{%- assign return_items = return.line_items -%}
+{%- assign return_items_title = 'Items in your return' -%}
+{%- include 'shared/components/return-items' -%}
+{%- assign return_items = return.exchange_line_items -%}
+{%- assign return_items_title = "Items you'll receive" -%}
+{%- include 'shared/components/return-items' -%}
+{%- include 'shared/components/return-financials' -%}
+{%- include 'shared/document-end' -%}

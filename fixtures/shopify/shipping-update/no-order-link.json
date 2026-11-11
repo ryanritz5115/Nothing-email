@@ -1,0 +1,5 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "Tracking is available, but Shopify supplies no order-status URL. Keep the tracking action and the configured orders_url link.",
+  "order_status_url": null
+}

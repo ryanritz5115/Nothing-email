@@ -1,0 +1,5 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "Missing gift-card data renders a support path without an invented amount, code, gift URL, expiry, or wallet link.",
+  "gift_card": null
+}

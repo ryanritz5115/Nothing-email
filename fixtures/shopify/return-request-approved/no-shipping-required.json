@@ -1,0 +1,7 @@
+{
+  "$extends": "label-ready",
+  "$description": "Shopify can create a return with no shipping required and no delivery data. Do not promise a future label or insist the customer ships items.",
+  "return": {
+    "deliveries": []
+  }
+}

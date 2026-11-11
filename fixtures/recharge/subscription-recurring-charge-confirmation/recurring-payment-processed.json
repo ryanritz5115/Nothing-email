@@ -1,0 +1,20 @@
+{
+  "first_name": "Ryan",
+  "shop_email": "support@porradanutra.com",
+  "shop_address": "Porrada, 123 Main Street, New York, NY 10001, United States",
+  "link": "https://porradanutra.com/tools/recurring/portal/ignored-token",
+  "billing_link": "https://porradanutra.com/tools/recurring/billing/ignored-token",
+  "$description": "Successful recurring charge with supplied decimal total and currency, order number, charge date, and included items.",
+  "order_number": "1047",
+  "charge_date": "October 21, 2026",
+  "charge_currency": "USD",
+  "total_price": "68.00",
+  "line_items": [
+    {
+      "product_title": "Porrada Creatine Monohydrate",
+      "variant_title": "Unflavored / 30 servings",
+      "quantity": 2,
+      "price": "34.00"
+    }
+  ]
+}

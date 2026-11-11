@@ -1,0 +1,21 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Customer, item, variant, discount, address, and portal URL values are escaped. Only merchant terms intentionally render HTML. Account actions use Porrada’s /account route.",
+  "name": "Alex <script>alert(1)</script> & Sam",
+  "link": "https://porradanutra.com/tools/recurring/portal?token=example&source=email",
+  "shop_address": "Porrada & Co. <Warehouse>, New York",
+  "discount_code": "WELCOME<&>",
+  "total_discounts": "3.40",
+  "total_price": "30.60",
+  "line_items": [
+    {
+      "product_title": "Porrada <Creatine> & Hydration",
+      "variant_title": "Berry <30 servings> & Lime",
+      "quantity": 2,
+      "price": "34.00",
+      "charge_interval_frequency": 2,
+      "order_interval_unit": "month",
+      "next_charge_date": "December 21, 2026"
+    }
+  ]
+}

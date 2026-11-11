@@ -1,0 +1,39 @@
+{%- comment -%}
+  NEW GIFT CARD
+  Shopify > Settings > Notifications > New gift card
+  Preserves the supplied gift body with the shared header, support, and footer.
+  Paste dist/shopify/new-gift-card.liquid, not this file.
+{%- endcomment -%}
+{%- include 'shared/config' -%}
+
+{%- assign email_title = "You've got a gift!" -%}
+{%- assign preheader = 'Your Porrada gift card is ready. Add it to your cart to use it at checkout.' -%}
+{%- assign footer_support_title = 'Need help with your gift card?' -%}
+{%- assign sender_email = gift_card.customer.email | strip -%}
+{%- assign sender_phone = gift_card.customer.phone | strip -%}
+{%- assign sender_shop_name = shop.name | strip | default: 'Porrada' -%}
+{%- assign sender_name = gift_card.customer.name | strip | default: sender_email | default: sender_phone | default: sender_shop_name -%}
+{%- assign recipient_full_name = gift_card.recipient.name | strip -%}
+{%- assign recipient_email = gift_card.recipient.email | strip -%}
+{%- assign recipient_name = gift_card.recipient.nickname | strip | default: recipient_full_name | default: recipient_email -%}
+{%- assign gift_code = gift_card.code | strip -%}
+{%- if gift_code != blank -%}
+  {%- assign encoded_gift_code = gift_code | url_encode -%}
+  {%- assign share_link = gift_cart_url | append: '?gifts=' | append: encoded_gift_code -%}
+  {%- assign encoded_share_link = share_link | url_encode -%}
+  {%- assign copy_link = gift_share_url | append: '?link=' | append: encoded_share_link -%}
+{%- else -%}
+  {%- assign preheader = 'Your Porrada gift card details. Contact support if you need help accessing your code.' -%}
+{%- endif -%}
+
+{%- capture email_styles -%}
+  {%- include 'shared/components/credit-styles' -%}
+{%- endcapture -%}
+
+{%- include 'shared/document-start' -%}
+<tr>
+  <td align="center">
+    {%- include 'shared/components/gift-card-content' -%}
+  </td>
+</tr>
+{%- include 'shared/document-end' -%}

@@ -1,0 +1,28 @@
+{
+  "$description": "Monthly subscription with supplied major-unit prices, next charge, zero duties and tax, account link, merchant terms, and address.",
+  "name": "Ryan",
+  "first_name": "Ryan",
+  "shop_email": "support@porradanutra.com",
+  "shop_name": "Porrada",
+  "link": "https://porradanutra.com/tools/recurring/portal/example-token",
+  "shop_address": "Porrada, 123 Main Street, New York, NY 10001, United States",
+  "shop_legal_text": "<p>Your subscription renews at the billing interval shown above until you cancel. Manage your subscription in your account or contact support for help.</p><p>See our <a href=\"https://porradanutra.com/terms\">subscription terms</a> for details.</p>",
+  "charge_currency": "USD",
+  "line_items": [
+    {
+      "product_title": "Porrada Creatine Monohydrate",
+      "variant_title": "Unflavored / 30 servings",
+      "quantity": 1,
+      "price": "34.00",
+      "charge_interval_frequency": 1,
+      "order_interval_unit": "month",
+      "next_charge_date": "November 21, 2026"
+    }
+  ],
+  "subtotal_price": "34.00",
+  "total_shipping": "0.00",
+  "total_tax": "0.00",
+  "total_duties": "0.00",
+  "total_discounts": "0.00",
+  "total_price": "34.00"
+}

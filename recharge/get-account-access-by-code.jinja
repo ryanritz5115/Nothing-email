@@ -1,0 +1,47 @@
+{# Recharge > Notifications > Get account access by code.
+   Keep the supplied code intact, including leading zeroes. No tokens or codes in URLs.
+   Account navigation is deliberately Porrada's /account route. #}
+{% include 'shared/config' %}
+{% set recharge_contact_email = support_email %}
+{% set recharge_has_access_code = (access_code is string and access_code|trim) or access_code is integer %}
+{% set email_title = 'Your account access code' if recharge_has_access_code else "Let's get you signed in" %}
+{% set preheader = 'Use your code to continue signing in to your Porrada account.' if recharge_has_access_code else 'Return to your sign-in screen to request a new access code.' %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, you{% else %}You{% endif %}{% if recharge_has_access_code %} requested a code to sign in. Enter this code on the sign-in screen where you requested it.{% else %} requested access to your Porrada account. A code was not included in this email. Return to the sign-in screen where you requested your code and request a new one.{% endif %}{% endset %}
+{% include 'shared/document-start' %}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set stack_eyebrow = 'Account access' %}
+              {% set stack_title = email_title %}
+              {% set stack_body = email_body %}
+              {% include 'shared/components/text-stack' %}
+
+              {% set card_body %}
+                {% if recharge_has_access_code %}
+                  {% set detail_label = 'Your one-time code' %}
+                  {% set detail_value = access_code|e %}
+                  {% set detail_emphasis = true %}
+                  {% include 'shared/components/detail' %}
+
+                  {% set detail_label = 'Keep it private' %}
+                  {% set detail_value = 'Use this code only to sign in to your own account. Do not share it.' %}
+                  {% set detail_space_above = space_md %}
+                  {% include 'shared/components/detail' %}
+                {% else %}
+                  {% set detail_label = 'Next step' %}
+                  {% set detail_value = 'Open your account and follow the steps to sign in.' %}
+                  {% set detail_emphasis = true %}
+                  {% include 'shared/components/detail' %}
+                {% endif %}
+              {% endset %}
+              {% include 'shared/components/card' %}
+
+              {% set recharge_action_label = 'Go to your account' %}
+              {% include 'shared/components/recharge-actions' %}
+            </td>
+          </tr>
+
+          {% set recharge_access_mode = 'code' %}
+          {% include 'shared/components/recharge-account-help' %}
+{% set footer_support_title = 'Need help signing in?' %}
+{% include 'shared/document-end' %}

@@ -1,0 +1,7 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "Without a purchaser customer record, identify the sender by the store name.",
+  "gift_card": {
+    "customer": null
+  }
+}

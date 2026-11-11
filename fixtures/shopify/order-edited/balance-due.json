@@ -1,0 +1,24 @@
+{
+  "$extends": "order-updated",
+  "$description": "Quantity increases from one pouch to two. The additional balance is shown without claiming it was collected or linking to an invented checkout URL.",
+  "order_name": "#1602",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Blueberry Pomegranate" },
+      "quantity": 2,
+      "current_quantity": 2,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 15998,
+      "final_line_price": 15998,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": { "selling_plan": { "name": "Deliver every 30 days" } }
+    }
+  ],
+  "subtotal_price": 15998,
+  "tax_price": 1120,
+  "total_price": 17768,
+  "total_outstanding": 8559
+}

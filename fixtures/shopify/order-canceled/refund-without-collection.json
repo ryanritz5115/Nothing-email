@@ -1,0 +1,18 @@
+{
+  "$extends": "refunded",
+  "$description": "A successful refund is available but the original collected payment is absent. Do not infer a full refund.",
+  "financial_status": null,
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "refund",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 3000,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

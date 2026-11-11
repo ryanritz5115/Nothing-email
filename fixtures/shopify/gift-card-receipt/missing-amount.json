@@ -1,0 +1,5 @@
+{
+  "$extends": "receipt-sent",
+  "$description": "The gift-card value is unavailable. Omit the amount rather than fabricating zero.",
+  "gift_card": { "initial_value": null }
+}

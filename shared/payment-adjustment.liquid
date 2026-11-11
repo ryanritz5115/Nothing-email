@@ -1,0 +1,88 @@
+{%- comment -%}
+  Order payment ledger for cancellation, refund, and edit notifications.
+  Shopify's transactions array belongs to the whole order. These totals
+  are lifetime amounts, never the amount of the current refund event.
+  Only successful sale/capture transactions count as collected money.
+  An authorization is not a charge, and a pending/failed refund is not
+  money returned. Refund-event `amount` is read separately by its template.
+  Contract: https://help.shopify.com/en/manual/fulfillment/setup/notifications/email-variables
+            https://shopify.dev/docs/api/liquid/objects/transaction
+{%- endcomment -%}
+{%- assign payment_collected_amount = 0 -%}
+{%- assign payment_authorized_amount = 0 -%}
+{%- assign payment_refunded_amount = 0 -%}
+{%- assign payment_pending_refund_amount = 0 -%}
+{%- assign payment_problem_refund_amount = 0 -%}
+{%- assign payment_has_refund_records = false -%}
+{%- assign payment_has_pending_refund = false -%}
+{%- assign payment_has_problem_refund = false -%}
+{%- assign payment_has_unknown_refund = false -%}
+{%- assign payment_has_gift_card_refund = false -%}
+{%- assign payment_has_store_credit_refund = false -%}
+{%- assign payment_has_external_refund = false -%}
+{%- assign payment_has_shopify_payments_refund = false -%}
+{%- assign payment_has_subscription = false -%}
+
+{%- for payment_transaction in transactions -%}
+  {%- if payment_transaction.kind == 'refund' -%}
+    {%- assign payment_has_refund_records = true -%}
+    {%- case payment_transaction.status -%}
+      {%- when 'success' -%}
+        {%- if payment_transaction.amount and payment_transaction.amount > 0 -%}
+          {%- assign payment_refunded_amount = payment_refunded_amount | plus: payment_transaction.amount -%}
+        {%- endif -%}
+      {%- when 'pending' -%}
+        {%- assign payment_has_pending_refund = true -%}
+        {%- if payment_transaction.amount and payment_transaction.amount > 0 -%}
+          {%- assign payment_pending_refund_amount = payment_pending_refund_amount | plus: payment_transaction.amount -%}
+        {%- endif -%}
+      {%- when 'failure', 'error' -%}
+        {%- assign payment_has_problem_refund = true -%}
+        {%- if payment_transaction.amount and payment_transaction.amount > 0 -%}
+          {%- assign payment_problem_refund_amount = payment_problem_refund_amount | plus: payment_transaction.amount -%}
+        {%- endif -%}
+      {%- else -%}
+        {%- assign payment_has_unknown_refund = true -%}
+    {%- endcase -%}
+    {%- if payment_transaction.gateway == 'gift_card' -%}
+      {%- assign payment_has_gift_card_refund = true -%}
+    {%- elsif payment_transaction.gateway == 'shopify_store_credit' -%}
+      {%- assign payment_has_store_credit_refund = true -%}
+    {%- else -%}
+      {%- assign payment_has_external_refund = true -%}
+      {%- if payment_transaction.gateway == 'shopify_payments' -%}
+        {%- assign payment_has_shopify_payments_refund = true -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- elsif payment_transaction.status == 'success' and payment_transaction.amount and payment_transaction.amount > 0 -%}
+    {%- case payment_transaction.kind -%}
+      {%- when 'sale', 'capture' -%}
+        {%- assign payment_collected_amount = payment_collected_amount | plus: payment_transaction.amount -%}
+      {%- when 'authorization' -%}
+        {%- assign payment_authorized_amount = payment_authorized_amount | plus: payment_transaction.amount -%}
+    {%- endcase -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- for payment_order_line in subtotal_line_items -%}
+  {%- if payment_order_line.selling_plan_allocation -%}
+    {%- assign payment_has_subscription = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- unless payment_has_subscription -%}
+  {%- for payment_order_line in line_items -%}
+    {%- if payment_order_line.selling_plan_allocation -%}
+      {%- assign payment_has_subscription = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endunless -%}
+{%- unless payment_has_subscription -%}
+  {%- for payment_refund_line in refund_line_items -%}
+    {%- if payment_refund_line.line_item.selling_plan_allocation -%}
+      {%- assign payment_has_subscription = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endunless -%}

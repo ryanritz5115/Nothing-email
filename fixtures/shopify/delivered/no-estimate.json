@@ -1,0 +1,7 @@
+{
+  "$extends": "all-items",
+  "$description": "Carrier supplies tracking but no delivery estimate. No blank estimated date or promised delivery day.",
+  "fulfillment": {
+    "estimated_delivery_at": null
+  }
+}

@@ -1,0 +1,35 @@
+{%- comment -%}
+  Return actions inside the hero cell. Requires shared/return.
+  Input, reset after use: return_action_mode ('instructions' enables label
+  and payment actions; default order-only mode is for received/declined).
+  Multiple deliveries keep all labels in the card, never a single-package CTA.
+{%- endcomment -%}
+{%- if return_action_mode == 'instructions' and return_payment_url != blank -%}
+  {%- assign button_label = 'Review and pay balance' -%}
+  {%- assign button_url = return_payment_url -%}
+  {%- if return_label_url != blank -%}
+    {%- assign link_prefix = 'Also' -%}
+    {%- assign link_label = 'print your return label' -%}
+    {%- assign link_url = return_label_url -%}
+  {%- elsif return_order_url != blank -%}
+    {%- assign link_prefix = 'or' -%}
+    {%- assign link_label = 'View your order' -%}
+    {%- assign link_url = return_order_url -%}
+  {%- endif -%}
+{%- elsif return_action_mode == 'instructions' and return_label_url != blank -%}
+  {%- assign button_label = 'Print your return label' -%}
+  {%- assign button_url = return_label_url -%}
+  {%- if return_order_url != blank -%}
+    {%- assign link_prefix = 'or' -%}
+    {%- assign link_label = 'View your order' -%}
+    {%- assign link_url = return_order_url -%}
+  {%- endif -%}
+{%- elsif return_order_url != blank -%}
+  {%- assign button_label = 'View your order' -%}
+  {%- assign button_url = return_order_url -%}
+{%- else -%}
+  {%- assign button_label = 'Contact support' -%}
+  {%- assign button_url = support_url -%}
+{%- endif -%}
+{%- include 'shared/components/actions' -%}
+{%- assign return_action_mode = '' -%}

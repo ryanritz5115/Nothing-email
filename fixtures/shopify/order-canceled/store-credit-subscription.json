@@ -1,0 +1,49 @@
+{
+  "$extends": "refunded",
+  "$description": "Subscription order canceled and refunded to store credit. The email does not claim that the subscription was canceled.",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": {
+        "title": "Focus"
+      },
+      "variant": {
+        "title": "Blueberry Pomegranate"
+      },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 7999,
+      "final_line_price": 7999,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": {
+        "selling_plan": {
+          "name": "Monthly subscription"
+        }
+      },
+      "unit_price_measurement": null,
+      "gift_card": false
+    }
+  ],
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    },
+    {
+      "status": "success",
+      "kind": "refund",
+      "gateway": "shopify_store_credit",
+      "gateway_display_name": "Store credit",
+      "amount": 9209,
+      "payment_details": null
+    }
+  ]
+}

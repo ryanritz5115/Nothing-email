@@ -1,0 +1,18 @@
+{
+  "$extends": "label-ready",
+  "$description": "Only a reliable return fee is present. Missing fee amounts are skipped, a missing fee title uses a neutral label, and no grand total is fabricated.",
+  "return": {
+    "order_total_outstanding": null,
+    "line_items_subtotal_price": null,
+    "fees": [
+      {
+        "title": "Unavailable fee"
+      },
+      {
+        "subtotal": 500
+      }
+    ],
+    "total_tax_price": null,
+    "total_price": null
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Only the supplied final total is shown; missing totals stay unknown.",
+  "subtotal_price": null,
+  "total_shipping": null,
+  "total_tax": null,
+  "total_duties": null,
+  "total_discounts": null
+}

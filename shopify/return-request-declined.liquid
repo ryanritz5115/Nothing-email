@@ -1,0 +1,70 @@
+{%- comment -%}
+=====================================================================
+  RETURN REQUEST DECLINED
+  Shopify > Settings > Notifications > Return request declined
+  Paste dist/shopify/return-request-declined.liquid, not this file.
+
+  Shopify's notification reads the customer-facing note at
+  return.decline['note']. Never substitute the internal reason enum or an
+  order note for that message. Contract source: mirrored Shopify template,
+  maizzle/shopify-notification-templates, revision
+  7cde89bd00dd61a57902237b535e45b276822f92, return_declined.html.
+=====================================================================
+{%- endcomment -%}
+
+{%- include 'shared/config' -%}
+{%- include 'shared/return' -%}
+
+{%- assign email_title = 'Your return request was declined' -%}
+{%- assign email_body = 'Contact us if you have questions about this decision or would like us to review more information.' -%}
+{%- assign preheader = 'An update on your return request. Contact us if you have questions.' -%}
+{%- assign request_eyebrow = 'Return request' -%}
+{%- if return_order_name != blank -%}
+  {%- assign request_eyebrow = 'Order ' | append: return_order_name -%}
+{%- endif -%}
+
+{%- include 'shared/document-start' -%}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {%- assign stack_eyebrow = request_eyebrow -%}
+              {%- assign stack_title = email_title -%}
+              {%- assign stack_body = email_body -%}
+              {%- include 'shared/components/text-stack' -%}
+
+              {%- assign return_status_label = 'Request status' -%}
+              {%- assign return_status_value = 'Declined' -%}
+              {%- include 'shared/components/return-card' -%}
+
+              {%- if return.decline['note'] != blank -%}
+                {%- assign message_content = return.decline['note'] -%}
+                {%- assign message_use_custom = false -%}
+                {%- assign message_heading = 'Message from Porrada' -%}
+                {%- include 'shared/components/customer-message' -%}
+              {%- endif -%}
+
+              {%- assign return_action_mode = 'order' -%}
+              {%- include 'shared/components/return-actions' -%}
+            </td>
+          </tr>
+
+          {%- assign return_items = return.line_items -%}
+          {%- assign return_items_title = 'Items in your request' -%}
+          {%- include 'shared/components/return-items' -%}
+
+          {%- assign section_title = 'Good to know' -%}
+          {%- include 'shared/components/section-heading' -%}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {%- assign detail_label = 'Have a question about this decision?' -%}
+              {%- assign detail_value = "Contact us with your order number. We'll help you understand the decision and review any details you'd like to share." -%}
+              {%- include 'shared/components/detail' -%}
+
+              {%- assign detail_label = 'Should I send the items back?' -%}
+              {%- assign detail_value = 'Please contact us before sending any items for this request.' -%}
+              {%- assign detail_space_above = space_md -%}
+              {%- include 'shared/components/detail' -%}
+            </td>
+          </tr>
+
+{%- include 'shared/document-end' -%}

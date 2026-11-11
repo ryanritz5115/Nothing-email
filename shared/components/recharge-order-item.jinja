@@ -1,0 +1,17 @@
+{# Price-free recurring-order row. Inputs recharge_row_title, recharge_row_variant,
+   recharge_row_quantity. Quantity is the included or removed quantity, never an
+   original quantity after partial fulfillment. All customer fields are escaped. #}
+<tr>
+  <td style="padding:{{ space_md }} 0; border-bottom:1px solid {{ c_divider }};">
+    <p style="{{ st_body_bold }} color:{{ c_black }};">{{ recharge_row_title|e }}</p>
+    {% if recharge_row_variant is string and recharge_row_variant|trim and recharge_row_variant != 'Default Title' %}
+      <p style="{{ st_small_bold }} color:{{ c_gray }};">{{ recharge_row_variant|e }}</p>
+    {% endif %}
+    {% if recharge_row_quantity is defined and recharge_row_quantity is not none and recharge_row_quantity|string|trim != '' and recharge_row_quantity|int > 0 %}
+      <p style="{{ st_small }} color:{{ c_gray }};">Quantity: {{ recharge_row_quantity|int }}</p>
+    {% endif %}
+  </td>
+</tr>
+{% set recharge_row_title = '' %}
+{% set recharge_row_variant = '' %}
+{% set recharge_row_quantity = none %}

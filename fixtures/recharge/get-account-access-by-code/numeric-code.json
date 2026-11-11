@@ -1,0 +1,5 @@
+{
+  "$extends": "access-code",
+  "$description": "An integer access code is displayed as supplied without padding or generating replacement digits.",
+  "access_code": 7384
+}

@@ -1,0 +1,31 @@
+{%- comment -%}
+  Payment adjustment card. Place inside the hero cell, before actions.
+  Inputs, reset after use:
+    adjustment_status        plain-language payment update
+    adjustment_amount        optional money in cents; zero is valid
+    adjustment_amount_label  identifies event amount or lifetime total
+    adjustment_date          optional cancellation date
+{%- endcomment -%}
+{%- capture card_body -%}
+  {%- if adjustment_amount != nil -%}
+    {%- assign detail_label = adjustment_amount_label -%}
+    {%- assign detail_value = adjustment_amount | money_with_currency -%}
+    {%- assign detail_emphasis = true -%}
+    {%- include 'shared/components/detail' -%}
+    {%- assign detail_space_above = space_md -%}
+  {%- endif -%}
+  {%- assign detail_label = 'Payment update' -%}
+  {%- assign detail_value = adjustment_status -%}
+  {%- include 'shared/components/detail' -%}
+  {%- if adjustment_date != blank -%}
+    {%- assign detail_label = 'Canceled on' -%}
+    {%- assign detail_value = adjustment_date | date: '%b %-d, %Y' -%}
+    {%- assign detail_space_above = space_md -%}
+    {%- include 'shared/components/detail' -%}
+  {%- endif -%}
+{%- endcapture -%}
+{%- include 'shared/components/card' -%}
+{%- assign adjustment_status = '' -%}
+{%- assign adjustment_amount = nil -%}
+{%- assign adjustment_amount_label = '' -%}
+{%- assign adjustment_date = '' -%}

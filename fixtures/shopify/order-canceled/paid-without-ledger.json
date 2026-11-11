@@ -1,0 +1,6 @@
+{
+  "$extends": "refunded",
+  "$description": "The order is marked paid but transaction history is not available. A refund is not assumed.",
+  "financial_status": "paid",
+  "transactions": null
+}

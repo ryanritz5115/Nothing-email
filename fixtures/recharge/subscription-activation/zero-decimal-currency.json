@@ -1,0 +1,16 @@
+{
+  "$extends": "subscription-active",
+  "$description": "JPY amounts retain their zero-decimal currency precision.",
+  "charge_currency": "JPY",
+  "subtotal_price": "4200",
+  "total_price": "4200",
+  "line_items": [
+    {
+      "product_title": "Porrada Creatine Monohydrate",
+      "quantity": 1,
+      "price": "4200",
+      "charge_interval_frequency": 1,
+      "order_interval_unit": "month"
+    }
+  ]
+}

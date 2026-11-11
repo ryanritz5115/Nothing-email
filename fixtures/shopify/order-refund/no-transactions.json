@@ -1,0 +1,5 @@
+{
+  "$extends": "full-refund",
+  "$description": "The order is marked refunded without transaction detail. Keep the event amount without inventing a destination.",
+  "transactions": null
+}

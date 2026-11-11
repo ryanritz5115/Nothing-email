@@ -1,0 +1,9 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "Self-purchased gift card without a recipient, expiry date, or wallet pass. A recipient-only gift message is omitted.",
+  "gift_card": {
+    "recipient": null,
+    "expires_on": null,
+    "pass_url": null
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "Without a gift card code, show support instead of code-based cart, share, and redemption instructions. A supplied wallet pass remains available.",
+  "gift_card": {
+    "code": null
+  }
+}

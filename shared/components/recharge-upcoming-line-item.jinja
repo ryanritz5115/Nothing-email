@@ -1,0 +1,29 @@
+{# A modern Upcoming order email item from upcoming_charge.line_items.
+   total_price is Recharge's supplied line total, never price multiplied locally.
+   Item images use the documented images.src field; missing images leave no spacer. #}
+{% set upcoming_item = item|default({}, true) %}
+{% set upcoming_item_title = upcoming_item.title if upcoming_item.title is defined and upcoming_item.title and upcoming_item.title|trim else 'Subscription item' %}
+<tr>
+  <td style="padding:{{ space_md }} 0; border-bottom:1px solid {{ c_divider }};">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+      <tr>
+        {% if upcoming_item.images is defined and upcoming_item.images and upcoming_item.images.src is defined and upcoming_item.images.src and upcoming_item.images.src|trim %}
+          <td width="{{ product_image_size }}" valign="middle" style="width:{{ product_image_size }}px; min-width:{{ product_image_size }}px; padding-right:{{ space_md }};">
+            <img src="{{ upcoming_item.images.src|e }}" width="{{ product_image_size }}" height="{{ product_image_size }}" alt="{{ upcoming_item_title|e }}" style="display:block; width:{{ product_image_size }}px; height:{{ product_image_size }}px; border-radius:{{ radius_image }};">
+          </td>
+        {% endif %}
+        <td width="100%" valign="middle" style="width:100%; padding-right:{{ space_md }};">
+          <p style="{{ st_body_bold }} color:{{ c_black }};">{{ upcoming_item_title|e }}{% if upcoming_item.quantity is defined and upcoming_item.quantity is not none and upcoming_item.quantity|int > 0 %} x {{ upcoming_item.quantity|e }}{% endif %}</p>
+          {% if upcoming_item.variant_title is defined and upcoming_item.variant_title and upcoming_item.variant_title|trim and upcoming_item.variant_title != 'Default Title' %}
+            <p style="{{ st_small_bold }} color:{{ c_gray }};">{{ upcoming_item.variant_title|e }}</p>
+          {% endif %}
+        </td>
+        {% if upcoming_charge.currency is defined and upcoming_charge.currency and upcoming_charge.currency|trim and upcoming_item.total_price is defined and upcoming_item.total_price is not none and upcoming_item.total_price|string|trim != '' %}
+          <td valign="middle" align="right" style="white-space:nowrap;">
+            <p style="{{ st_small_bold }} color:{{ c_gray }};">{{ upcoming_item.total_price|amount_with_currency(upcoming_charge.currency) }}</p>
+          </td>
+        {% endif %}
+      </tr>
+    </table>
+  </td>
+</tr>

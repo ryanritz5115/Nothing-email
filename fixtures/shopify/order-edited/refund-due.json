@@ -1,0 +1,30 @@
+{
+  "$extends": "order-updated",
+  "$description": "One unit is removed from a two-unit line and a zero-quantity line is omitted entirely. The remaining refund is owed, with no successful refund transaction yet. Historical per-line prices are not shown beside the new quantity.",
+  "order_name": "#1604",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Blueberry Pomegranate" },
+      "quantity": 2,
+      "current_quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 15998,
+      "final_line_price": 15998,
+      "discount_allocations": [],
+      "properties": {}
+    },
+    {
+      "title": "Removed sample",
+      "quantity": 1,
+      "current_quantity": 0,
+      "original_line_price": 0,
+      "final_line_price": 0
+    }
+  ],
+  "total_outstanding": -8559,
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 17768, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

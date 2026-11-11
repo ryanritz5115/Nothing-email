@@ -1,0 +1,13 @@
+{
+  "$extends": "all-items",
+  "$description": "A tracking number without a carrier name, URL, or estimate. Shows an unlinked number and the order CTA.",
+  "fulfillment": {
+    "tracking_company": null,
+    "tracking_numbers": [
+      "TBA304819275000"
+    ],
+    "tracking_url": null,
+    "tracking_urls": [],
+    "estimated_delivery_at": null
+  }
+}

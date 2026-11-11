@@ -1,0 +1,8 @@
+{
+  "$extends": "full-refund",
+  "$description": "A gift-card-only refund gives gift card balance guidance without a bank deposit or bank processing deadline.",
+  "transactions": [
+    { "status": "success", "kind": "sale", "gateway": "gift_card", "amount": 9209 },
+    { "status": "success", "kind": "refund", "gateway": "gift_card", "amount": 9209 }
+  ]
+}

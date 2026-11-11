@@ -1,0 +1,7 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Supplied discount with code and total. No promise that the discount expires.",
+  "discount_code": "WELCOME10",
+  "total_discounts": "3.40",
+  "total_price": "30.60"
+}

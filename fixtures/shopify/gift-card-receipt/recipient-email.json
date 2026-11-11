@@ -1,0 +1,5 @@
+{
+  "$extends": "receipt-sent",
+  "$description": "Without a recipient nickname or name, identify the recipient by email.",
+  "gift_card": { "recipient": { "nickname": null, "name": null } }
+}

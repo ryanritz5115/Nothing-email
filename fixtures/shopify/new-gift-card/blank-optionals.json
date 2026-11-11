@@ -1,0 +1,20 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "Whitespace-only sender and recipient fields use their next usable fallback; a blank message, expiry, wallet pass, and code do not produce empty gift actions.",
+  "gift_card": {
+    "code": "   ",
+    "recipient": {
+      "nickname": "  ",
+      "name": "  ",
+      "email": "alex@example.com"
+    },
+    "customer": {
+      "name": "  ",
+      "email": "  ",
+      "phone": "+15555550123"
+    },
+    "message": "   ",
+    "expires_on": "   ",
+    "pass_url": "   "
+  }
+}

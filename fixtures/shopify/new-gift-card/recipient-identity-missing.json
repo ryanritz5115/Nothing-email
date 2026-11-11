@@ -1,0 +1,11 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "A recipient exists but has no usable nickname, name, or email; avoid an empty personal greeting.",
+  "gift_card": {
+    "recipient": {
+      "nickname": null,
+      "name": null,
+      "email": null
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Customer and product text must stay escaped; account, portal, and billing tokens cannot replace the configured /account destination.",
+  "first_name": "<Ryan & Team>",
+  "order_number": "<1047 & test>",
+  "charge_date": "<October 21>",
+  "line_items": [
+    {
+      "product_title": "Porrada <Creatine> & Co.",
+      "variant_title": "<30 servings> & more",
+      "quantity": 1
+    }
+  ],
+  "line_item_modifications": [
+    {
+      "modification_type": "delete",
+      "line_item_id": 2,
+      "modifications": [
+        {
+          "attribute": "product_title",
+          "previous_value": "<Removed & unsafe>"
+        },
+        {
+          "attribute": "variant_title",
+          "previous_value": "<Citrus>"
+        },
+        {
+          "attribute": "quantity",
+          "previous_value": 1
+        }
+      ]
+    }
+  ],
+  "link": "https://wrong.example/portal",
+  "billing_link": "https://wrong.example/billing",
+  "shop_url": "https://wrong.example/store"
+}

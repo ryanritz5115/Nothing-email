@@ -1,0 +1,8 @@
+{%- comment -%} Responsive styles shared by gift cards and store credit. {%- endcomment -%}
+@media only screen and (max-width: {{ footer_breakpoint }}) {
+  .pr-gc-gutter { padding-left:{{ space_gutter }} !important; padding-right:{{ space_gutter }} !important; }
+  .pr-gc-title { font-size:{{ gc_size_title_mobile }} !important; }
+  .pr-gc-heading { font-size:{{ gc_size_heading_mobile }} !important; }
+  .pr-gc-amount { font-size:{{ gc_size_amount_mobile }} !important; }
+  .pr-gc-step { font-size:{{ gc_size_step_mobile }} !important; }
+}

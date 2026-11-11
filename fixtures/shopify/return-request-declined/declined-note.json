@@ -1,0 +1,12 @@
+{
+  "$extends": "request-received/return-requested",
+  "$description": "Baseline: a declined return request includes Shopify's customer-facing return.decline.note. The merchant message is shown without displaying the internal decline reason or inventing a returns policy.",
+  "order_name": "#1901",
+  "order": { "name": "#1901" },
+  "return": {
+    "decline": {
+      "note": "We couldn't match this request to the item delivered. Please contact us with a photo of the item so we can review it.",
+      "reason": "OTHER"
+    }
+  }
+}

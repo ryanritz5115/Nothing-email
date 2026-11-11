@@ -1,0 +1,7 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "Documented tracking_urls array supplies the button when the singular URL is absent.",
+  "fulfillment": {
+    "tracking_url": null
+  }
+}

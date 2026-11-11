@@ -1,0 +1,9 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Whitespace-only names, portal URLs, email, merchant terms, and address use appropriate fallbacks. Account actions use Porrada’s /account route.",
+  "name": "  ",
+  "link": " ",
+  "shop_email": " ",
+  "shop_legal_text": " ",
+  "shop_address": " "
+}

@@ -1,0 +1,5 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "A supplied zero payment is visible and is not replaced by a fabricated amount.",
+  "total_price": "0.00"
+}

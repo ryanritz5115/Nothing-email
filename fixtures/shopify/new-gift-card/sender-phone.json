@@ -1,0 +1,10 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "Without a purchaser name or email, identify the sender by phone.",
+  "gift_card": {
+    "customer": {
+      "name": null,
+      "email": null
+    }
+  }
+}

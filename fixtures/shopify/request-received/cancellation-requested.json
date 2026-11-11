@@ -1,0 +1,12 @@
+{
+  "$extends": "return-requested",
+  "$description": "A cancellation-only request uses requested_edit.line_items. It stays awaiting review and never says that the order has already been canceled.",
+  "order_name": "#1802",
+  "order": { "name": "#1802" },
+  "return": null,
+  "requested_edit": {
+    "line_items": [
+      { "title_without_variant": "Power", "variant": { "title": "Default Title" }, "quantity": 1, "image": null, "original_line_price": 5000, "final_line_price": 5000 }
+    ]
+  }
+}

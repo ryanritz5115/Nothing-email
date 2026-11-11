@@ -1,0 +1,23 @@
+{# Modern Upcoming order email shipping address, using only documented fields.
+   Render each supplied line safely, and never expose billing, phone, upcoming_charge.note,
+   internal properties, or legacy address fields. #}
+{% set upcoming_address = upcoming_charge.shipping_address|default({}, true) %}
+{% if (upcoming_address.address1 is defined and upcoming_address.address1 and upcoming_address.address1|trim) or (upcoming_address.address2 is defined and upcoming_address.address2 and upcoming_address.address2|trim) or (upcoming_address.city is defined and upcoming_address.city and upcoming_address.city|trim) or (upcoming_address.province is defined and upcoming_address.province and upcoming_address.province|trim) or (upcoming_address.zip is defined and upcoming_address.zip and upcoming_address.zip|trim) or (upcoming_address.country is defined and upcoming_address.country and upcoming_address.country|trim) %}
+  {% set section_title = 'Shipping to' %}
+  {% include 'shared/components/section-heading' %}
+  <tr>
+    <td style="padding:0 {{ space_gutter }};">
+      {% set detail_label = 'Delivery address' %}
+      {% set detail_value %}
+        {% if (upcoming_address.first_name is defined and upcoming_address.first_name and upcoming_address.first_name|trim) or (upcoming_address.last_name is defined and upcoming_address.last_name and upcoming_address.last_name|trim) %}{{ upcoming_address.first_name|default('', true)|e }} {{ upcoming_address.last_name|default('', true)|e }}<br>{% endif %}
+        {% if upcoming_address.company is defined and upcoming_address.company and upcoming_address.company|trim %}{{ upcoming_address.company|e }}<br>{% endif %}
+        {% if upcoming_address.address1 is defined and upcoming_address.address1 and upcoming_address.address1|trim %}{{ upcoming_address.address1|e }}<br>{% endif %}
+        {% if upcoming_address.address2 is defined and upcoming_address.address2 and upcoming_address.address2|trim %}{{ upcoming_address.address2|e }}<br>{% endif %}
+        {% if (upcoming_address.city is defined and upcoming_address.city and upcoming_address.city|trim) or (upcoming_address.province is defined and upcoming_address.province and upcoming_address.province|trim) or (upcoming_address.zip is defined and upcoming_address.zip and upcoming_address.zip|trim) %}{{ upcoming_address.city|default('', true)|e }} {{ upcoming_address.province|default('', true)|e }} {{ upcoming_address.zip|default('', true)|e }}<br>{% endif %}
+        {% if upcoming_address.country is defined and upcoming_address.country and upcoming_address.country|trim %}{{ upcoming_address.country|e }}{% endif %}
+      {% endset %}
+      {% include 'shared/components/detail' %}
+    </td>
+  </tr>
+{% endif %}
+{% set upcoming_address = none %}

@@ -1,0 +1,56 @@
+{%- comment -%}
+=====================================================================
+  OUT FOR DELIVERY
+  Shopify > Settings > Notifications > Out for delivery
+  A carrier update for this fulfillment, which may cover part of an order.
+  Paste dist/shopify/out-for-delivery.liquid, not this file.
+=====================================================================
+{%- endcomment -%}
+
+{%- include 'shared/config' -%}
+{%- include 'shared/shipment' -%}
+
+{%- comment -%} ======================= DELIVERY LOGIC ======================= {%- endcomment -%}
+
+{%- assign shipment_stage = 'out-for-delivery' -%}
+{%- assign email_title = 'Your shipment is out for delivery' -%}
+{%- assign email_body = 'The carrier has marked this shipment as out for delivery. It is on the local delivery route. Delivery times can change.' -%}
+{%- assign preheader = 'A shipment from order ' | append: order_name | append: ' is out for delivery.' -%}
+
+{%- comment -%} Fully shipped does not mean all shipments are out for delivery. Compare quantities only. {%- endcomment -%}
+{%- if fulfillment.item_count and item_count -%}
+  {%- if fulfillment.item_count == item_count -%}
+    {%- assign email_title = 'Your order is out for delivery' -%}
+    {%- assign preheader = 'Order ' | append: order_name | append: ' is out for delivery.' -%}
+  {%- elsif fulfillment.item_count < item_count -%}
+    {%- assign email_body = email_body | append: ' This update covers part of your order. Other items may arrive separately.' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if delivery_date != '' -%}
+  {%- assign preheader = preheader | append: ' Estimated delivery ' | append: delivery_date | append: '.' -%}
+{%- endif -%}
+
+{%- comment -%} ========================= DOCUMENT ========================= {%- endcomment -%}
+
+{%- include 'shared/document-start' -%}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {%- assign stack_eyebrow = 'Order ' | append: order_name -%}
+              {%- assign stack_title = email_title -%}
+              {%- assign stack_body = email_body -%}
+              {%- include 'shared/components/text-stack' -%}
+              {%- include 'shared/components/shipment-card' -%}
+              {%- include 'shared/components/shipment-actions' -%}
+            </td>
+          </tr>
+
+          {%- include 'shared/components/shipment-items' -%}
+          {%- include 'shared/components/shipping-details' -%}
+
+          {%- assign faq_lead_label = 'When will it arrive?' -%}
+          {%- assign faq_lead_value = 'Out for delivery means the carrier has put this shipment on a local delivery route. It does not promise a delivery time. Carrier schedules can change.' -%}
+          {%- include 'shared/components/shipment-faq' -%}
+
+{%- include 'shared/document-end' -%}

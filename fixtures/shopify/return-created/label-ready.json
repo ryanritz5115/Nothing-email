@@ -1,0 +1,4 @@
+{
+  "$extends": "return-request-approved/label-ready",
+  "$description": "Created return with a downloadable USPS label, exact return lines, and an estimated refund."
+}

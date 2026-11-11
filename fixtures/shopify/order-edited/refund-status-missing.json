@@ -1,0 +1,9 @@
+{
+  "$extends": "refund-due",
+  "$description": "Defensive case: a refund record has no status. It appears as an attempt with no confirmed status, without implying a current unresolved problem or a successful refund.",
+  "order_name": "#1608",
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 17768, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" },
+    { "kind": "refund", "amount": 8559, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Null nested customer and charge: account action and a current-date fallback remain useful.",
+  "customer": null,
+  "charge": null
+}

@@ -1,0 +1,7 @@
+{
+  "$extends": "refunded",
+  "$description": "A zero-total canceled order required no payment. Do not claim that a payment was collected because financial status is paid.",
+  "financial_status": "paid",
+  "total_price": 0,
+  "transactions": []
+}

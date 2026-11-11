@@ -1,0 +1,38 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Removed item titles use title/name fallbacks from the original indexed item.",
+  "line_items": [
+    {
+      "title": "Title fallback",
+      "quantity": 2
+    },
+    {
+      "name": "Name fallback",
+      "quantity": 3
+    }
+  ],
+  "line_item_modifications": [
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 2,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "line_item_id": 2,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 3,
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

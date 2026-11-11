@@ -1,0 +1,16 @@
+{
+  "$extends": "subscription-active",
+  "$description": "European currency amounts are major-unit decimals, not Shopify cents.",
+  "charge_currency": "EUR",
+  "subtotal_price": "34.99",
+  "total_price": "34.99",
+  "line_items": [
+    {
+      "product_title": "Porrada Creatine Monohydrate",
+      "quantity": 1,
+      "price": "34.99",
+      "charge_interval_frequency": 1,
+      "order_interval_unit": "month"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$extends": "subscription-active",
+  "$description": "KWD amounts retain three-decimal currency precision.",
+  "charge_currency": "KWD",
+  "subtotal_price": "12.345",
+  "total_price": "12.345",
+  "line_items": [
+    {
+      "product_title": "Porrada Creatine Monohydrate",
+      "quantity": 1,
+      "price": "12.345",
+      "charge_interval_frequency": 1,
+      "order_interval_unit": "month"
+    }
+  ]
+}

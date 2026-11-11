@@ -1,0 +1,7 @@
+{
+  "$extends": "access-code",
+  "$description": "Supplied name and access-code text are escaped; no code or customer email appears in a URL or preheader.",
+  "first_name": "Taylor & <Team>",
+  "access_code": "<0017>&",
+  "shop_email": "help+access@porradanutra.com"
+}

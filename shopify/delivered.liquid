@@ -1,0 +1,54 @@
+{%- comment -%}
+=====================================================================
+  DELIVERED
+  Shopify > Settings > Notifications > Delivered
+  A carrier update for this fulfillment, which may cover part of an order.
+  Paste dist/shopify/delivered.liquid, not this file.
+=====================================================================
+{%- endcomment -%}
+
+{%- include 'shared/config' -%}
+{%- include 'shared/shipment' -%}
+
+{%- comment -%} ======================= DELIVERY LOGIC ======================= {%- endcomment -%}
+
+{%- assign shipment_stage = 'delivered' -%}
+{%- comment -%} A prior estimate can remain on the fulfillment after delivery. Do not show it as an upcoming date. {%- endcomment -%}
+{%- assign delivery_date = '' -%}
+{%- assign email_title = 'Your shipment has been delivered' -%}
+{%- assign email_body = 'The carrier has marked this shipment as delivered. We hope everything arrived safely.' -%}
+{%- assign preheader = 'A shipment from order ' | append: order_name | append: ' has been marked as delivered.' -%}
+
+{%- comment -%} Fulfilled means shipped, so it cannot establish that the rest of a split order has arrived. {%- endcomment -%}
+{%- if fulfillment.item_count and item_count -%}
+  {%- if fulfillment.item_count == item_count -%}
+    {%- assign email_title = 'Your order has been delivered' -%}
+    {%- assign preheader = 'Order ' | append: order_name | append: ' has been marked as delivered.' -%}
+  {%- elsif fulfillment.item_count < item_count -%}
+    {%- assign email_body = email_body | append: ' This update covers part of your order. Other items may arrive separately.' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} ========================= DOCUMENT ========================= {%- endcomment -%}
+
+{%- include 'shared/document-start' -%}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {%- assign stack_eyebrow = 'Order ' | append: order_name -%}
+              {%- assign stack_title = email_title -%}
+              {%- assign stack_body = email_body -%}
+              {%- include 'shared/components/text-stack' -%}
+              {%- include 'shared/components/shipment-card' -%}
+              {%- include 'shared/components/shipment-actions' -%}
+            </td>
+          </tr>
+
+          {%- include 'shared/components/shipment-items' -%}
+          {%- include 'shared/components/shipping-details' -%}
+
+          {%- assign faq_lead_label = "Can't find your package?" -%}
+          {%- assign faq_lead_value = "Check your delivery spot, mailbox, or building's front desk. Ask anyone who may have accepted it. If you still can't find it, contact us using the support button below." -%}
+          {%- include 'shared/components/shipment-faq' -%}
+
+{%- include 'shared/document-end' -%}

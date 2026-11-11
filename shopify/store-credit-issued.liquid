@@ -1,0 +1,22 @@
+{%- comment -%}
+  STORE CREDIT ISSUED
+  Shopify > Settings > Notifications > Store credit issued
+  Uses the gift-card design with one account action and one checkout step.
+  Paste dist/shopify/store-credit-issued.liquid, not this file.
+{%- endcomment -%}
+{%- include 'shared/config' -%}
+
+{%- assign email_title = "You've got store credit!" -%}
+{%- assign preheader = 'Store credit has been added to your Porrada account. Use it at checkout.' -%}
+{%- assign footer_support_title = 'Need help with your store credit?' -%}
+{%- capture email_styles -%}
+  {%- include 'shared/components/credit-styles' -%}
+{%- endcapture -%}
+
+{%- include 'shared/document-start' -%}
+<tr>
+  <td align="center">
+    {%- include 'shared/components/store-credit-content' -%}
+  </td>
+</tr>
+{%- include 'shared/document-end' -%}

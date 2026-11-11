@@ -1,0 +1,10 @@
+{
+  "$extends": "receipt-sent",
+  "$description": "Long recipient identity and a multiline personal message wrap on mobile without changing the purchaser receipt actions.",
+  "gift_card": {
+    "recipient": {
+      "nickname": "Alexandria-Marguerite Silva and the entire Porrada training team"
+    },
+    "message": "Thank you for showing up, looking after the team, and making every training session a good one.\nA little something to enjoy together whenever the time is right.\nWith appreciation from everyone at the gym."
+  }
+}

@@ -1,0 +1,55 @@
+{%- comment -%}
+=====================================================================
+  PORRADA EMAIL · SHIPMENT LOGIC
+  Included right after config by every template about one shipment
+  (Shopify's fulfillment object). Computes what the shipment-*
+  components read:
+    delivery_date       'Friday, October 23', or '' with no estimate
+    tracking_count      number of tracking numbers
+    tracking_label      'UPS tracking number(s)' or 'Tracking number(s)'
+    tracking_links      each number, linked when it has a URL, one per line
+    track_url           the link for a Track button: one package with a URL, else ''
+    ship_address_lines  the shipping address as lines
+=====================================================================
+{%- endcomment -%}
+
+{%- comment -%} Estimated delivery {%- endcomment -%}
+{%- assign delivery_date = '' -%}
+{%- if fulfillment.estimated_delivery_at -%}
+  {%- assign delivery_date = fulfillment.estimated_delivery_at | date: '%A, %B %-d' -%}
+{%- endif -%}
+
+{%- comment -%} Tracking. One package with a link gets a Track button; anything else lists links in the card. {%- endcomment -%}
+{%- assign tracking_count = fulfillment.tracking_numbers.size | default: 0 -%}
+{%- if fulfillment.tracking_company != blank -%}
+  {%- assign tracking_label = fulfillment.tracking_company | append: ' tracking number' -%}
+{%- else -%}
+  {%- assign tracking_label = 'Tracking number' -%}
+{%- endif -%}
+{%- if tracking_count > 1 -%}
+  {%- assign tracking_label = tracking_label | append: 's' -%}
+{%- endif -%}
+
+{%- capture tracking_links -%}
+  {%- for number in fulfillment.tracking_numbers -%}
+    {%- assign number_url = fulfillment.tracking_urls[forloop.index0] -%}
+    {%- if number_url != blank -%}
+      <a href="{{ number_url }}" target="_blank" style="font-weight:{{ weight_bold }}; color:{{ c_brand }}; text-decoration:none;">{{ number | escape }}</a>
+    {%- else -%}
+      {{ number | escape }}
+    {%- endif -%}
+    {%- unless forloop.last -%}<br>{%- endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- assign track_url = '' -%}
+{%- if tracking_count == 1 -%}
+  {%- if fulfillment.tracking_urls.first != blank -%}
+    {%- assign track_url = fulfillment.tracking_urls.first -%}
+  {%- elsif fulfillment.tracking_url != blank -%}
+    {%- assign track_url = fulfillment.tracking_url -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- assign address = shipping_address -%}
+{%- capture ship_address_lines -%}{%- include 'shared/components/address' -%}{%- endcapture -%}

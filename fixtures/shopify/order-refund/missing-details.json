@@ -1,0 +1,9 @@
+{
+  "$extends": "full-refund",
+  "$description": "No event amount, item details, transactions, status, or Shopify order link. Avoid empty sections and use the configured orders_url action.",
+  "amount": null,
+  "refund_line_items": null,
+  "transactions": null,
+  "financial_status": null,
+  "order_status_url": null
+}

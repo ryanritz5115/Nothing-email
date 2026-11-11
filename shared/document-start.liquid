@@ -1,9 +1,9 @@
 {%- comment -%}
   Opens the document: head, preheader, page wrapper, container, logo.
-  Set before including: email_title, preheader
+  Set before including: email_title, preheader. Optional: email_styles.
 {%- endcomment -%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="color-scheme:only light;">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,25 +11,36 @@
   <meta name="supported-color-schemes" content="light only">
   <title>{{ email_title }}</title>
   <style>
-    :root { color-scheme: light only; }
-    body { margin:0; padding:0; -webkit-text-size-adjust:100%; }
+    :root { color-scheme: only light; }
+    body { margin:0; padding:0; -webkit-text-size-adjust:100%; background-color:{{ c_white }}; color:{{ c_black }}; color-scheme:only light; }
     img { border:0; outline:none; text-decoration:none; display:block; }
     a { text-decoration:none; }
+    .pr-message p { margin:0 0 {{ space_sm }}; }
+    .pr-message a { color:{{ c_brand }}; font-weight:{{ weight_bold }}; }
+    .pr-message img { max-width:100%; height:auto; }
+    @media only screen and (max-width: {{ footer_breakpoint }}) {
+      .pr-brand, .pr-social { display:block !important; width:100% !important; }
+      .pr-brand { padding-right:0 !important; padding-bottom:{{ space_lg }} !important; }
+      .pr-social-icon { width:{{ social_icon_mobile }}px !important; height:{{ social_icon_mobile }}px !important; }
+    }
+    {%- if email_styles != blank %}
+      {{ email_styles }}
+    {%- endif %}
   </style>
 </head>
-<body style="margin:0; padding:0; background-color:{{ c_white }};">
+<body bgcolor="{{ c_white }}" style="margin:0; padding:0; background-color:{{ c_white }}; color:{{ c_black }}; color-scheme:only light;">
 
   <div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">{{ preheader }}</div>
 
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ c_white }}" style="background-color:{{ c_white }};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ c_white }}" style="width:100%; background-color:{{ c_white }}; color:{{ c_black }};">
     <tr>
       <td align="center">
-        <table role="presentation" width="{{ container_width }}" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:{{ container_width }}px;">
+        <table role="presentation" width="{{ container_width }}" cellpadding="0" cellspacing="0" border="0" bgcolor="{{ c_white }}" style="width:100%; max-width:{{ container_width }}px; background-color:{{ c_white }}; color:{{ c_black }};">
 
           <tr>
-            <td align="center" style="padding:{{ space_xl }} {{ space_gutter }} {{ space_2xl }};">
+            <td style="padding:0 0 {{ space_lg }};">
               <a href="{{ store_url }}" target="_blank">
-                <img src="{{ img_logo }}" width="{{ logo_width }}" alt="Porrada Performance Nutrition" style="display:block; width:{{ logo_width }}px; max-width:100%; height:auto;">
+                <img src="{{ img_logo }}" width="{{ container_width }}" alt="Porrada Performance Nutrition" style="display:block; width:100%; max-width:{{ container_width }}px; height:auto;">
               </a>
             </td>
           </tr>

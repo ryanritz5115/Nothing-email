@@ -1,0 +1,29 @@
+{
+  "$extends": "order-confirmation/order-paid",
+  "$description": "Baseline: a free sample is added without changing the total. No additional payment is due. The original line omits current_quantity to exercise the quantity fallback.",
+  "order_name": "#1601",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Blueberry Pomegranate" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 7999,
+      "final_line_price": 7999,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null
+    },
+    {
+      "title": "Focus Sample",
+      "quantity": 1,
+      "current_quantity": 1,
+      "image": null,
+      "original_line_price": 0,
+      "final_line_price": 0,
+      "discount_allocations": [],
+      "properties": { "Flavor": "Mango Passionfruit", "_internal_note": "Do not show this" }
+    }
+  ]
+}

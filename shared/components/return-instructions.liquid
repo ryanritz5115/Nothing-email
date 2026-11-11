@@ -1,0 +1,84 @@
+{%- comment -%}
+  Approved/created return next steps. Body rows, after hero actions.
+  Requires shared/return. Uses each delivery's own label and carrier;
+  one package's label must never stand in for another package's label.
+  Shopify documents shopify_label/manual delivery types in its return
+  notification update guides. Missing delivery information can also mean
+  no shipping is required. Never infer a promised label or mandatory shipment.
+{%- endcomment -%}
+{%- assign section_title = 'Next steps' -%}
+{%- include 'shared/components/section-heading' -%}
+<tr>
+  <td style="padding:0 {{ space_gutter }};">
+    {%- if return_payment_url != blank -%}
+      {%- assign detail_label = 'Complete your payment' -%}
+      {%- if return_balance_known and return_amount_due > 0 -%}
+        {%- capture detail_value -%}Open the payment link to pay the remaining {{ return_amount_due | money_with_currency }} due on your order.{%- endcapture -%}
+      {%- else -%}
+        {%- assign detail_value = 'Open the payment link to review and pay any balance due on your order.' -%}
+      {%- endif -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- elsif return_balance_known and return_amount_due > 0 -%}
+      {%- assign detail_label = 'Complete your payment' -%}
+      {%- capture detail_value -%}Your order has {{ return_amount_due | money_with_currency }} left to pay. Contact us for help completing the payment.{%- endcapture -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- if return_delivery_count > 0 -%}
+      {%- assign detail_label = 'Pack your return' -%}
+      {%- if return_delivery_count > 1 -%}
+        {%- assign detail_value = 'Pack only the items included in your return. Use the correct label and carrier for each return package.' -%}
+      {%- else -%}
+        {%- assign detail_value = 'Pack only the items included in your return securely.' -%}
+      {%- endif -%}
+      {%- include 'shared/components/detail' -%}
+
+      {%- for instruction_delivery in return.deliveries -%}
+        {%- if return_delivery_count > 1 -%}
+          {%- assign detail_label = 'Return package ' | append: forloop.index -%}
+        {%- else -%}
+          {%- assign detail_label = 'Send your return' -%}
+        {%- endif -%}
+        {%- capture detail_value -%}
+          {%- if instruction_delivery.return_label.public_file_url != blank -%}
+            Print the return label for this package. Attach it securely and cover or remove any old shipping labels. {% if instruction_delivery.carrier_name != blank -%}Give the package to {{ instruction_delivery.carrier_name | escape }}.{%- else -%}Give the package to the carrier shown on the label.{%- endif -%}
+          {%- elsif instruction_delivery.type == 'shopify_label' or instruction_delivery.type == 'manual' -%}
+            If you already received a return label, follow the instructions that came with it. Otherwise, contact us before sending this package.
+          {%- else -%}
+            Wait for the return shipping instructions before sending this package. Contact us if you need help.
+          {%- endif -%}
+        {%- endcapture -%}
+        {%- assign detail_space_above = space_md -%}
+        {%- include 'shared/components/detail' -%}
+      {%- endfor -%}
+
+      {%- assign detail_label = 'Keep your shipping receipt' -%}
+      {%- assign detail_value = 'Keep your shipping receipt until your return is resolved.' -%}
+      {%- assign detail_space_above = space_md -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- else -%}
+      {%- assign detail_label = 'Check your return instructions' -%}
+      {%- assign detail_value = 'Follow any return instructions already shared with you. If you need to send items back and do not have shipping details, contact us before sending them.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- if return.exchange_line_items.size > 0 -%}
+      {%- assign detail_label = 'Receiving your exchange' -%}
+      {%- assign detail_value = 'Your exchange items are listed below. Check your order for updates on when they ship.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- assign detail_label = 'What happens next?' -%}
+    {%- if return_delivery_count > 0 -%}
+      {%- assign detail_value = "We'll review your returned items after they arrive. Check your order for updates, or contact us with your order number if you need help." -%}
+    {%- else -%}
+      {%- assign detail_value = 'Check your order for updates. Contact us with your order number if you need help with the next step for your return, exchange, or refund.' -%}
+    {%- endif -%}
+    {%- include 'shared/components/detail' -%}
+  </td>
+</tr>

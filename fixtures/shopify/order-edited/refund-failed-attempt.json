@@ -1,0 +1,10 @@
+{
+  "$extends": "refund-due",
+  "$description": "Failed and errored refund attempts appear as historical attempts. Neither is counted as money successfully refunded or treated as proof of a current problem.",
+  "order_name": "#1607",
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 17768, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" },
+    { "status": "failure", "kind": "refund", "amount": 8559, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" },
+    { "status": "error", "kind": "refund", "amount": 8559, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

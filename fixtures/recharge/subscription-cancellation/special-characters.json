@@ -1,0 +1,7 @@
+{
+  "$extends": "subscriptions-canceled",
+  "$description": "Cancellation customer, merchant address and portal URL values are safely escaped. Account actions use Porrada’s /account route.",
+  "first_name": "Alex <em> & Sam",
+  "shop_address": "Porrada & Co. <Warehouse>, New York",
+  "link": "https://porradanutra.com/tools/recurring/portal?token=example&source=email"
+}

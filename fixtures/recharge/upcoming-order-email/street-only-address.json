@@ -1,0 +1,17 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "A partial street address does not require optional country or city data.",
+  "charge": {
+    "shipping_address": {
+      "first_name": null,
+      "last_name": "Ritzenthaler",
+      "company": null,
+      "address1": "123 Main Street",
+      "address2": null,
+      "city": null,
+      "province": null,
+      "zip": null,
+      "country": null
+    }
+  }
+}

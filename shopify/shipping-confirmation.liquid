@@ -1,0 +1,64 @@
+{%- comment -%}
+=====================================================================
+  SHIPPING CONFIRMATION
+  Shopify > Settings > Notifications > Shipping confirmation
+  Sent once per shipment, so a split order sends one per package.
+  Paste dist/shopify/shipping-confirmation.liquid, not this file.
+=====================================================================
+{%- endcomment -%}
+
+{%- include 'shared/config' -%}
+{%- include 'shared/shipment' -%}
+
+{%- comment -%} ======================= SHIPMENT LOGIC ======================= {%- endcomment -%}
+
+{%- comment -%} Which shipment this is: the whole order, part of it, or the last part {%- endcomment -%}
+{%- if fulfillment.item_count == item_count -%}
+  {%- assign shipment = 'all' -%}
+{%- elsif fulfillment_status == 'fulfilled' -%}
+  {%- assign shipment = 'last' -%}
+{%- else -%}
+  {%- assign shipment = 'partial' -%}
+{%- endif -%}
+
+{%- comment -%} Headline + intro copy {%- endcomment -%}
+{%- case shipment -%}
+  {%- when 'all' -%}
+    {%- assign email_title = 'Your order is on the way!' -%}
+    {%- assign email_body  = 'Good news, your order has shipped and is headed to you.' -%}
+    {%- assign preheader   = 'Order ' | append: order_name | append: ' has shipped.' -%}
+  {%- when 'last' -%}
+    {%- assign email_title = 'The rest of your order is on the way!' -%}
+    {%- assign email_body  = "Your last items have shipped. That's everything in your order." -%}
+    {%- assign preheader   = 'The rest of order ' | append: order_name | append: ' has shipped.' -%}
+  {%- else -%}
+    {%- assign email_title = 'Part of your order is on the way!' -%}
+    {%- assign email_body  = "Some of your items have shipped. The rest will ship separately, and we'll email you when they do." -%}
+    {%- assign preheader   = 'Part of order ' | append: order_name | append: ' has shipped.' -%}
+{%- endcase -%}
+
+{%- if delivery_date != '' -%}
+  {%- assign preheader = preheader | append: ' Estimated delivery ' | append: delivery_date | append: '.' -%}
+{%- endif -%}
+
+{%- comment -%} ========================= DOCUMENT ========================= {%- endcomment -%}
+
+{%- include 'shared/document-start' -%}
+
+          {%- comment -%} ===== HERO ===== {%- endcomment -%}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {%- assign stack_eyebrow = 'Order ' | append: order_name -%}
+              {%- assign stack_title   = email_title -%}
+              {%- assign stack_body    = email_body -%}
+              {%- include 'shared/components/text-stack' -%}
+              {%- include 'shared/components/shipment-card' -%}
+              {%- include 'shared/components/shipment-actions' -%}
+            </td>
+          </tr>
+
+          {%- include 'shared/components/shipment-items' -%}
+          {%- include 'shared/components/shipping-details' -%}
+          {%- include 'shared/components/shipment-faq' -%}
+
+{%- include 'shared/document-end' -%}

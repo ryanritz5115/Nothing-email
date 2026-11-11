@@ -1,0 +1,8 @@
+{
+  "$extends": "subscriptions-canceled",
+  "$description": "Whitespace-only fields use appropriate fallbacks.",
+  "first_name": " ",
+  "shop_email": " ",
+  "link": " ",
+  "shop_address": " "
+}

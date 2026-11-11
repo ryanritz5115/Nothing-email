@@ -1,0 +1,6 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Negative source discount amount is displayed once with a minus sign.",
+  "total_discounts": "-3.40",
+  "total_price": "30.60"
+}

@@ -1,0 +1,17 @@
+{
+  "$extends": "order-updated",
+  "$description": "A digital order has no shipping row. Its custom line uses the title fallback and a zero tax amount is shown.",
+  "order_name": "#1614",
+  "requires_shipping": false,
+  "delivery_method": null,
+  "shipping_price": null,
+  "line_items": [
+    { "title": "Zero to Gold Medal Framework", "quantity": 1, "current_quantity": 1, "original_line_price": 2900, "final_line_price": 2900 }
+  ],
+  "subtotal_price": 2900,
+  "tax_price": 0,
+  "total_price": 2900,
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 2900, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

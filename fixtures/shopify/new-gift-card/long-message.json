@@ -1,0 +1,13 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "Long recipient and sender names plus a long personal message wrap within the preserved gift-card layout on mobile.",
+  "gift_card": {
+    "recipient": {
+      "nickname": "Alexandra Katherine Silva-Rodriguez"
+    },
+    "customer": {
+      "name": "Samuel Benjamin Rivera-Martinez"
+    },
+    "message": "Thank you for always showing up for your friends and family. I wanted to send something you can choose for yourself. Take your time, find something you like, and enjoy this small thank-you for everything you do. Wishing you a wonderful birthday and a year full of good moments together."
+  }
+}

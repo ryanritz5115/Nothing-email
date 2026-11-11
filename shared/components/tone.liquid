@@ -1,0 +1,16 @@
+{%- comment -%}
+  Tone. Sets the tone_* colors that tone-aware components read.
+  Set tone = 'dark' before a component on a black background, and back to
+  'light' after. Anything else (or unset) is light.
+{%- endcomment -%}
+{%- if tone == 'dark' -%}
+  {%- assign tone_text        = c_white -%}
+  {%- assign tone_link        = c_white -%}
+  {%- assign tone_button_bg   = c_white -%}
+  {%- assign tone_button_text = c_black -%}
+{%- else -%}
+  {%- assign tone_text        = c_black -%}
+  {%- assign tone_link        = c_brand -%}
+  {%- assign tone_button_bg   = c_brand -%}
+  {%- assign tone_button_text = c_white -%}
+{%- endif -%}

@@ -1,0 +1,6 @@
+{
+  "$extends": "account-request",
+  "$description": "Customer names render as escaped text; the merchant's alternate email is ignored in favor of configured support.",
+  "first_name": "Taylor & <Team>",
+  "shop_email": "help+access@porradanutra.com"
+}

@@ -1,0 +1,7 @@
+{
+  "$extends": "return-requested",
+  "$description": "A return request has an empty list. Its item section is omitted without pulling unrelated order lines into the request.",
+  "order_name": "#1807",
+  "order": { "name": "#1807" },
+  "return": { "line_items": [] }
+}

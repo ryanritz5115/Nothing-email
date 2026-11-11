@@ -1,0 +1,12 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "Shopify supplies no tracking, estimate, or order link. Use the configured orders_url action and storefront link.",
+  "order_status_url": null,
+  "fulfillment": {
+    "tracking_company": null,
+    "tracking_numbers": [],
+    "tracking_url": null,
+    "tracking_urls": [],
+    "estimated_delivery_at": null
+  }
+}

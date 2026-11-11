@@ -1,0 +1,22 @@
+{%- comment -%}
+  Text stack. Eyebrow, headline, body. Opens every email and the support footer.
+  Place inside a <td>. Reads tone.
+  Inputs, reset after use:
+    stack_eyebrow  small bold line above the headline (optional)
+    stack_title    headline
+    stack_body     paragraph under the headline (optional)
+    stack_tag      'h1' (default) or 'h2'
+{%- endcomment -%}
+{%- include 'shared/components/tone' -%}
+{%- if stack_tag == blank -%}{%- assign stack_tag = 'h1' -%}{%- endif -%}
+{%- if stack_eyebrow != blank -%}
+  <p style="{{ st_small_bold }} color:{{ tone_text }};">{{ stack_eyebrow }}</p>
+{%- endif -%}
+<{{ stack_tag }} style="{{ st_serif }} color:{{ tone_text }};{%- if stack_eyebrow != blank %} padding-top:{{ space_xs }};{%- endif -%}">{{ stack_title }}</{{ stack_tag }}>
+{%- if stack_body != blank -%}
+  <p style="{{ st_body }} color:{{ tone_text }}; padding-top:{{ space_sm }};">{{ stack_body }}</p>
+{%- endif -%}
+{%- assign stack_eyebrow = '' -%}
+{%- assign stack_title   = '' -%}
+{%- assign stack_body    = '' -%}
+{%- assign stack_tag     = '' -%}

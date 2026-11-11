@@ -1,0 +1,13 @@
+{
+  "$extends": "return-requested",
+  "$description": "Defensive case: shipping and payment fields exist before approval. Received notifications still show only pending review and order actions, without return-label, tracking, payment, or refund instructions.",
+  "order_name": "#1813",
+  "order": { "name": "#1813" },
+  "return": {
+    "order_total_outstanding": 2500,
+    "checkout_payment_collection_url": "https://porradanutra.com/checkouts/RETURN_PAYMENT_MUST_NOT_APPEAR",
+    "deliveries": [
+      { "type": "shopify_label", "carrier_name": "USPS", "return_label": { "public_file_url": "https://example.com/RETURN_LABEL_MUST_NOT_APPEAR.pdf" }, "tracking_number": "RETURN_TRACKING_MUST_NOT_APPEAR", "tracking_url": "https://example.com/RETURN_TRACKING_MUST_NOT_APPEAR" }
+    ]
+  }
+}

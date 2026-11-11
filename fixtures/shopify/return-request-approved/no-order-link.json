@@ -1,0 +1,9 @@
+{
+  "$extends": "label-ready",
+  "$description": "Shopify supplies no order URL. Order navigation still uses configured orders_url without an empty secondary link.",
+  "order": {
+    "order_status_url": null
+  },
+  "order_status_url": null,
+  "customer_order_url": null
+}

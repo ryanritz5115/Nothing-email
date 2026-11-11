@@ -1,0 +1,7 @@
+{
+  "$extends": "order-message",
+  "$description": "General customer contact with no order identity or nested order. Use the support action instead of an order action.",
+  "order_name": null,
+  "order_status_url": null,
+  "order": null
+}

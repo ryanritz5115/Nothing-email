@@ -1,0 +1,127 @@
+{
+  "$extends": "order-paid",
+  "$description": "Seven lines like the Gmail iOS test order: short titles, a very long title, lines with and without variants, a line-level discount, and a free sample. Short titles must still push the price to the right edge.",
+  "order_name": "#1014",
+  "line_items": [
+    {
+      "title": "Fortify",
+      "product": { "title": "Fortify" },
+      "variant": { "title": "Default Title" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Fortify",
+      "original_line_price": 5000,
+      "final_line_price": 5000,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    },
+    {
+      "title": "Power",
+      "product": { "title": "Power" },
+      "variant": { "title": "Default Title" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Power",
+      "original_line_price": 5000,
+      "final_line_price": 5000,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    },
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Blueberry Pomegranate" },
+      "quantity": 2,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 15998,
+      "final_line_price": 14398,
+      "discount_allocations": [
+        {
+          "amount": 1600,
+          "discount_application": { "title": "Bundle10", "target_selection": "entitled", "target_type": "line_item" }
+        }
+      ],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    },
+    {
+      "title": "Zero to Gold Medal Framework",
+      "product": { "title": "Zero to Gold Medal Framework" },
+      "variant": { "title": "Default Title" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Guide",
+      "original_line_price": 2900,
+      "final_line_price": 2900,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    },
+    {
+      "title": "Focus - Mango Passionfruit",
+      "product": { "title": "Focus" },
+      "variant": { "title": "Mango Passionfruit" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 7999,
+      "final_line_price": 7999,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    },
+    {
+      "title": "Shaker Bottle - Black",
+      "product": { "title": "Shaker Bottle" },
+      "variant": { "title": "Black" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Shaker",
+      "original_line_price": 1800,
+      "final_line_price": 1800,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    },
+    {
+      "title": "Focus Sample",
+      "product": { "title": "Focus Sample" },
+      "variant": { "title": "Default Title" },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Sample",
+      "original_line_price": 0,
+      "final_line_price": 0,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": null,
+      "unit_price_measurement": null,
+      "gift_card": false
+    }
+  ],
+  "discount_applications": [
+    { "title": "Bundle10", "target_selection": "entitled", "target_type": "line_item", "total_allocated_amount": 1600 }
+  ],
+  "subtotal_price": 37097,
+  "tax_price": 2597,
+  "total_discounts": 1600,
+  "total_price": 40344,
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 40344,
+      "payment_details": { "credit_card_company": "Visa", "credit_card_last_four_digits": "4242" }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Whitespace-only optional values do not produce blank facts, totals, products, or address sections.",
+  "customer": {
+    "first_name": "   "
+  },
+  "charge": {
+    "scheduled_at": "   ",
+    "currency": "   ",
+    "line_items": [],
+    "shipping_address": {
+      "first_name": "  ",
+      "last_name": "  ",
+      "company": "  ",
+      "address1": "  ",
+      "address2": "  ",
+      "city": "  ",
+      "province": "  ",
+      "zip": "  ",
+      "country": "  "
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$extends": "refund-processing",
+  "$description": "Defensive case: a pending refund has no amount. Its status is preserved without formatting missing money as zero.",
+  "order_name": "#1618",
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 17768, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" },
+    { "status": "pending", "kind": "refund", "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "$extends": "receipt-sent",
+  "$description": "Recipient and message text contain HTML-sensitive characters. Escape them while preserving message line breaks.",
+  "gift_card": {
+    "recipient": { "nickname": "Alex <&> \"Silva\"" },
+    "message": "A gift for <you> & your team.\nEnjoy \"the little things\". <script>alert('no')</script>"
+  }
+}

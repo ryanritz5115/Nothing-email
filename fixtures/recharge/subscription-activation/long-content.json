@@ -1,0 +1,17 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Long product title and merchant legal HTML should wrap without mobile overflow.",
+  "line_items": [
+    {
+      "product_title": "Porrada Creatine Monohydrate Subscription With A Longer Product Name For Customer Review",
+      "variant_title": "Unflavored / 30 servings / Two-container pack",
+      "quantity": 12,
+      "price": "34.00",
+      "charge_interval_frequency": 12,
+      "order_interval_unit": "month",
+      "next_charge_date": "October 21, 2027",
+      "number_charges_until_expiration": 12
+    }
+  ],
+  "shop_legal_text": "<p>Your subscription renews at the billing interval shown above until you cancel.</p><ul><li>Review upcoming charges in your account.</li><li>Contact support if you need help with a change.</li></ul>"
+}

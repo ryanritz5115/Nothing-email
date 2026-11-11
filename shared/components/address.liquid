@@ -1,0 +1,15 @@
+{%- comment -%}
+  Address. Outputs an address as lines joined by <br>, skipping blank
+  company and address2. Capture it and pass it as a detail value.
+  Built from fields on purpose: Shopify's format_address wraps its output in
+  its own <p>, which breaks out of the surrounding styles in Gmail.
+  Input, reset after use:
+    address  a Shopify address
+{%- endcomment -%}
+{{- address.name }}<br>
+{%- if address.company != blank %}{{ address.company }}<br>{% endif -%}
+{{- address.address1 }}<br>
+{%- if address.address2 != blank %}{{ address.address2 }}<br>{% endif -%}
+{{- address.city }} {{ address.province_code }} {{ address.zip }}<br>
+{{- address.country -}}
+{%- assign address = nil -%}

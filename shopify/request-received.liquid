@@ -1,0 +1,90 @@
+{%- comment -%}
+=====================================================================
+  REQUEST RECEIVED
+  Shopify > Settings > Notifications > Request received
+  Paste dist/shopify/request-received.liquid, not this file.
+  Shopify's change_requested notification can contain a return request,
+  a cancellation request (requested_edit), or both. Each is awaiting a
+  decision. Flat request lines are distinct from the entire order's items.
+=====================================================================
+{%- endcomment -%}
+
+{%- include 'shared/config' -%}
+{%- include 'shared/return' -%}
+
+{%- if requested_edit and return -%}
+  {%- assign email_title = "We've received your requests" -%}
+  {%- assign email_body = "Your return and cancellation requests are awaiting review. We'll email you with an update for each request." -%}
+  {%- assign preheader = "Your return and cancellation requests are awaiting review. We'll email you with updates." -%}
+{%- elsif requested_edit -%}
+  {%- assign email_title = "We've received your cancellation request" -%}
+  {%- assign email_body = "Your cancellation request is awaiting review. We'll email you with a decision. A separate update will confirm any cancellation." -%}
+  {%- assign preheader = "Your cancellation request is awaiting review. We'll email you with a decision." -%}
+{%- elsif return -%}
+  {%- assign email_title = "We've received your return request" -%}
+  {%- assign email_body = "We'll review your return request and email you with a decision. Please wait for approval and return instructions before sending any items." -%}
+  {%- assign preheader = "Your return request is awaiting review. We'll email you with a decision." -%}
+{%- else -%}
+  {%- assign email_title = "We've received your request" -%}
+  {%- assign email_body = "Your request is awaiting review. We'll email you with an update. Contact us if you need help confirming the details." -%}
+  {%- assign preheader = "Your request is awaiting review. We'll email you with an update." -%}
+{%- endif -%}
+
+{%- assign request_eyebrow = 'Order request' -%}
+{%- if return_order_name != blank -%}
+  {%- assign request_eyebrow = 'Order ' | append: return_order_name -%}
+{%- endif -%}
+
+{%- include 'shared/document-start' -%}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {%- assign stack_eyebrow = request_eyebrow -%}
+              {%- assign stack_title = email_title -%}
+              {%- assign stack_body = email_body -%}
+              {%- include 'shared/components/text-stack' -%}
+
+              {%- assign return_status_label = 'Request status' -%}
+              {%- assign return_status_value = 'Awaiting review' -%}
+              {%- include 'shared/components/return-card' -%}
+
+              {%- assign return_action_mode = 'order' -%}
+              {%- include 'shared/components/return-actions' -%}
+            </td>
+          </tr>
+
+          {%- if requested_edit -%}
+            {%- assign return_items = requested_edit.line_items -%}
+            {%- assign return_items_title = 'Items requested for cancellation' -%}
+            {%- include 'shared/components/return-items' -%}
+          {%- endif -%}
+          {%- if return -%}
+            {%- assign return_items = return.line_items -%}
+            {%- assign return_items_title = 'Items requested for return' -%}
+            {%- include 'shared/components/return-items' -%}
+          {%- endif -%}
+
+          {%- assign section_title = 'Good to know' -%}
+          {%- include 'shared/components/section-heading' -%}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {%- if requested_edit -%}
+                {%- assign detail_label = 'Has my order been canceled?' -%}
+                {%- assign detail_value = 'A separate update will confirm any cancellation. Contact us if you need help while we review your request.' -%}
+                {%- include 'shared/components/detail' -%}
+              {%- endif -%}
+              {%- if return -%}
+                {%- assign detail_label = 'Should I send the items now?' -%}
+                {%- assign detail_value = 'Keep the items with you while we review your request. Wait for approval and return instructions before sending them.' -%}
+                {%- if requested_edit -%}{%- assign detail_space_above = space_md -%}{%- endif -%}
+                {%- include 'shared/components/detail' -%}
+              {%- endif -%}
+
+              {%- assign detail_label = 'Need to add information?' -%}
+              {%- assign detail_value = "Contact us with your order number and the details you'd like us to review." -%}
+              {%- if requested_edit or return -%}{%- assign detail_space_above = space_md -%}{%- endif -%}
+              {%- include 'shared/components/detail' -%}
+            </td>
+          </tr>
+
+{%- include 'shared/document-end' -%}

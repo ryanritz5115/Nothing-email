@@ -1,0 +1,63 @@
+{
+  "$extends": "full-refund",
+  "$description": "Missing, zero-quantity and untitled refund records are skipped. A custom line with no original quantity or image can still render.",
+  "refund_line_items": [
+    {
+      "quantity": 1
+    },
+    {
+      "quantity": 0,
+      "line_item": {
+        "title": "Focus - Blueberry Pomegranate",
+        "product": {
+          "title": "Focus"
+        },
+        "variant": {
+          "title": "Blueberry Pomegranate"
+        },
+        "quantity": 1,
+        "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+        "original_line_price": 7999,
+        "final_line_price": 7999,
+        "discount_allocations": [],
+        "properties": {},
+        "selling_plan_allocation": null,
+        "unit_price_measurement": null,
+        "gift_card": false
+      }
+    },
+    {
+      "line_item": {
+        "title": "Focus - Blueberry Pomegranate",
+        "product": {
+          "title": "Focus"
+        },
+        "variant": {
+          "title": "Blueberry Pomegranate"
+        },
+        "quantity": 1,
+        "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+        "original_line_price": 7999,
+        "final_line_price": 7999,
+        "discount_allocations": [],
+        "properties": {},
+        "selling_plan_allocation": null,
+        "unit_price_measurement": null,
+        "gift_card": false
+      }
+    },
+    {
+      "quantity": 1,
+      "line_item": {
+        "quantity": 1
+      }
+    },
+    {
+      "quantity": 1,
+      "line_item": {
+        "title": "Porrada sample",
+        "image": null
+      }
+    }
+  ]
+}

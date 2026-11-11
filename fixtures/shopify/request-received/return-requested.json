@@ -1,0 +1,25 @@
+{
+  "$extends": "order-confirmation/order-paid",
+  "$description": "Baseline: a return request for one unit from a larger order. Nested order identity and Shopify order URLs are available, but order navigation uses configured orders_url. Only return.line_items appear, with no approval or refund claim.",
+  "order_name": "#1801",
+  "order_status_url": "https://porradanutra.com/orders/request-preview-fallback",
+  "customer_order_url": "https://porradanutra.com/account/orders/request-preview",
+  "order": { "name": "#1801", "order_status_url": "https://porradanutra.com/orders/request-preview" },
+  "requested_edit": null,
+  "return": {
+    "line_items": [
+      {
+        "title_without_variant": "Focus",
+        "variant": { "title": "Blueberry Pomegranate" },
+        "quantity": 1,
+        "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+        "original_line_price": 7999,
+        "final_line_price": 7999
+      }
+    ]
+  },
+  "line_items": [
+    { "title": "Focus - Blueberry Pomegranate", "quantity": 3, "original_line_price": 23997, "final_line_price": 23997 },
+    { "title": "Unrelated order item", "quantity": 1, "original_line_price": 5000, "final_line_price": 5000 }
+  ]
+}

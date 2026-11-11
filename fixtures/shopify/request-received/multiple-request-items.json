@@ -1,0 +1,13 @@
+{
+  "$extends": "return-requested",
+  "$description": "Multiple flat return lines exercise title_without_variant, ordinary title and product-title fallbacks, variants, missing images, selling plans, and hidden private properties.",
+  "order_name": "#1809",
+  "order": { "name": "#1809" },
+  "return": {
+    "line_items": [
+      { "title_without_variant": "Focus", "quantity": 1, "variant": { "title": "Mango Passionfruit" }, "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus", "selling_plan_allocation": { "selling_plan": { "name": "Deliver every 30 days" } }, "properties": { "Flavor": "Mango Passionfruit", "_internal_note": "PRIVATE_REQUEST_NOTE" } },
+      { "title": "Shaker Bottle", "quantity": 2, "variant": { "title": "Black" }, "image": null },
+      { "product": { "title": "Focus Sample" }, "quantity": 1, "variant": { "title": "Default Title" }, "image": null }
+    ]
+  }
+}

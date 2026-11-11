@@ -1,0 +1,10 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "No tracking yet; show the available delivery estimate and order link.",
+  "fulfillment": {
+    "tracking_company": null,
+    "tracking_numbers": [],
+    "tracking_url": null,
+    "tracking_urls": []
+  }
+}

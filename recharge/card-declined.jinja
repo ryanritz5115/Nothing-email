@@ -1,0 +1,14 @@
+{# Recharge > Email > Card declined. This is the standard decline notice,
+   distinct from the FPR hard-decline notice. Retry timing is store-specific. #}
+{% include 'shared/config' %}
+{% set recharge_hard_decline = false %}
+{% set email_title = 'Your subscription payment did not go through' %}
+{% set preheader = 'Please review your payment method so we can process your recurring order.' %}
+{% set recharge_contact_email = support_email %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, we {% else %}We {% endif %}could not process your Porrada subscription payment. Please review or update your payment method in your account so we can process your recurring order.{% endset %}
+{% include 'shared/document-start' %}
+{% include 'shared/components/recharge-decline-notice' %}
+{% set recharge_show_legal = false %}
+{% include 'shared/components/recharge-merchant-info' %}
+{% set footer_support_title = 'Need help with your payment?' %}
+{% include 'shared/document-end' %}

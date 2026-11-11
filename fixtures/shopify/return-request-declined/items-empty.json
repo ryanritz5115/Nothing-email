@@ -1,0 +1,7 @@
+{
+  "$extends": "declined-note",
+  "$description": "An empty return item list does not introduce an empty summary section or whole-order items.",
+  "order_name": "#1908",
+  "order": { "name": "#1908" },
+  "return": { "line_items": [] }
+}

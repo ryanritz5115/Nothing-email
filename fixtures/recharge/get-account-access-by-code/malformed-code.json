@@ -1,0 +1,5 @@
+{
+  "$extends": "access-code",
+  "$description": "An unsupported code object must not be exposed or treated as a usable code.",
+  "access_code": { "internal": "do-not-expose" }
+}

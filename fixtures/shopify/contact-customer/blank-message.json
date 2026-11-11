@@ -1,0 +1,5 @@
+{
+  "$extends": "order-message",
+  "$description": "Empty custom message uses the same support copy and configured orders_url action.",
+  "custom_message": ""
+}

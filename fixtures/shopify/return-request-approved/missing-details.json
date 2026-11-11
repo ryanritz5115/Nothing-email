@@ -1,0 +1,9 @@
+{
+  "$extends": "label-ready",
+  "$description": "No return object, order identity, Shopify order link or return totals. Use configured orders_url and omit blank optional sections.",
+  "return": null,
+  "order": null,
+  "order_name": null,
+  "order_status_url": null,
+  "customer_order_url": null
+}

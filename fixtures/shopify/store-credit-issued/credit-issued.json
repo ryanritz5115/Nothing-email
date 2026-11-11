@@ -1,0 +1,9 @@
+{
+  "$description": "$50 store credit issued with an expiry date. The resulting $75 account balance is separate from the amount issued.",
+  "customer": { "first_name": "Alex", "email": "alex@example.com" },
+  "issued_store_credit": {
+    "amount": 5000,
+    "expires_at": "2027-12-31T23:59:59-05:00",
+    "balance_after_transaction": 7500
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "Without a nickname, use the recipient name.",
+  "gift_card": {
+    "recipient": {
+      "nickname": null
+    }
+  }
+}

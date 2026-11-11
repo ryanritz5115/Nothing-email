@@ -1,0 +1,5 @@
+{
+  "$extends": "credit-issued",
+  "$description": "An explicitly supplied zero issued amount remains visible; it is distinct from missing data.",
+  "issued_store_credit": { "amount": 0 }
+}

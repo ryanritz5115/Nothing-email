@@ -1,0 +1,25 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Nonpositive or invalid quantities are omitted; negative and nonnumeric billing intervals do not falsely label an item as one-time.",
+  "line_items": [
+    {
+      "product_title": "Porrada Creatine Monohydrate",
+      "quantity": 0,
+      "price": "34.00",
+      "charge_interval_frequency": -1,
+      "order_interval_unit": "month"
+    },
+    {
+      "product_title": "Porrada Hydration",
+      "quantity": -1,
+      "price": "24.00",
+      "charge_interval_frequency": "unknown",
+      "order_interval_unit": "month"
+    },
+    {
+      "product_title": "Porrada Sample",
+      "quantity": "unknown",
+      "charge_interval_frequency": null
+    }
+  ]
+}

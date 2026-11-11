@@ -1,0 +1,62 @@
+{%- comment -%}
+  Purchaser gift-card receipt in the shared centered gift design.
+  Requires shared config and receipt identity/delivery logic.
+{%- endcomment -%}
+<table role="presentation" width="{{ gc_width }}" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:{{ gc_width }}px; border-collapse:collapse;">
+  <tr>
+    <td class="pr-gc-gutter pr-gc-title" align="center" style="padding:{{ gc_pad_title }}; {{ st_gc_title }}">
+      {{ email_title }}
+    </td>
+  </tr>
+  <tr>
+    <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_intro }}; {{ st_gc_body }}">
+      {{ receipt_delivery }}
+      {%- if receipt_send_on != blank or receipt_recipient_name != blank %} Keep this copy for your records.{% endif -%}
+    </td>
+  </tr>
+  {%- if gift_card.message != blank -%}
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_message }}; {{ st_gc_message }}">
+        &ldquo;{{ gift_card.message | escape | newline_to_br }}&rdquo;
+      </td>
+    </tr>
+  {%- endif -%}
+  <tr>
+    <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_image }};">
+      <img src="{{ img_gift_card }}" alt="Porrada gift card" width="{{ gc_image_width }}" style="display:block; width:100%; max-width:{{ gc_image_width }}px; height:auto; border-radius:{{ gc_radius_image }}; margin:0 auto;">
+    </td>
+  </tr>
+  {%- if gift_card.initial_value != blank -%}
+    <tr>
+      <td class="pr-gc-gutter pr-gc-amount" align="center" style="padding:{{ gc_pad_amount }}; {{ st_gc_amount }}">
+        {{ gift_card.initial_value | money }}
+      </td>
+    </tr>
+  {%- endif -%}
+  {%- if gift_card.expires_on != blank -%}
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_note }}; {{ st_gc_note }}">
+        Expires {{ gift_card.expires_on | date: '%B %e, %Y' | escape }}
+      </td>
+    </tr>
+  {%- endif -%}
+  {%- if receipt_gift_code != blank -%}
+    <tr>
+      <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_code }}; {{ st_gc_code_label }}">
+        Gift card code<br>
+        <span style="{{ st_gc_code }}">{{ receipt_gift_code | format_code | escape }}</span>
+      </td>
+    </tr>
+  {%- endif -%}
+  <tr>
+    <td class="pr-gc-gutter" align="center" style="padding:{{ gc_pad_action }};">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+        <tr>
+          <td align="center" bgcolor="{{ c_brand }}" style="border-radius:{{ radius_button }}; background-color:{{ c_brand }};">
+            <a href="{{ orders_url }}" target="_blank" style="{{ st_gc_button }}">View your order</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

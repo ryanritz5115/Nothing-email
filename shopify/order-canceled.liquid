@@ -1,0 +1,87 @@
+{%- comment -%}
+=====================================================================
+  ORDER CANCELED
+  Shopify > Settings > Notifications > Order canceled
+  Paste dist/shopify/order-canceled.liquid, not this file.
+=====================================================================
+{%- endcomment -%}
+{%- include 'shared/config' -%}
+{%- include 'shared/payment-adjustment' -%}
+
+{%- assign email_title = 'Your order has been canceled' -%}
+{%- assign preheader = 'Order ' | append: order_name | append: ' canceled. View the payment details.' -%}
+{%- case cancel_reason -%}
+  {%- when 'customer' -%}
+    {%- assign email_body = "We've canceled your order as requested. Your payment details are below." -%}
+  {%- when 'inventory' -%}
+    {%- assign email_body = "We're sorry, an item was unavailable and we had to cancel your order. Your payment details are below." -%}
+  {%- when 'declined' -%}
+    {%- assign email_body = "We couldn't complete the payment, so your order has been canceled. Your payment details are below." -%}
+  {%- when 'fraud' -%}
+    {%- assign email_body = "We couldn't verify this order, so we had to cancel it. Contact us if you need help." -%}
+  {%- else -%}
+    {%- assign email_body = 'This order has been canceled. Your payment details are below.' -%}
+{%- endcase -%}
+
+{%- comment -%} Cancellation alone does not prove that money was refunded. {%- endcomment -%}
+{%- if payment_has_problem_refund -%}
+  {%- assign cancellation_payment_status = 'A refund attempt on this order did not complete. Check the payment history below for later updates, or contact us for help.' -%}
+{%- elsif payment_has_pending_refund -%}
+  {%- assign cancellation_payment_status = 'The payment history includes a pending refund. Check the individual payment statuses below, or contact us for help.' -%}
+{%- elsif payment_has_unknown_refund -%}
+  {%- assign cancellation_payment_status = 'The payment history includes a refund without an available status. Check the individual payments below, or contact us for help.' -%}
+{%- elsif financial_status == 'refunded' -%}
+  {%- assign cancellation_payment_status = 'This order is marked refunded. Timing depends on the payment method. Contact us if you need help checking the refund.' -%}
+{%- elsif payment_refunded_amount > 0 -%}
+  {%- if payment_collected_amount > 0 and payment_refunded_amount >= payment_collected_amount -%}
+    {%- assign cancellation_payment_status = 'The collected payment has been refunded. See below for each payment method and timing.' -%}
+  {%- else -%}
+    {%- assign cancellation_payment_status = 'A refund has been processed, but a full refund is not confirmed. Contact us if you have questions about the remaining amount.' -%}
+  {%- endif -%}
+{%- elsif total_price != nil and total_price == 0 and payment_collected_amount == 0 -%}
+  {%- assign cancellation_payment_status = 'No payment was required for this order.' -%}
+{%- elsif payment_collected_amount > 0 or financial_status == 'paid' or financial_status == 'partially_paid' or financial_status == 'partially_refunded' -%}
+  {%- assign cancellation_payment_status = 'Payment was collected. A completed refund is not confirmed in this update. Contact us if you are waiting for a refund.' -%}
+{%- elsif payment_authorized_amount > 0 or financial_status == 'authorized' or financial_status == 'voided' -%}
+  {%- assign cancellation_payment_status = 'Your payment was authorized, but no collected payment is recorded. A temporary bank hold may take time to disappear. Contact your bank if it remains.' -%}
+{%- elsif financial_status == 'pending' or has_pending_payment -%}
+  {%- assign cancellation_payment_status = 'The payment was pending when this order was canceled. Contact us if a completed charge appears on your account.' -%}
+{%- else -%}
+  {%- assign cancellation_payment_status = 'No completed refund is confirmed in this update. Contact us if you see a charge or have a payment question.' -%}
+{%- endif -%}
+
+{%- include 'shared/document-start' -%}
+<tr>
+  <td style="padding:0 {{ space_gutter }};">
+    {%- assign stack_eyebrow = 'Order ' | append: order_name -%}
+    {%- assign stack_title = email_title -%}
+    {%- assign stack_body = email_body -%}
+    {%- include 'shared/components/text-stack' -%}
+
+    {%- assign adjustment_status = cancellation_payment_status -%}
+    {%- assign adjustment_amount = nil -%}
+    {%- if payment_refunded_amount > 0 -%}
+      {%- assign adjustment_amount = payment_refunded_amount -%}
+      {%- assign adjustment_amount_label = 'Total refunded on this order' -%}
+    {%- endif -%}
+    {%- if cancelled_at -%}{%- assign adjustment_date = cancelled_at -%}{%- endif -%}
+    {%- include 'shared/components/payment-adjustment-card' -%}
+
+    {%- if orders_url != blank -%}
+      {%- assign button_label = 'View your order' -%}
+      {%- assign button_url = orders_url -%}
+    {%- else -%}
+      {%- assign button_label = 'Contact support' -%}
+      {%- assign button_url = support_url -%}
+    {%- endif -%}
+    {%- include 'shared/components/actions' -%}
+  </td>
+</tr>
+
+{%- assign order_items = subtotal_line_items -%}
+{%- assign order_items_title = 'Canceled order' -%}
+{%- include 'shared/components/order-items' -%}
+{%- include 'shared/components/refund-payments' -%}
+{%- assign adjustment_is_cancellation = true -%}
+{%- include 'shared/components/payment-adjustment-faq' -%}
+{%- include 'shared/document-end' -%}

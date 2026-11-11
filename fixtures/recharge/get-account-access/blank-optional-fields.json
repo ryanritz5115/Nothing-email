@@ -1,0 +1,7 @@
+{
+  "$extends": "account-request",
+  "$description": "Whitespace identity and merchant email do not produce an empty greeting or contact address.",
+  "first_name": "  ",
+  "email": "  ",
+  "shop_email": "  "
+}

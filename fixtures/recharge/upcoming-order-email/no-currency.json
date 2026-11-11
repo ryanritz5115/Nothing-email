@@ -1,0 +1,7 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Missing currency hides amounts instead of assuming USD or formatting cents.",
+  "charge": {
+    "currency": null
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "$extends": "return-requested",
+  "$description": "Defensive case: neither request object is available. The email uses a generic request message and never substitutes the whole order's items.",
+  "order_name": "#1804",
+  "order": { "name": "#1804" },
+  "requested_edit": null,
+  "return": null
+}

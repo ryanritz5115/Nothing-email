@@ -1,0 +1,20 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Documented title and name fallbacks preserve product identity when product_title is unavailable.",
+  "line_items": [
+    {
+      "title": "Porrada Creatine Monohydrate",
+      "price": "34.00",
+      "quantity": 1,
+      "charge_interval_frequency": 1,
+      "order_interval_unit": "month"
+    },
+    {
+      "name": "Porrada Hydration",
+      "price": "24.00",
+      "quantity": 1,
+      "charge_interval_frequency": 1,
+      "order_interval_unit": "month"
+    }
+  ]
+}

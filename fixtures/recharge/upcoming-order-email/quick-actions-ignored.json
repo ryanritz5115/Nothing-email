@@ -1,0 +1,17 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "All account navigation goes to /account even when Recharge supplies direct portal, delay, or cross-sell tokens.",
+  "delay_options": [
+    {
+      "unit": "day",
+      "value": 7,
+      "url": "https://example.com/DELAY_TOKEN_MUST_NOT_RENDER"
+    }
+  ],
+  "cross_sell_products": [
+    {
+      "product_title": "UNREQUESTED CROSS SELL",
+      "url": "https://example.com/CROSS_SELL_TOKEN_MUST_NOT_RENDER"
+    }
+  ]
+}

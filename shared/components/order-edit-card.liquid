@@ -1,0 +1,35 @@
+{%- comment -%}
+  Order edit payment card. Place in the hero cell. Requires the edit_balance_*
+  variables from the template and shared/payment-adjustment. Refund sums are
+  for the entire order, not necessarily the latest edit.
+{%- endcomment -%}
+{%- capture card_body -%}
+  {%- assign detail_label = edit_balance_label -%}
+  {%- assign detail_value = edit_balance_value -%}
+  {%- assign detail_emphasis = edit_balance_known -%}
+  {%- include 'shared/components/detail' -%}
+
+  {%- if payment_refunded_amount > 0 -%}
+    {%- assign detail_label = 'Total refunded on this order' -%}
+    {%- assign detail_value = payment_refunded_amount | money_with_currency -%}
+    {%- assign detail_space_above = space_md -%}
+    {%- include 'shared/components/detail' -%}
+  {%- endif -%}
+  {%- if payment_has_pending_refund -%}
+    {%- assign detail_label = 'Refund processing' -%}
+    {%- if payment_pending_refund_amount > 0 -%}
+      {%- assign detail_value = payment_pending_refund_amount | money_with_currency -%}
+    {%- else -%}
+      {%- assign detail_value = 'A refund is processing. Contact us to confirm the amount.' -%}
+    {%- endif -%}
+    {%- assign detail_space_above = space_md -%}
+    {%- include 'shared/components/detail' -%}
+  {%- endif -%}
+  {%- if payment_has_problem_refund or payment_has_unknown_refund -%}
+    {%- assign detail_label = 'Refund attempt history' -%}
+    {%- assign detail_value = 'Your order history includes refund attempts that were unsuccessful or have no confirmed status. Contact us if you have questions.' -%}
+    {%- assign detail_space_above = space_md -%}
+    {%- include 'shared/components/detail' -%}
+  {%- endif -%}
+{%- endcapture -%}
+{%- include 'shared/components/card' -%}

@@ -1,0 +1,47 @@
+{# One activation item. Recharge item.price is displayed as supplied in major currency units.
+   Billing cadence is not delivery cadence. No undocumented image or future-price fields. #}
+{% if item.product_title is string and item.product_title|trim %}
+  {% set recharge_item_title = item.product_title %}
+{% elif item.title is string and item.title|trim %}
+  {% set recharge_item_title = item.title %}
+{% elif item.name is string and item.name|trim %}
+  {% set recharge_item_title = item.name %}
+{% else %}
+  {% set recharge_item_title = 'Subscription item' %}
+{% endif %}
+<tr>
+  <td style="padding:{{ space_md }} 0; border-bottom:1px solid {{ c_divider }};">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+      <tr>
+        <td width="100%" valign="top" style="width:100%; padding-right:{{ space_md }};">
+          <p style="{{ st_body_bold }} color:{{ c_black }};">{{ recharge_item_title|e }}</p>
+          {% if item.variant_title is string and item.variant_title|trim and item.variant_title != 'Default Title' %}
+            <p style="{{ st_small_bold }} color:{{ c_gray }};">{{ item.variant_title|e }}</p>
+          {% endif %}
+          {% if item.quantity is defined and item.quantity is not none and item.quantity|int > 0 %}
+            <p style="{{ st_small }} color:{{ c_gray }};">Quantity: {{ item.quantity|e }}</p>
+          {% endif %}
+          {% if item.charge_interval_frequency is defined and item.charge_interval_frequency is not none and item.charge_interval_frequency|string|trim != '' %}
+            {% if item.charge_interval_frequency|int > 0 and item.order_interval_unit is string and item.order_interval_unit|trim %}
+              <p style="{{ st_small }} color:{{ c_gray }};">Billed every {% if item.charge_interval_frequency|int > 1 %}{{ item.charge_interval_frequency|int }} {% endif %}{{ item.order_interval_unit|lower|e }}{% if item.charge_interval_frequency|int > 1 %}s{% endif %}</p>
+            {% elif item.charge_interval_frequency|string|trim == '0' %}
+              <p style="{{ st_small }} color:{{ c_gray }};">One-time purchase</p>
+            {% endif %}
+          {% endif %}
+          {% if item.next_charge_date is defined and item.next_charge_date and item.next_charge_date|string|trim %}
+            <p style="{{ st_small }} color:{{ c_gray }};">Next charge: {{ item.next_charge_date|e }}</p>
+          {% endif %}
+          {% if item.number_charges_until_expiration|default(0)|int > 0 %}
+            <p style="{{ st_small }} color:{{ c_gray }};">Expires after {{ item.number_charges_until_expiration|int }} {% if item.number_charges_until_expiration|int == 1 %}charge{% else %}charges{% endif %}</p>
+          {% endif %}
+        </td>
+        {% if charge_currency is string and charge_currency|trim and item.price is defined and item.price is not none and item.price|string|trim != '' %}
+          <td valign="top" align="right" style="white-space:nowrap;">
+            <p style="{{ st_small_bold }} color:{{ c_gray }};">{{ item.price|amount_with_currency(charge_currency, display_currency_code=False) }}</p>
+            <p style="{{ st_small }} color:{{ c_gray }};">Item price</p>
+          </td>
+        {% endif %}
+      </tr>
+    </table>
+  </td>
+</tr>

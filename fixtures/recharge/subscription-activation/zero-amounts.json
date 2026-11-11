@@ -1,0 +1,19 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Numeric zero prices and all zero totals remain visible.",
+  "line_items": [
+    {
+      "product_title": "Porrada Starter Pack",
+      "quantity": 1,
+      "price": 0,
+      "charge_interval_frequency": 1,
+      "order_interval_unit": "month"
+    }
+  ],
+  "subtotal_price": 0,
+  "total_shipping": 0,
+  "total_tax": 0,
+  "total_duties": 0,
+  "total_discounts": 0,
+  "total_price": 0
+}

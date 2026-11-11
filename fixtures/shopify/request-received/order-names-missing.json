@@ -1,0 +1,7 @@
+{
+  "$extends": "return-requested",
+  "$description": "Order names are unavailable. The eyebrow stays generic rather than rendering an empty order label.",
+  "order_name": null,
+  "name": null,
+  "order": { "name": null }
+}

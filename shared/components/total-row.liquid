@@ -1,0 +1,15 @@
+{%- comment -%}
+  Total row. Place inside a totals table.
+  Inputs, reset after use:
+    total_label, total_value  inline text or markup
+    total_emphasis           true for the final total (optional)
+{%- endcomment -%}
+<tr>
+  <td style="padding:{{ space_2xs }} 0;"><p style="{{ st_small }} color:{{ c_gray }};">{{ total_label }}</p></td>
+  <td align="right" style="padding:{{ space_2xs }} 0; white-space:nowrap;">
+    <p style="{%- if total_emphasis != blank -%}{{ st_body_bold }}{%- else -%}{{ st_small_bold }}{%- endif %} color:{{ c_gray }};">{{ total_value }}</p>
+  </td>
+</tr>
+{%- assign total_label = '' -%}
+{%- assign total_value = '' -%}
+{%- assign total_emphasis = false -%}

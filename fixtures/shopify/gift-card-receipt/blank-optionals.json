@@ -1,0 +1,11 @@
+{
+  "$extends": "receipt-sent",
+  "$description": "Whitespace-only recipient details, message, code, schedule, and expiry are absent. Use neutral receipt wording; do not render blank details.",
+  "gift_card": {
+    "recipient": { "nickname": " ", "name": "  ", "email": " " },
+    "code": " ",
+    "message": "  ",
+    "send_on": " ",
+    "expires_on": " "
+  }
+}

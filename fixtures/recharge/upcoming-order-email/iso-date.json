@@ -1,0 +1,7 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "A supplied ISO charge date is displayed without inventing a delivery date or an unsupported date filter.",
+  "charge": {
+    "scheduled_at": "2026-11-21"
+  }
+}

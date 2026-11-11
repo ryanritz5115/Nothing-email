@@ -1,0 +1,11 @@
+{
+  "$extends": "all-items",
+  "$description": "No tracking data or delivery estimate. Omits the card and offers the order page.",
+  "fulfillment": {
+    "tracking_company": null,
+    "tracking_numbers": [],
+    "tracking_url": null,
+    "tracking_urls": [],
+    "estimated_delivery_at": null
+  }
+}

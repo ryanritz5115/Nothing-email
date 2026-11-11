@@ -1,0 +1,16 @@
+{
+  "$extends": "subscriptions-canceled",
+  "$description": "Customer cancellation must not display unverified item, date, reason, refund, total or activation-only legal fields.",
+  "line_items": [
+    {
+      "product_title": "DO NOT DISPLAY CANCELLATION ITEM",
+      "quantity": 99,
+      "price": "999.00"
+    }
+  ],
+  "cancellation_reason": "DO NOT DISPLAY REASON",
+  "cancelled_at": "DO NOT DISPLAY DATE",
+  "total_price": "999.00",
+  "charge_currency": "USD",
+  "shop_legal_text": "<p>DO NOT DISPLAY ACTIVATION TERMS</p>"
+}

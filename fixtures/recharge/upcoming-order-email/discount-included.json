@@ -1,0 +1,9 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Subtotal already includes the discount; no second subtraction or recomputed total.",
+  "charge": {
+    "subtotal_price": "27.20",
+    "total_discounts": "6.80",
+    "total_price": "31.70"
+  }
+}

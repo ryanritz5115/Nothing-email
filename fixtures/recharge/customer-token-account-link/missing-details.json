@@ -1,0 +1,10 @@
+{
+  "$extends": "sign-in-request",
+  "$description": "A minimal access notification contains account navigation and support without revealing identity or inventing credentials.",
+  "first_name": null,
+  "email": null,
+  "shop_email": null,
+  "link": null,
+  "subscription_url": null,
+  "login_url": null
+}

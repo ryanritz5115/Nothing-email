@@ -1,0 +1,5 @@
+{
+  "$extends": "order-message",
+  "$description": "Custom message absent. Show helpful support copy and the configured orders_url action without claiming an order changed.",
+  "custom_message": null
+}

@@ -1,0 +1,11 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "Tracking and estimate are unavailable. Show shipping details, a guarded order action, and a way to ask for help.",
+  "fulfillment": {
+    "tracking_company": null,
+    "tracking_numbers": [],
+    "tracking_url": null,
+    "tracking_urls": [],
+    "estimated_delivery_at": null
+  }
+}

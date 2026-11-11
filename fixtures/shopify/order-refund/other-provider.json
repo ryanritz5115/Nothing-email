@@ -1,0 +1,25 @@
+{
+  "$extends": "full-refund",
+  "$description": "A non-card refund provider uses its display name and general provider timing rather than a card-bank deadline.",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    },
+    {
+      "status": "success",
+      "kind": "refund",
+      "gateway": "paypal",
+      "gateway_display_name": "PayPal",
+      "amount": 9209,
+      "payment_details": null
+    }
+  ]
+}

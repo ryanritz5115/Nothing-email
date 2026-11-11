@@ -8,14 +8,17 @@
 
 {%- comment -%} Colors {%- endcomment -%}
 {%- assign c_black   = '#000000' -%}
-{%- assign c_white   = '#FFFFFF' -%}
+{%- assign c_white   = '#F7F7F5' -%}
 {%- assign c_gray    = '#555555' -%}
-{%- assign c_brand   = '#77163F' -%}
-{%- assign c_divider = '#E6E6E6' -%}{%- comment -%} hairline dividers only {%- endcomment -%}
+{%- assign c_brand   = '#000000' -%}
+{%- assign c_shadow   = '0px 4px 8px 0px rgba(0,0,0,0.15)' -%}
+{%- assign c_divider = '#f1f1f1' -%}{%- comment -%} hairline dividers only {%- endcomment -%}
+{%- comment -%} Template-owned default; Recharge does not supply a design tone. {%- endcomment -%}
+{%- assign tone = 'light' -%}
 
 {%- comment -%} Type {%- endcomment -%}
-{%- assign font_serif     = "'Times New Roman', Times, serif" -%}
-{%- assign font_sans      = "Arial, Helvetica, sans-serif" -%}
+{%- assign font_serif     = "system-ui, Arial, Helvetica, sans-serif" -%}
+{%- assign font_sans      = "system-ui, Arial, Helvetica, sans-serif" -%}
 {%- assign size_serif     = '32px' -%}
 {%- assign size_body      = '16px' -%}
 {%- assign size_small     = '12px' -%}
@@ -42,30 +45,51 @@
 {%- assign product_image_size = '58' -%}
 {%- assign card_icon_width    = '26' -%}
 {%- assign discount_icon_size = '12' -%}
+{%- assign footer_logo_width  = '300' -%}
+{%- assign social_icon_size   = '36' -%}
+{%- assign social_icon_mobile = '28' -%}
+{%- assign footer_breakpoint  = '480px' -%}
+{%- assign footer_brand_width = '60%' -%}
+{%- assign footer_links_width = '40%' -%}
 {%- assign totals_width       = '60%' -%}
+{%- assign totals_spacer_width = '40%' -%}{%- comment -%} 100% minus totals_width {%- endcomment -%}
 {%- assign radius_button      = '999px' -%}
 {%- assign radius_image       = '8px' -%}
+{%- assign radius_card        = '24px' -%}
 {%- assign button_padding     = '16px 28px' -%}
 
 {%- comment -%}
   Images. Placeholders render in local preview.
   Replace with Klaviyo CDN URLs before pasting into Shopify.
 {%- endcomment -%}
-{%- assign img_logo            = 'https://placehold.co/340x136/ffffff/000000/png?text=Porrada' -%}
-{%- assign img_discount_tag    = 'https://placehold.co/24x24/ffffff/555555/png?text=%25' -%}
-{%- assign img_card_visa       = 'https://placehold.co/52x32/ffffff/1a1f71/png?text=VISA' -%}
+{%- assign img_logo            = 'https://cdn.shopify.com/s/files/1/0861/4454/9100/files/Frame_132131591111.webp?v=1794436039' -%}
+{%- assign img_discount_tag    = 'https://cdn.shopify.com/s/files/1/0723/7333/8327/files/Frame_1321315911.png?v=1792345254' -%}
+{%- assign img_card_visa       = 'https://cdn.shopify.com/shopifycloud/shopify/assets/themes_support/notifications/visa-e96781bbd9d5a604ec37ca3959c7200b62b58790536de883a9f29852191da219.png' -%}
 {%- assign img_card_mastercard = '' -%}
 {%- assign img_card_amex       = '' -%}
 {%- assign img_card_discover   = '' -%}
 {%- assign img_card_jcb        = '' -%}
 {%- assign img_card_diners     = '' -%}
 {%- assign img_card_unionpay   = '' -%}
+{%- assign img_footer_logo = 'https://cdn.shopify.com/s/files/1/0861/4454/9100/files/Screenshot_2026-11-11_at_5.20.24_PM_1.webp?v=1794436125' -%}
+{%- assign img_tiktok      = 'https://cdn.klaviyomail.com/company/Wf5b2j/images/e36d1f2c-59e8-463b-af78-6ad1c517e707.png' -%}
+{%- assign img_facebook    = 'https://cdn.klaviyomail.com/company/Wf5b2j/images/043e8f86-b83a-4c76-98a6-8a19ba74549b.png' -%}
+{%- assign img_instagram   = 'https://cdn.klaviyomail.com/company/Wf5b2j/images/71ecb587-0dc8-4fdd-8fe5-743dab3a7e11.png' -%}
+{%- assign img_gift_card   = 'https://cdn.shopify.com/s/files/1/0861/4454/9100/files/Store_creditnothing.webp?v=1794436566' -%}
+{%- assign img_store_credit   = 'https://cdn.shopify.com/s/files/1/0861/4454/9100/files/Store_creditnothing.webp?v=1794436566' -%}
 {%- comment -%} Any card brand left blank renders as text only. {%- endcomment -%}
 
 {%- comment -%} Links. Hardcoded: in a headless store shop.url can resolve to the wrong domain. {%- endcomment -%}
-{%- assign store_url     = 'https://porradanutra.com' -%}
-{%- assign support_url   = 'https://porradanutra.com/contact' -%}
-{%- assign support_email = 'support@porradanutra.com' -%}
+{%- assign store_url     = 'https://nothingsmells.com' -%}
+{%- assign account_url   = 'https://nothingsmells.com/account' -%}
+{%- assign support_url   = 'https://nothingsmells.com/support' -%}
+{%- assign orders_url   = 'https://nothingsmells.com/account/orders' -%}
+{%- assign support_email = 'support@nothingsmells.com' -%}
+{%- assign tiktok_url    = 'https://www.tiktok.com/@nothingsmells' -%}
+{%- assign facebook_url  = 'https://www.facebook.com/nothingsmells' -%}
+{%- assign instagram_url = 'https://www.instagram.com/nothingsmells/' -%}
+{%- assign gift_cart_url = store_url | append: '/api/cart/add' -%}
+{%- assign gift_share_url = store_url | append: '/link-copy' -%}
 
 {%- comment -%} ===================== STYLE TOKENS ===================== {%- endcomment -%}
 {%- comment -%} Compose inline styles from tokens. Append color per use: style="{{ st_body }} color:{{ c_black }};" {%- endcomment -%}
@@ -75,3 +99,48 @@
 {%- capture st_body_bold -%}margin:0; font-family:{{ font_sans }}; font-size:{{ size_body }}; font-weight:{{ weight_bold }}; line-height:{{ lh_body }};{%- endcapture -%}
 {%- capture st_small -%}margin:0; font-family:{{ font_sans }}; font-size:{{ size_small }}; font-weight:{{ weight_regular }}; line-height:{{ lh_small }};{%- endcapture -%}
 {%- capture st_small_bold -%}margin:0; font-family:{{ font_sans }}; font-size:{{ size_small }}; font-weight:{{ weight_bold }}; line-height:{{ lh_small }};{%- endcapture -%}
+
+{%- comment -%}
+  Gift card and store credit bodies. Preserve the supplied gift design inside
+  the shared header and footer. Both notifications reuse these tokens.
+{%- endcomment -%}
+{%- assign gc_width = '450' -%}
+{%- assign gc_image_width = '402' -%}
+{%- assign gc_radius_image = '14px' -%}
+{%- assign gc_font_serif = "system-ui,'Helvetica Neue',Helvetica,Arial,sans-serif" -%}
+{%- assign gc_font_sans = "system-ui,'Helvetica Neue',Helvetica,Arial,sans-serif" -%}
+{%- assign gc_c_text = '#111111' -%}
+{%- assign gc_c_body = '#444444' -%}
+{%- assign gc_c_message = '#666666' -%}
+{%- assign gc_c_muted = '#8a8a8a' -%}
+{%- assign gc_c_badge = '#f2f2f2' -%}
+{%- assign gc_size_title_mobile = '28px' -%}
+{%- assign gc_size_heading_mobile = '26px' -%}
+{%- assign gc_size_amount_mobile = '38px' -%}
+{%- assign gc_size_step_mobile = '24px' -%}
+{%- assign gc_pad_title = '0 24px 0' -%}
+{%- assign gc_pad_intro = '14px 24px 0' -%}
+{%- assign gc_pad_message = '16px 24px 0' -%}
+{%- assign gc_pad_image = '28px 24px 0' -%}
+{%- assign gc_pad_amount = '26px 24px 0' -%}
+{%- assign gc_pad_note = '10px 24px 0' -%}
+{%- assign gc_pad_action = '24px 24px 0' -%}
+{%- assign gc_pad_share = '12px 24px 0' -%}
+{%- assign gc_pad_code = '20px 24px 0' -%}
+{%- assign gc_pad_heading = '52px 24px 0' -%}
+{%- assign gc_pad_step = '36px 24px 0' -%}
+{%- assign gc_pad_wallet = '40px 24px 0' -%}
+{%- assign gc_wallet_width = '120' -%}
+{%- assign gc_wallet_height = '40' -%}
+{%- capture st_gc_title -%}font-family:{{ gc_font_serif }}; font-size:32px; line-height:1.2; color:{{ gc_c_text }}; letter-spacing:-0.01em;{%- endcapture -%}
+{%- capture st_gc_body -%}font-family:{{ gc_font_sans }}; font-size:14px; line-height:1.6; color:{{ gc_c_body }}; overflow-wrap:anywhere; word-break:break-word;{%- endcapture -%}
+{%- capture st_gc_message -%}font-family:{{ gc_font_serif }}; font-size:16px; line-height:1.55; color:{{ gc_c_message }}; font-style:italic; overflow-wrap:anywhere; word-break:break-word;{%- endcapture -%}
+{%- capture st_gc_amount -%}font-family:{{ gc_font_serif }}; font-size:44px; line-height:1; color:{{ gc_c_text }}; letter-spacing:-0.02em;{%- endcapture -%}
+{%- capture st_gc_note -%}font-family:{{ gc_font_sans }}; font-size:12px; line-height:1.4; color:{{ gc_c_muted }};{%- endcapture -%}
+{%- capture st_gc_button -%}display:inline-block; padding:14px 34px; border-radius:{{ radius_button }}; font-family:{{ gc_font_sans }}; font-size:14px; line-height:1; font-weight:600; color:{{ c_white }}; text-decoration:none;{%- endcapture -%}
+{%- capture st_gc_share -%}display:inline-block; padding:12px 32px; border:2px solid {{ c_brand }}; border-radius:{{ radius_button }}; font-family:{{ gc_font_sans }}; font-size:14px; line-height:1; font-weight:600; color:{{ c_brand }}; text-decoration:none;{%- endcapture -%}
+{%- capture st_gc_code_label -%}font-family:{{ gc_font_sans }}; font-size:12px; line-height:1.5; color:{{ gc_c_muted }};{%- endcapture -%}
+{%- capture st_gc_code -%}display:inline-block; padding-top:4px; font-family:{{ gc_font_sans }}; font-size:16px; letter-spacing:2px; color:{{ gc_c_text }}; font-weight:500; overflow-wrap:anywhere; word-break:break-word;{%- endcapture -%}
+{%- capture st_gc_heading -%}font-family:{{ gc_font_serif }}; font-size:30px; line-height:1.2; color:{{ gc_c_text }}; letter-spacing:-0.01em;{%- endcapture -%}
+{%- capture st_gc_badge -%}border-radius:{{ radius_button }}; background-color:{{ gc_c_badge }}; padding:5px 12px; font-family:{{ gc_font_sans }}; font-size:11px; line-height:1; font-weight:600; color:{{ c_gray }};{%- endcapture -%}
+{%- capture st_gc_step -%}font-family:{{ gc_font_serif }}; font-size:27px; line-height:1.2; color:{{ gc_c_text }}; letter-spacing:-0.01em;{%- endcapture -%}

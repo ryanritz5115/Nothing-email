@@ -1,0 +1,11 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "An update without a usable new quantity suppresses the included list and does not invent a removed count.",
+  "line_item_modifications": [
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": []
+    }
+  ]
+}

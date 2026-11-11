@@ -1,0 +1,20 @@
+{# shop_legal_text is merchant-authored HTML for activation only.
+   Block wrapper preserves paragraphs and lists; customer fields stay escaped. #}
+{% if recharge_show_legal|default(false) and shop_legal_text is string and shop_legal_text|trim %}
+  <tr>
+    <td style="padding:{{ space_xl }} {{ space_gutter }} 0;">
+      {% set detail_label = 'Subscription terms' %}
+      {% include 'shared/components/detail' %}
+      <div class="pr-message" style="{{ st_small }} color:{{ c_gray }}; padding-top:{{ space_xs }};">{{ shop_legal_text|safe }}</div>
+    </td>
+  </tr>
+{% endif %}
+{% if shop_address is string and shop_address|trim %}
+  <tr>
+    <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
+      {% set detail_label = 'Porrada' %}
+      {% set detail_value = shop_address|e %}
+      {% include 'shared/components/detail' %}
+    </td>
+  </tr>
+{% endif %}

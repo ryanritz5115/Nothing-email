@@ -1,0 +1,9 @@
+{
+  "$extends": "subscriptions-canceled",
+  "$description": "Only notification identity is known. No data is invented; shared support fallback remains.",
+  "first_name": null,
+  "email": null,
+  "shop_email": null,
+  "link": null,
+  "shop_address": null
+}

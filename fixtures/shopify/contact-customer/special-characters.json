@@ -1,0 +1,5 @@
+{
+  "$extends": "order-message",
+  "$description": "A plain message preserves ordinary punctuation and customer-facing ampersands.",
+  "custom_message": "Hi Marcus,\n\nWe received your question about shipping & billing. Thanks for helping us check the details."
+}

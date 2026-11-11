@@ -1,0 +1,35 @@
+{%- comment -%}
+  Order items without prices. Body rows, omitted if no usable items exist.
+  Inputs, reset after use:
+    order_items        list of order lines
+    order_items_title  section heading
+{%- endcomment -%}
+{%- assign order_visible_item_count = 0 -%}
+{%- for order_item in order_items -%}
+  {%- if order_item.quantity and order_item.quantity > 0 -%}
+    {%- if order_item.title != blank or order_item.product.title != blank -%}
+      {%- assign order_visible_item_count = order_visible_item_count | plus: 1 -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if order_visible_item_count > 0 -%}
+  {%- assign section_title = order_items_title -%}
+  {%- include 'shared/components/section-heading' -%}
+  <tr>
+    <td style="padding:0 {{ space_gutter }};">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        {%- for order_item in order_items -%}
+          {%- if order_item.quantity and order_item.quantity > 0 -%}
+            {%- if order_item.title != blank or order_item.product.title != blank -%}
+              {%- assign item = order_item -%}
+              {%- assign item_show_price = false -%}
+              {%- include 'shared/components/line-item' -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </table>
+    </td>
+  </tr>
+{%- endif -%}
+{%- assign order_items = nil -%}
+{%- assign order_items_title = '' -%}

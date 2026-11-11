@@ -1,0 +1,17 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "An out-of-range modification cannot be matched to the original list. Omit included quantities rather than show them as certain.",
+  "line_item_modifications": [
+    {
+      "line_item_id": 99,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 3,
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

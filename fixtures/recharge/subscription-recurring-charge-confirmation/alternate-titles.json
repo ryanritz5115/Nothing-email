@@ -1,0 +1,34 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Title and name fallbacks, unnamed item, unknown quantity, blank/default variants, and quantity filtering.",
+  "line_items": [
+    {
+      "title": "Porrada Creatine",
+      "quantity": 1,
+      "variant_title": "Default Title"
+    },
+    {
+      "name": "Porrada Electrolytes",
+      "quantity": null,
+      "variant_title": ""
+    },
+    {
+      "quantity": 3
+    },
+    {
+      "product_title": "Zero units",
+      "quantity": 0
+    },
+    {
+      "product_title": "Invalid units",
+      "quantity": -1
+    },
+    {
+      "product_title": "Quantity not supplied"
+    },
+    {
+      "product_title": "Blank quantity",
+      "quantity": "   "
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{# Recharge > Notifications > Customer token account link.
+   Porrada explicitly routes all account actions to /account. The supplied magic
+   link is not used, so this email must not promise an instant or tokenized login. #}
+{% include 'shared/config' %}
+{% set email_title = 'Your account sign-in request' %}
+{% set preheader = 'Continue to your Porrada account to sign in.' %}
+{% set recharge_contact_email = support_email %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, you{% else %}You{% endif %} requested access to your Porrada account. Use the button below to open your account and complete the sign-in steps.{% endset %}
+{% include 'shared/document-start' %}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set stack_eyebrow = 'Account access' %}
+              {% set stack_title = email_title %}
+              {% set stack_body = email_body %}
+              {% include 'shared/components/text-stack' %}
+
+              {% set card_body %}
+                {% set detail_label = 'Continue signing in' %}
+                {% set detail_value = 'Use the email address associated with your Porrada subscription.' %}
+                {% set detail_emphasis = true %}
+                {% include 'shared/components/detail' %}
+
+                {% set detail_label = 'Manage your subscriptions' %}
+                {% set detail_value = 'After signing in, open your subscriptions to review your account details and upcoming orders.' %}
+                {% set detail_space_above = space_md %}
+                {% include 'shared/components/detail' %}
+              {% endset %}
+              {% include 'shared/components/card' %}
+
+              {% set recharge_action_label = 'Open your account' %}
+              {% include 'shared/components/recharge-actions' %}
+            </td>
+          </tr>
+
+          {% set recharge_access_mode = 'account' %}
+          {% include 'shared/components/recharge-account-help' %}
+{% set footer_support_title = 'Need help signing in?' %}
+{% include 'shared/document-end' %}

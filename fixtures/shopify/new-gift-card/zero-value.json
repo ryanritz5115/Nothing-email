@@ -1,0 +1,7 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "An explicitly supplied zero gift-card value remains visible.",
+  "gift_card": {
+    "initial_value": 0
+  }
+}

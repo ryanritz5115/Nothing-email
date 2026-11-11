@@ -1,0 +1,74 @@
+{%- comment -%}
+  Order totals. Body row using Shopify's order totals without recalculating
+  them. subtotal_price already includes line and order discounts, so savings
+  are informational and are never subtracted again.
+  Input, reset after use:
+    order_total_label  defaults to 'Total'
+{%- endcomment -%}
+{%- if order_total_label == blank -%}{%- assign order_total_label = 'Total' -%}{%- endif -%}
+<tr>
+  <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+      <tr>
+        <td width="{{ totals_spacer_width }}" style="width:{{ totals_spacer_width }}; font-size:0; line-height:0;">&nbsp;</td>
+        <td width="{{ totals_width }}" style="width:{{ totals_width }};">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+            {%- if subtotal_price != nil -%}
+              {%- assign total_label = 'Subtotal' -%}
+              {%- assign total_value = subtotal_price | money -%}
+              {%- include 'shared/components/total-row' -%}
+            {%- endif -%}
+            {%- if requires_shipping and shipping_price != nil -%}
+              {%- case delivery_method -%}
+                {%- when 'pick-up' -%}{%- assign total_label = 'Pickup' -%}
+                {%- when 'local' -%}{%- assign total_label = 'Delivery' -%}
+                {%- else -%}{%- assign total_label = 'Shipping' -%}
+              {%- endcase -%}
+              {%- if shipping_price > 0 -%}
+                {%- assign total_value = shipping_price | money -%}
+              {%- else -%}
+                {%- assign total_value = 'Free' -%}
+              {%- endif -%}
+              {%- include 'shared/components/total-row' -%}
+            {%- endif -%}
+            {%- if total_duties and total_duties > 0 -%}
+              {%- assign total_label = 'Duties' -%}
+              {%- assign total_value = total_duties | money -%}
+              {%- include 'shared/components/total-row' -%}
+            {%- endif -%}
+            {%- if tax_price != nil -%}
+              {%- if taxes_included -%}
+                {%- assign total_label = 'Taxes (included)' -%}
+              {%- else -%}
+                {%- assign total_label = 'Taxes' -%}
+              {%- endif -%}
+              {%- assign total_value = tax_price | money -%}
+              {%- include 'shared/components/total-row' -%}
+            {%- endif -%}
+            {%- if total_tip and total_tip > 0 -%}
+              {%- assign total_label = 'Tip' -%}
+              {%- assign total_value = total_tip | money -%}
+              {%- include 'shared/components/total-row' -%}
+            {%- endif -%}
+            {%- if total_price != nil -%}
+              <tr><td colspan="2" style="height:{{ space_sm }}; font-size:0; line-height:0;">&nbsp;</td></tr>
+              <tr><td colspan="2" style="border-top:1px solid {{ c_divider }}; height:{{ space_sm }}; font-size:0; line-height:0;">&nbsp;</td></tr>
+              {%- assign total_label = order_total_label -%}
+              {%- assign total_value = total_price | money_with_currency -%}
+              {%- assign total_emphasis = true -%}
+              {%- include 'shared/components/total-row' -%}
+            {%- endif -%}
+            {%- if total_discounts and total_discounts > 0 -%}
+              <tr>
+                <td colspan="2" align="right" style="padding-top:{{ space_xs }};">
+                  <p style="{{ st_small }} color:{{ c_gray }};">Includes {{ total_discounts | money }} in savings</p>
+                </td>
+              </tr>
+            {%- endif -%}
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+{%- assign order_total_label = '' -%}

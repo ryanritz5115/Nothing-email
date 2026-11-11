@@ -1,0 +1,11 @@
+{
+  "$extends": "label-ready",
+  "$description": "An unfamiliar delivery type without a label falls back to waiting for instructions.",
+  "return": {
+    "deliveries": [
+      {
+        "type": "other"
+      }
+    ]
+  }
+}

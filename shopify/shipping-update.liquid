@@ -1,0 +1,63 @@
+{%- comment -%}
+=====================================================================
+  SHIPPING UPDATE
+  Shopify > Settings > Notifications > Shipping update
+  Sent when tracking changes on a shipment that already went out.
+  Paste dist/shopify/shipping-update.liquid, not this file.
+=====================================================================
+{%- endcomment -%}
+
+{%- include 'shared/config' -%}
+{%- include 'shared/shipment' -%}
+
+{%- comment -%} ======================= UPDATE LOGIC ======================= {%- endcomment -%}
+
+{%- comment -%} Headline + intro copy. Lead with reassurance: an update email can read like a problem. {%- endcomment -%}
+{%- if tracking_count > 1 -%}
+  {%- assign email_title = 'Your tracking has been updated' -%}
+  {%- assign email_body  = "We've updated the tracking details for this shipment. Use the numbers below to check each package." -%}
+  {%- assign preheader   = 'New tracking for order ' | append: order_name | append: '.' -%}
+{%- elsif tracking_count == 1 -%}
+  {%- assign email_title = 'Your tracking has been updated' -%}
+  {%- assign email_body  = "We've updated the tracking details for this shipment. Use the latest number below to check its progress." -%}
+  {%- assign preheader   = 'New tracking for order ' | append: order_name | append: '.' -%}
+{%- else -%}
+  {%- assign email_title = 'Your shipping info has been updated' -%}
+  {%- assign email_body  = 'The shipping details for this shipment have changed. Your latest available information is below. Contact support if you need help checking its progress.' -%}
+  {%- assign preheader   = 'Shipping update for order ' | append: order_name | append: '.' -%}
+{%- endif -%}
+
+{%- if fulfillment.item_count and item_count and fulfillment.item_count < item_count -%}
+  {%- assign email_body = email_body | append: ' This update covers part of your order. Other items may arrive separately.' -%}
+{%- endif -%}
+
+{%- if delivery_date != '' -%}
+  {%- assign preheader = preheader | append: ' Estimated delivery ' | append: delivery_date | append: '.' -%}
+{%- endif -%}
+
+{%- comment -%} ========================= DOCUMENT ========================= {%- endcomment -%}
+
+{%- include 'shared/document-start' -%}
+
+          {%- comment -%} ===== HERO ===== {%- endcomment -%}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {%- assign stack_eyebrow = 'Order ' | append: order_name -%}
+              {%- assign stack_title   = email_title -%}
+              {%- assign stack_body    = email_body -%}
+              {%- include 'shared/components/text-stack' -%}
+              {%- include 'shared/components/shipment-card' -%}
+              {%- include 'shared/components/shipment-actions' -%}
+            </td>
+          </tr>
+
+          {%- include 'shared/components/shipment-items' -%}
+          {%- include 'shared/components/shipping-details' -%}
+
+          {%- if tracking_count > 0 -%}
+            {%- assign faq_lead_label = 'Why did my tracking change?' -%}
+            {%- assign faq_lead_value = 'Sometimes a package gets a new tracking number or carrier along the way. Use the tracking in this email. Older numbers may stop updating.' -%}
+          {%- endif -%}
+          {%- include 'shared/components/shipment-faq' -%}
+
+{%- include 'shared/document-end' -%}

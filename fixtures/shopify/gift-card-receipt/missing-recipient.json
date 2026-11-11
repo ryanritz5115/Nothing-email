@@ -1,0 +1,5 @@
+{
+  "$extends": "scheduled",
+  "$description": "A schedule exists without recipient identity. Show the supplied date without inventing a recipient.",
+  "gift_card": { "recipient": null }
+}

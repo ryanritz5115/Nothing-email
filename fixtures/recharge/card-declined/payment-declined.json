@@ -1,0 +1,8 @@
+{
+  "first_name": "Ryan",
+  "shop_email": "support@porradanutra.com",
+  "shop_address": "Porrada, 123 Main Street, New York, NY 10001, United States",
+  "link": "https://porradanutra.com/tools/recurring/portal/ignored-token",
+  "billing_link": "https://porradanutra.com/tools/recurring/billing/ignored-token",
+  "$description": "Standard declined payment with account update action and no fixed retry date."
+}

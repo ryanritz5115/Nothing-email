@@ -1,0 +1,28 @@
+{
+  "$extends": "full-refund",
+  "$description": "Refunding a subscription order does not confirm that future subscription orders changed.",
+  "line_items": [
+    {
+      "title": "Focus - Blueberry Pomegranate",
+      "product": {
+        "title": "Focus"
+      },
+      "variant": {
+        "title": "Blueberry Pomegranate"
+      },
+      "quantity": 1,
+      "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+      "original_line_price": 7999,
+      "final_line_price": 7999,
+      "discount_allocations": [],
+      "properties": {},
+      "selling_plan_allocation": {
+        "selling_plan": {
+          "name": "Monthly subscription"
+        }
+      },
+      "unit_price_measurement": null,
+      "gift_card": false
+    }
+  ]
+}

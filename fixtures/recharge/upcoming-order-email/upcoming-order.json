@@ -1,0 +1,49 @@
+{
+  "$description": "Modern Upcoming order flow with nested customer and charge data, supplied major-unit totals, one product image, and a complete shipping address.",
+  "customer": {
+    "first_name": "Ryan",
+    "last_name": "Ritzenthaler",
+    "email": "ryan@example.com",
+    "customer_portal_url": "https://porradanutra.com/tools/recurring/portal/should-not-be-used"
+  },
+  "charge": {
+    "scheduled_at": "November 21, 2026",
+    "currency": "USD",
+    "subtotal_price": "34.00",
+    "total_price": "38.50",
+    "total_discounts": "0.00",
+    "total_tax": "0.00",
+    "total_duties": "0.00",
+    "shipping_lines": [
+      {
+        "title": "Standard shipping",
+        "price": "4.50"
+      }
+    ],
+    "line_items": [
+      {
+        "title": "Porrada Creatine Monohydrate",
+        "variant_title": "Unflavored / 30 servings",
+        "quantity": 1,
+        "total_price": "34.00",
+        "unit_price": "34.00",
+        "purchase_item_type": "subscription",
+        "images": {
+          "src": "https://placehold.co/232x232/f2f2f2/555555/png?text=Creatine",
+          "alt": "Creatine"
+        }
+      }
+    ],
+    "shipping_address": {
+      "first_name": "Ryan",
+      "last_name": "Ritzenthaler",
+      "company": "Porrada",
+      "address1": "123 Main Street",
+      "address2": "Apt 4B",
+      "city": "New York",
+      "province": "NY",
+      "zip": "10001",
+      "country": "United States"
+    }
+  }
+}

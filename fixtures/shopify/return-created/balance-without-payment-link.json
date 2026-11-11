@@ -1,0 +1,8 @@
+{
+  "$extends": "label-ready",
+  "$description": "A known positive order balance without a payment URL directs the customer to support, rather than rendering an empty Pay now link.",
+  "return": {
+    "order_total_outstanding": 1500,
+    "checkout_payment_collection_url": null
+  }
+}

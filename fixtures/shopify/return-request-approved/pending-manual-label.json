@@ -1,0 +1,15 @@
+{
+  "$extends": "label-ready",
+  "$description": "A manual return delivery without a downloadable label waits for the separately sent label.",
+  "return": {
+    "deliveries": [
+      {
+        "type": "manual",
+        "carrier_name": null,
+        "tracking_number": null,
+        "tracking_url": null,
+        "return_label": null
+      }
+    ]
+  }
+}

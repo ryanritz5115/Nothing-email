@@ -1,0 +1,5 @@
+{
+  "$extends": "receipt-sent",
+  "$description": "Gift card scheduled for a supplied future date. Confirm the schedule without saying the card has already been sent.",
+  "gift_card": { "send_on": "2027-06-15T09:00:00-04:00" }
+}

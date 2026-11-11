@@ -1,0 +1,48 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Official partial-order update/delete contract: include one remaining unit and show removed units separately, without charging their original prices.",
+  "total_price": "34.00",
+  "line_items": [
+    {
+      "product_title": "Porrada Creatine Monohydrate",
+      "variant_title": "Unflavored / 30 servings",
+      "quantity": 3
+    },
+    {
+      "product_title": "Porrada Electrolytes",
+      "variant_title": "Citrus",
+      "quantity": 2
+    }
+  ],
+  "line_item_modifications": [
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 3,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "line_item_id": 2,
+      "modification_type": "delete",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 2
+        },
+        {
+          "attribute": "product_title",
+          "previous_value": "Porrada Electrolytes"
+        },
+        {
+          "attribute": "variant_title",
+          "previous_value": "Citrus"
+        }
+      ]
+    }
+  ]
+}

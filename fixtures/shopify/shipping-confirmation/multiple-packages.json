@@ -1,0 +1,17 @@
+{
+  "$extends": "all-items",
+  "$description": "B2B order with a PO number, shipped as two USPS packages. Both tracking numbers link from the card; the button falls back to View your order.",
+  "po_number": "PO-4471",
+  "fulfillment": {
+    "tracking_company": "USPS",
+    "tracking_numbers": [
+      "9400111899223197428490",
+      "9400111899223197428506"
+    ],
+    "tracking_url": "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223197428490",
+    "tracking_urls": [
+      "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223197428490",
+      "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223197428506"
+    ]
+  }
+}

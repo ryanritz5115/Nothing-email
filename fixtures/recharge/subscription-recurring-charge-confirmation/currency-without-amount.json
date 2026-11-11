@@ -1,0 +1,5 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "No supplied amount: hide the amount rather than render zero.",
+  "total_price": null
+}

@@ -1,0 +1,7 @@
+{
+  "$extends": "order-updated",
+  "$description": "Defensive case: item arrays are missing. The summary links the customer to order details without claiming that their items were removed.",
+  "order_name": "#1617",
+  "line_items": null,
+  "subtotal_line_items": null
+}

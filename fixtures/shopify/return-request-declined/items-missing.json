@@ -1,0 +1,7 @@
+{
+  "$extends": "declined-note",
+  "$description": "Return item data is unavailable. The template omits the item summary and never falls back to unrelated order lines.",
+  "order_name": "#1907",
+  "order": { "name": "#1907" },
+  "return": { "line_items": null }
+}

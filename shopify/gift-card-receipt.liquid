@@ -1,0 +1,40 @@
+{%- comment -%}
+  GIFT CARD RECEIPT
+  Shopify > Settings > Notifications > Gift card receipt
+  Purchaser copy: recipient/schedule confirmation and the supplied gift details.
+  Paste dist/shopify/gift-card-receipt.liquid, not this file.
+{%- endcomment -%}
+{%- include 'shared/config' -%}
+
+{%- assign email_title = 'Your gift card receipt' -%}
+{%- assign footer_support_title = 'Need help with your gift card?' -%}
+{%- assign receipt_recipient_full_name = gift_card.recipient.name | strip -%}
+{%- assign receipt_recipient_email = gift_card.recipient.email | strip -%}
+{%- assign receipt_recipient_name = gift_card.recipient.nickname | strip | default: receipt_recipient_full_name | default: receipt_recipient_email -%}
+{%- assign receipt_send_on = gift_card.send_on | strip -%}
+{%- assign receipt_gift_code = gift_card.code | strip -%}
+{%- capture receipt_recipient -%}
+  {{- receipt_recipient_name | escape -}}
+  {%- if receipt_recipient_email != blank and receipt_recipient_email != receipt_recipient_name %} ({{ receipt_recipient_email | escape }}){% endif -%}
+{%- endcapture -%}
+{%- capture receipt_delivery -%}
+  {%- if receipt_send_on != blank -%}
+    Your gift card{% if receipt_recipient_name != blank %} for {{ receipt_recipient }}{% endif %} is scheduled to be sent on {{ receipt_send_on | date: '%B %e, %Y' | escape }}.
+  {%- elsif receipt_recipient_name != blank -%}
+    Your gift card was sent to {{ receipt_recipient }}.
+  {%- else -%}
+    Keep this copy of your gift card details for your records.
+  {%- endif -%}
+{%- endcapture -%}
+{%- assign preheader = receipt_delivery -%}
+{%- capture email_styles -%}
+  {%- include 'shared/components/credit-styles' -%}
+{%- endcapture -%}
+
+{%- include 'shared/document-start' -%}
+<tr>
+  <td align="center">
+    {%- include 'shared/components/gift-card-receipt-content' -%}
+  </td>
+</tr>
+{%- include 'shared/document-end' -%}

@@ -1,0 +1,9 @@
+{
+  "$extends": "new-gift-card/gift-card-recipient",
+  "$description": "Purchaser copy of a $100 gift card sent to Alex, with a message, code, and expiry. Wallet and recipient redemption actions do not belong in this receipt.",
+  "gift_card": {
+    "send_on": null,
+    "expires_on": "2027-12-31T23:59:59-05:00",
+    "pass_url": null
+  }
+}

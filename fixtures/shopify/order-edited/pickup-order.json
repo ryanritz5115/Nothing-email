@@ -1,0 +1,11 @@
+{
+  "$extends": "order-updated",
+  "$description": "A pickup order uses the Pickup total label, with no shipping charge.",
+  "order_name": "#1612",
+  "delivery_method": "pick-up",
+  "shipping_price": 0,
+  "total_price": 8559,
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 8559, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

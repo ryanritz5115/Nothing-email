@@ -1,0 +1,36 @@
+{
+  "$extends": "full-refund",
+  "$description": "The gift card portion succeeded while a card portion remains pending. Do not mark the entire refund processed.",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    },
+    {
+      "status": "success",
+      "kind": "refund",
+      "gateway": "gift_card",
+      "gateway_display_name": "Gift card",
+      "amount": 2000,
+      "payment_details": null
+    },
+    {
+      "status": "pending",
+      "kind": "refund",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 7209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

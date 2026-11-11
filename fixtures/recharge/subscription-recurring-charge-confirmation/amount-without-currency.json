@@ -1,0 +1,5 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "No supplied currency: hide the amount rather than assume USD.",
+  "charge_currency": null
+}

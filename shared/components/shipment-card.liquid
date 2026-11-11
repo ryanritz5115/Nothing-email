@@ -1,0 +1,22 @@
+{%- comment -%}
+  Shipment card. Estimated delivery (large) and tracking for this shipment,
+  in a card. Renders nothing when there's neither. Place inside the hero
+  <td>, between the text stack and the actions. Requires shared/shipment.
+{%- endcomment -%}
+{%- if delivery_date != '' or tracking_count > 0 -%}
+  {%- capture card_body -%}
+    {%- if delivery_date != '' -%}
+      {%- assign detail_label    = 'Estimated delivery' -%}
+      {%- assign detail_value    = delivery_date -%}
+      {%- assign detail_emphasis = true -%}
+      {%- include 'shared/components/detail' -%}
+    {%- endif -%}
+    {%- if tracking_count > 0 -%}
+      {%- assign detail_label = tracking_label -%}
+      {%- assign detail_value = tracking_links -%}
+      {%- if delivery_date != '' -%}{%- assign detail_space_above = space_md -%}{%- endif -%}
+      {%- include 'shared/components/detail' -%}
+    {%- endif -%}
+  {%- endcapture -%}
+  {%- include 'shared/components/card' -%}
+{%- endif -%}

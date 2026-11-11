@@ -11,14 +11,10 @@
 {%- comment -%} Template behavior {%- endcomment -%}
 {%- assign show_paid_today_always = false -%}{%- comment -%} true = always show "Total paid today", even when it equals the total {%- endcomment -%}
 
+{%- comment -%} Flat on purpose: a nested width="100%" table collapses to a dot in Gmail iOS. {%- endcomment -%}
 {%- capture totals_divider -%}
-<tr>
-  <td colspan="2" style="padding:{{ space_sm }} 0;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-      <tr><td style="border-top:1px solid {{ c_divider }}; font-size:0; line-height:0; height:1px;">&nbsp;</td></tr>
-    </table>
-  </td>
-</tr>
+<tr><td colspan="2" style="height:{{ space_sm }}; font-size:0; line-height:0;">&nbsp;</td></tr>
+<tr><td colspan="2" style="border-top:1px solid {{ c_divider }}; height:{{ space_sm }}; font-size:0; line-height:0;">&nbsp;</td></tr>
 {%- endcapture -%}
 
 {%- comment -%} ======================= ORDER LOGIC ======================= {%- endcomment -%}
@@ -131,6 +127,11 @@
   {%- assign show_ship_address = true -%}
 {%- endif -%}
 
+{%- assign address = shipping_address -%}
+{%- capture ship_address_lines -%}{%- include 'shared/components/address' -%}{%- endcapture -%}
+{%- assign address = billing_address -%}
+{%- capture bill_address_lines -%}{%- include 'shared/components/address' -%}{%- endcapture -%}
+
 {%- comment -%} ========================= DOCUMENT ========================= {%- endcomment -%}
 
 {%- include 'shared/document-start' -%}
@@ -138,9 +139,10 @@
           {%- comment -%} ===== HERO ===== {%- endcomment -%}
           <tr>
             <td style="padding:0 {{ space_gutter }};">
-              <p style="{{ st_small_bold }} color:{{ c_black }};">Order {{ order_name }}</p>
-              <h1 style="{{ st_serif }} color:{{ c_black }}; padding-top:{{ space_xs }};">{{ email_title }}</h1>
-              <p style="{{ st_body }} color:{{ c_black }}; padding-top:{{ space_sm }};">{{ email_body }}</p>
+              {%- assign stack_eyebrow = 'Order ' | append: order_name -%}
+              {%- assign stack_title   = email_title -%}
+              {%- assign stack_body    = email_body -%}
+              {%- include 'shared/components/text-stack' -%}
 
               {%- if delivery_method == 'local' and delivery_instructions != blank -%}
                 <p style="{{ st_body }} color:{{ c_black }}; padding-top:{{ space_xs }};"><strong>Delivery information:</strong> {{ delivery_instructions }}</p>
@@ -149,97 +151,27 @@
               {%- if gift_card_note != '' -%}
                 <p style="{{ st_body }} color:{{ c_black }}; padding-top:{{ space_xs }};">{{ gift_card_note }}</p>
               {%- endif -%}
-            </td>
-          </tr>
 
-          <tr>
-            <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td align="center" bgcolor="{{ c_brand }}" style="border-radius:{{ radius_button }}; background-color:{{ c_brand }};">
-                    <a href="{{ order_status_url }}" target="_blank" style="display:inline-block; padding:{{ button_padding }}; font-family:{{ font_sans }}; font-size:{{ size_body }}; font-weight:{{ weight_bold }}; line-height:1; color:{{ c_white }}; text-decoration:none; border-radius:{{ radius_button }};">View your order</a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <tr>
-            <td style="padding:{{ space_md }} {{ space_gutter }} 0;">
-              <p style="{{ st_body }} color:{{ c_black }};">or <a href="{{ store_url }}" target="_blank" style="font-weight:{{ weight_bold }}; color:{{ c_brand }}; text-decoration:none;">Visit our store</a></p>
+              {%- assign button_label = 'View your order' -%}
+              {%- assign button_url   = orders_url -%}
+              {%- assign link_prefix  = 'or' -%}
+              {%- assign link_label   = 'Visit our store' -%}
+              {%- assign link_url     = store_url -%}
+              {%- include 'shared/components/actions' -%}
             </td>
           </tr>
 
           {%- comment -%} ===== ORDER SUMMARY ===== {%- endcomment -%}
-          <tr>
-            <td style="padding:{{ space_3xl }} {{ space_gutter }} {{ space_md }};">
-              <p style="{{ st_body_bold }} color:{{ c_black }};">Order summary</p>
-            </td>
-          </tr>
+          {%- assign section_title = 'Order summary' -%}
+          {%- include 'shared/components/section-heading' -%}
 
           <tr>
             <td style="padding:0 {{ space_gutter }};">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                 {%- for line in subtotal_line_items -%}
-                  {%- if line.product.title -%}
-                    {%- assign line_title = line.product.title -%}
-                  {%- else -%}
-                    {%- assign line_title = line.title -%}
-                  {%- endif -%}
-                  <tr>
-                    <td style="padding:{{ space_md }} 0; border-bottom:1px solid {{ c_divider }};">
-                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                        <tr>
-                          <td width="{{ product_image_size }}" valign="middle" style="width:{{ product_image_size }}px;">
-                            {%- if line.image -%}
-                              <img src="{{ line | img_url: 'compact_cropped' }}" width="{{ product_image_size }}" height="{{ product_image_size }}" alt="{{ line_title | escape }}" style="display:block; width:{{ product_image_size }}px; height:{{ product_image_size }}px; border-radius:{{ radius_image }};">
-                            {%- endif -%}
-                          </td>
-                          <td valign="middle" style="padding:0 {{ space_md }} 0 {{ space_lg }};">
-                            <p style="{{ st_body_bold }} color:{{ c_black }};">{{ line_title }} x {{ line.quantity }}</p>
-
-                            {%- if line.variant.title and line.variant.title != 'Default Title' -%}
-                              <p style="{{ st_small_bold }} color:{{ c_gray }};">{{ line.variant.title }}</p>
-                            {%- endif -%}
-
-                            {%- if line.selling_plan_allocation -%}
-                              <p style="{{ st_small }} color:{{ c_gray }};">{{ line.selling_plan_allocation.selling_plan.name }}</p>
-                            {%- endif -%}
-
-                            {%- for p in line.properties -%}
-                              {%- assign p_first_char = p.first | slice: 0 -%}
-                              {%- if p.last != blank and p_first_char != '_' -%}
-                                <p style="{{ st_small }} color:{{ c_gray }};">{{ p.first }}: {{ p.last }}</p>
-                              {%- endif -%}
-                            {%- endfor -%}
-
-                            {%- if line.unit_price_measurement -%}
-                              <p style="{{ st_small }} color:{{ c_gray }};">{{ line.unit_price | money }}/{%- if line.unit_price_measurement.reference_value != 1 -%}{{ line.unit_price_measurement.reference_value }}{%- endif -%}{{ line.unit_price_measurement.reference_unit }}</p>
-                            {%- endif -%}
-
-                            {%- for da in line.discount_allocations -%}
-                              {%- if da.discount_application.target_selection != 'all' -%}
-                                <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:{{ space_2xs }};">
-                                  <tr>
-                                    {%- if img_discount_tag != '' -%}
-                                      <td valign="middle" style="padding-right:{{ space_2xs }};"><img src="{{ img_discount_tag }}" width="{{ discount_icon_size }}" height="{{ discount_icon_size }}" alt="" style="display:block;"></td>
-                                    {%- endif -%}
-                                    <td valign="middle"><p style="{{ st_small }} color:{{ c_gray }};">{{ da.discount_application.title | upcase }} (-{{ da.amount | money }})</p></td>
-                                  </tr>
-                                </table>
-                              {%- endif -%}
-                            {%- endfor -%}
-                          </td>
-                          <td valign="middle" align="right" style="white-space:nowrap;">
-                            {%- if line.original_line_price > line.final_line_price -%}
-                              <p style="{{ st_small }} color:{{ c_gray }};"><del>{{ line.original_line_price | money }}</del></p>
-                            {%- endif -%}
-                            <p style="{{ st_small_bold }} color:{{ c_gray }};">{%- if line.final_line_price > 0 -%}{{ line.final_line_price | money }}{%- else -%}Free{%- endif -%}</p>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
+                  {%- assign item            = line -%}
+                  {%- assign item_show_price = true -%}
+                  {%- include 'shared/components/line-item' -%}
                 {%- endfor -%}
               </table>
             </td>
@@ -248,10 +180,11 @@
           {%- comment -%} ===== TOTALS ===== {%- endcomment -%}
           <tr>
             <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                 <tr>
-                  <td align="right">
-                    <table role="presentation" width="{{ totals_width }}" align="right" cellpadding="0" cellspacing="0" border="0" style="width:{{ totals_width }};">
+                  <td width="{{ totals_spacer_width }}" style="width:{{ totals_spacer_width }}; font-size:0; line-height:0;">&nbsp;</td>
+                  <td width="{{ totals_width }}" style="width:{{ totals_width }};">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
 
                       <tr>
                         <td style="padding:{{ space_2xs }} 0;"><p style="{{ st_small }} color:{{ c_gray }};">Subtotal</p></td>
@@ -409,27 +342,26 @@
           </tr>
 
           {%- comment -%} ===== CUSTOMER INFORMATION ===== {%- endcomment -%}
-          <tr>
-            <td style="padding:{{ space_3xl }} {{ space_gutter }} {{ space_md }};">
-              <p style="{{ st_body }} color:{{ c_black }};">Customer information</p>
-            </td>
-          </tr>
+          {%- assign section_title = 'Customer information' -%}
+          {%- include 'shared/components/section-heading' -%}
 
           {%- if show_ship_address or billing_address -%}
             <tr>
               <td style="padding:0 {{ space_gutter }};">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                   <tr>
                     {%- if show_ship_address -%}
                       <td width="50%" valign="top" style="width:50%; padding-right:{{ space_md }};">
-                        <p style="{{ st_small_bold }} color:{{ c_gray }};">{{ address_label }}</p>
-                        <p style="{{ st_small }} color:{{ c_gray }}; padding-top:{{ space_2xs }};">{{ shipping_address | format_address }}</p>
+                        {%- assign detail_label = address_label -%}
+                        {%- assign detail_value = ship_address_lines -%}
+                        {%- include 'shared/components/detail' -%}
                       </td>
                     {%- endif -%}
                     {%- if billing_address -%}
                       <td width="50%" valign="top" style="width:50%;">
-                        <p style="{{ st_small_bold }} color:{{ c_gray }};">Billing address</p>
-                        <p style="{{ st_small }} color:{{ c_gray }}; padding-top:{{ space_2xs }};">{{ billing_address | format_address }}</p>
+                        {%- assign detail_label = 'Billing address' -%}
+                        {%- assign detail_value = bill_address_lines -%}
+                        {%- include 'shared/components/detail' -%}
                       </td>
                     {%- endif -%}
                   </tr>
@@ -442,7 +374,8 @@
           {%- if payment_count > 0 or payment_terms or gateway -%}
             <tr>
               <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
-                <p style="{{ st_small_bold }} color:{{ c_gray }};">Payment</p>
+                {%- assign detail_label = 'Payment' -%}
+                {%- include 'shared/components/detail' -%}
 
                 {%- if payment_count > 0 -%}
                   {%- for t in transactions -%}
@@ -493,8 +426,9 @@
           {%- if requires_shipping and shipping_method -%}
             <tr>
               <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
-                <p style="{{ st_small_bold }} color:{{ c_gray }};">{{ method_label }}</p>
-                <p style="{{ st_small }} color:{{ c_gray }}; padding-top:{{ space_2xs }};">{{ shipping_method.title }}</p>
+                {%- assign detail_label = method_label -%}
+                {%- assign detail_value = shipping_method.title -%}
+                {%- include 'shared/components/detail' -%}
               </td>
             </tr>
           {%- endif -%}
@@ -503,8 +437,9 @@
           {%- if po_number -%}
             <tr>
               <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
-                <p style="{{ st_small_bold }} color:{{ c_gray }};">PO number</p>
-                <p style="{{ st_small }} color:{{ c_gray }}; padding-top:{{ space_2xs }};">{{ po_number }}</p>
+                {%- assign detail_label = 'PO number' -%}
+                {%- assign detail_value = po_number -%}
+                {%- include 'shared/components/detail' -%}
               </td>
             </tr>
           {%- endif -%}

@@ -1,0 +1,20 @@
+{%- comment -%}
+  One redemption step in the shared gift/store credit design. Inputs, reset after use:
+  gc_step_number, gc_step_title, gc_step_body (trusted template copy).
+{%- endcomment -%}
+<tr>
+  <td class="pr-gc-gutter" style="padding:{{ gc_pad_step }};">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+      <tr><td bgcolor="{{ gc_c_badge }}" style="{{ st_gc_badge }}">Step {{ gc_step_number }}</td></tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <td class="pr-gc-gutter pr-gc-step" style="padding:{{ gc_pad_share }}; {{ st_gc_step }}">{{ gc_step_title }}</td>
+</tr>
+<tr>
+  <td class="pr-gc-gutter" style="padding:{{ gc_pad_note }}; {{ st_gc_body }}">{{ gc_step_body }}</td>
+</tr>
+{%- assign gc_step_number = '' -%}
+{%- assign gc_step_title = '' -%}
+{%- assign gc_step_body = '' -%}

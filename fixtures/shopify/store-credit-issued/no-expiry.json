@@ -1,0 +1,5 @@
+{
+  "$extends": "credit-issued",
+  "$description": "Store credit without an expiry date. Do not invent an expiration or a no-expiry promise.",
+  "issued_store_credit": { "expires_at": null }
+}

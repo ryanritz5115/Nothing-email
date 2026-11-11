@@ -1,0 +1,8 @@
+{
+  "$extends": "refunded",
+  "$description": "Cancellation refunded to a gift card only. Give gift card balance guidance without promising a bank deposit.",
+  "transactions": [
+    { "status": "success", "kind": "sale", "gateway": "gift_card", "amount": 9209 },
+    { "status": "success", "kind": "refund", "gateway": "gift_card", "amount": 9209 }
+  ]
+}

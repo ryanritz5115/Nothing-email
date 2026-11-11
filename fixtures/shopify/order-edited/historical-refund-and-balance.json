@@ -1,0 +1,9 @@
+{
+  "$extends": "balance-due",
+  "$description": "A previous successful refund exists while a later edit leaves a new balance due. The historical refund stays separate from the remaining amount due.",
+  "order_name": "#1616",
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 17768, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" },
+    { "status": "success", "kind": "refund", "amount": 8559, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

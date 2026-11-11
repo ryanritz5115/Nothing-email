@@ -1,0 +1,5 @@
+{
+  "$extends": "receipt-sent",
+  "$description": "No gift-card context is available. Use neutral receipt wording without invented delivery, amount, code, message, or expiry.",
+  "gift_card": null
+}

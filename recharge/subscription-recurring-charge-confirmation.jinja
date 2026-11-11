@@ -1,0 +1,76 @@
+{# Recharge > Email > Subscription recurring charge confirmation.
+   A processed recurring charge is not a shipment notice. Monetary output uses
+   the supplied decimal string and supplied currency only, with no custom money
+   filter: Recharge does not document amount_with_currency for this notification. #}
+{% include 'shared/config' %}
+{% set email_title = 'Your subscription payment went through' %}
+{% set preheader = 'Your Porrada recurring payment is confirmed. Here is your order update.' %}
+{% set recharge_contact_email = support_email %}
+{% set email_body %}{% if first_name is string and first_name|trim %}Hi {{ first_name|e }}, your {% else %}Your {% endif %}Porrada recurring payment went through. You can review your order details below and manage your subscription in your account.{% endset %}
+{% include 'shared/document-start' %}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set stack_eyebrow = 'Subscription payment' %}
+              {% set stack_title = email_title %}
+              {% set stack_body = email_body %}
+              {% include 'shared/components/text-stack' %}
+
+              {% set card_body %}
+                {% set detail_label = 'Payment status' %}
+                {% set detail_value = 'Processed' %}
+                {% set detail_emphasis = true %}
+                {% include 'shared/components/detail' %}
+                {% if order_number is defined and order_number is not none and order_number|string|trim != '' %}
+                  {% set detail_label = 'Order number' %}
+                  {% set detail_value = order_number|e %}
+                  {% set detail_space_above = space_md %}
+                  {% include 'shared/components/detail' %}
+                {% endif %}
+                {% if charge_date is defined and charge_date and charge_date|string|trim %}
+                  {% set detail_label = 'Charge date' %}
+                  {% set detail_value = charge_date|e %}
+                  {% set detail_space_above = space_md %}
+                  {% include 'shared/components/detail' %}
+                {% endif %}
+                {% if charge_currency is string and charge_currency|trim and total_price is defined and total_price is not none and total_price|string|trim != '' %}
+                  {% set detail_label = 'Charged amount' %}
+                  {% set detail_value %}{{ total_price|e }} {{ charge_currency|upper|e }}{% endset %}
+                  {% set detail_space_above = space_md %}
+                  {% include 'shared/components/detail' %}
+                {% endif %}
+              {% endset %}
+              {% include 'shared/components/card' %}
+
+              {% set recharge_action_label = 'View your account' %}
+              {% include 'shared/components/recharge-actions' %}
+            </td>
+          </tr>
+
+          {% include 'shared/components/recharge-processed-items' %}
+          {% include 'shared/components/recharge-removed-items' %}
+
+          {% set section_title = 'What happens next' %}
+          {% include 'shared/components/section-heading' %}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set detail_label = 'When will my order arrive?' %}
+              {% set detail_value = 'This email confirms your payment. Look for a separate shipping email with tracking when your order ships.' %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Where can I review my subscription?' %}
+              {% set detail_value = 'Visit your account to review your subscription, billing details, and upcoming orders.' %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Something look wrong?' %}
+              {% set detail_value %}Email <a href="mailto:{{ recharge_contact_email|e }}" style="color:{{ c_brand }}; font-weight:{{ weight_bold }};">{{ recharge_contact_email|e }}</a> and we'll help you review the charge or your order.{% endset %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+            </td>
+          </tr>
+
+          {% set recharge_show_legal = false %}
+          {% include 'shared/components/recharge-merchant-info' %}
+{% set footer_support_title = 'Need help with your subscription?' %}
+{% include 'shared/document-end' %}

@@ -1,0 +1,37 @@
+{%- comment -%}
+  Items in the current refund, from Shopify refund_line_items only.
+  Body rows. Missing item detail never falls back to the whole order.
+  Prices stay hidden: a refunded quantity can be smaller than its original
+  order line, and the event amount can also contain tax or shipping.
+{%- endcomment -%}
+{%- assign refund_visible_item_count = 0 -%}
+{%- for refund_line in refund_line_items -%}
+  {%- if refund_line.line_item and refund_line.quantity and refund_line.quantity > 0 -%}
+    {%- if refund_line.line_item.title != blank or refund_line.line_item.product.title != blank -%}
+      {%- assign refund_visible_item_count = refund_visible_item_count | plus: 1 -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if refund_visible_item_count > 0 -%}
+  {%- assign section_title = 'Items in this refund' -%}
+  {%- include 'shared/components/section-heading' -%}
+  <tr>
+    <td style="padding:0 {{ space_gutter }};">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        {%- for refund_line in refund_line_items -%}
+          {%- if refund_line.line_item and refund_line.quantity and refund_line.quantity > 0 -%}
+            {%- if refund_line.line_item.title != blank or refund_line.line_item.product.title != blank -%}
+              {%- assign item = refund_line.line_item -%}
+              {%- assign item_quantity = refund_line.quantity -%}
+              {%- assign item_show_price = false -%}
+              {%- if refund_line.line_item.quantity and refund_line.quantity < refund_line.line_item.quantity -%}
+                {%- assign item_quantity = refund_line.quantity | append: ' of ' | append: refund_line.line_item.quantity -%}
+              {%- endif -%}
+              {%- include 'shared/components/line-item' -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </table>
+    </td>
+  </tr>
+{%- endif -%}

@@ -1,0 +1,10 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Missing shipping root is guarded; billing and other legacy addresses are not substituted.",
+  "charge": {
+    "shipping_address": null,
+    "billing_address": {
+      "address1": "PRIVATE BILLING ADDRESS"
+    }
+  }
+}

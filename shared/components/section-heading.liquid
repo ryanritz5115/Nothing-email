@@ -1,0 +1,11 @@
+{%- comment -%}
+  Section heading. A full container row that opens a section of the body.
+  Input, reset after use:
+    section_title
+{%- endcomment -%}
+<tr>
+  <td style="padding:{{ space_3xl }} {{ space_gutter }} {{ space_md }};">
+    <p style="{{ st_body_bold }} color:{{ c_black }};">{{ section_title }}</p>
+  </td>
+</tr>
+{%- assign section_title = '' -%}

@@ -1,0 +1,11 @@
+{
+  "$extends": "return-requested",
+  "$description": "Defensive flat return line: an empty product title must not hide title_without_variant, and an empty image must not emit an image with a blank source.",
+  "order_name": "#1814",
+  "order": { "name": "#1814" },
+  "return": {
+    "line_items": [
+      { "product": { "title": "" }, "title_without_variant": "Focus", "quantity": 1, "variant": { "title": "Blueberry Pomegranate" }, "image": "" }
+    ]
+  }
+}

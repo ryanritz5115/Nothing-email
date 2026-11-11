@@ -1,0 +1,7 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "A recipient gift without a personal message omits the quote row.",
+  "gift_card": {
+    "message": null
+  }
+}

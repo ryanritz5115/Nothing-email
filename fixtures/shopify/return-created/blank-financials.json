@@ -1,0 +1,16 @@
+{
+  "$extends": "label-ready",
+  "$description": "Blank strings in optional money fields remain unknown and never turn into zero-dollar amounts.",
+  "return": {
+    "line_items_subtotal_price": "",
+    "fees": [
+      {
+        "title": "Blank fee",
+        "subtotal": ""
+      }
+    ],
+    "total_tax_price": "",
+    "total_price": "",
+    "order_total_outstanding": ""
+  }
+}

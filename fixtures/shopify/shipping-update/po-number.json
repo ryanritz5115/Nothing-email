@@ -1,0 +1,5 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "A business shipment includes its PO number in shipping details.",
+  "po_number": "PO-2026-1042"
+}

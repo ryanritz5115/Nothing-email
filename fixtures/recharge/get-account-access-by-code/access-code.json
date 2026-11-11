@@ -1,0 +1,10 @@
+{
+  "$description": "A requested one-time access code. The code stays in the email body and account actions use Porrada's account page.",
+  "first_name": "Taylor",
+  "email": "taylor@example.com",
+  "access_code": "4821",
+  "shop_email": "support@porradanutra.com",
+  "link": "https://portal.example.com/customer/token-do-not-use",
+  "subscription_url": "https://portal.example.com/subscriptions/token-do-not-use",
+  "login_url": "https://portal.example.com/login/token-do-not-use"
+}

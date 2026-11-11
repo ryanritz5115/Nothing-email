@@ -1,0 +1,7 @@
+{
+  "$extends": "return-requested",
+  "$description": "A return request exists but its item array is unavailable. The email keeps the pending-review guidance and omits the item section without claiming an empty return.",
+  "order_name": "#1805",
+  "order": { "name": "#1805" },
+  "return": { "line_items": null }
+}

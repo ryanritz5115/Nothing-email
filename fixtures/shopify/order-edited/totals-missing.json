@@ -1,0 +1,14 @@
+{
+  "$extends": "order-updated",
+  "$description": "Defensive case: optional monetary fields are unavailable. Missing amounts are omitted instead of being formatted as invented zero totals.",
+  "order_name": "#1615",
+  "subtotal_price": null,
+  "shipping_price": null,
+  "tax_price": null,
+  "total_price": null,
+  "total_outstanding": null,
+  "total_duties": 0,
+  "total_tip": null,
+  "total_discounts": null,
+  "transactions": []
+}

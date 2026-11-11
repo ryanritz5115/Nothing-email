@@ -1,0 +1,9 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Only a supplied final total is shown; absent subtotal, tax, and duties stay unknown.",
+  "charge": {
+    "subtotal_price": null,
+    "total_tax": null,
+    "total_duties": null
+  }
+}

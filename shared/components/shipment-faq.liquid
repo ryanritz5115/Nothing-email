@@ -1,0 +1,44 @@
+{%- comment -%}
+  Shipment FAQ. Section rows: "Good to know" with the questions every
+  shipment email answers, after an optional one specific to this email.
+  Place as body rows. Requires shared/shipment.
+  Reads shipment_stage ('out-for-delivery', 'delivered', or blank for transit).
+  Inputs, reset after use:
+    faq_lead_label, faq_lead_value  a question for this email only, shown first (optional)
+{%- endcomment -%}
+{%- assign section_title = 'Good to know' -%}
+{%- include 'shared/components/section-heading' -%}
+
+<tr>
+  <td style="padding:0 {{ space_gutter }};">
+    {%- if faq_lead_label != blank -%}
+      {%- assign detail_label = faq_lead_label -%}
+      {%- assign detail_value = faq_lead_value -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- if shipment_stage == 'delivered' -%}
+      {%- assign detail_label = 'Missing or damaged items?' -%}
+      {%- assign detail_value = 'Contact support with your order number and tell us what is missing or damaged. Keep the packaging and include photos if you can so we can help.' -%}
+      {%- include 'shared/components/detail' -%}
+    {%- elsif shipment_stage == 'out-for-delivery' -%}
+      {%- assign detail_label = 'What if delivery is delayed?' -%}
+      {%- assign detail_value = 'Check the latest carrier update using your tracking details, if available. If delivery does not arrive as expected or you need help, contact support below.' -%}
+      {%- include 'shared/components/detail' -%}
+    {%- else -%}
+    {%- if tracking_count > 0 -%}
+      {%- assign detail_label = 'Tracking not updating yet?' -%}
+      {%- assign detail_value = 'It can take up to 24 hours after the carrier picks up your package for tracking to update.' -%}
+      {%- include 'shared/components/detail' -%}
+      {%- assign detail_space_above = space_md -%}
+    {%- endif -%}
+
+    {%- assign detail_label = 'Need to change the address?' -%}
+    {%- assign detail_value = "Contact us right away and we'll do our best to help. Once a package ships, delivery changes depend on the carrier." -%}
+    {%- include 'shared/components/detail' -%}
+    {%- endif -%}
+  </td>
+</tr>
+{%- assign faq_lead_label = '' -%}
+{%- assign faq_lead_value = '' -%}

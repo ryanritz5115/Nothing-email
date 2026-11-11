@@ -1,0 +1,34 @@
+{
+  "$extends": "label-ready",
+  "$description": "A lower-priced exchange leaves an estimated refund, without claiming it has been issued.",
+  "return": {
+    "exchange_line_items": [
+      {
+        "title": "Focus - Watermelon Lime",
+        "variant": {
+          "title": "Watermelon Lime"
+        },
+        "quantity": 1,
+        "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+        "original_line_price": 6999,
+        "final_line_price": 6999,
+        "discount_allocations": [],
+        "properties": {},
+        "selling_plan_allocation": null,
+        "unit_price_measurement": null,
+        "gift_card": false,
+        "title_without_variant": "Focus"
+      }
+    ],
+    "line_items_subtotal_price": -1000,
+    "fees": [
+      {
+        "title": "Restocking fee",
+        "subtotal": 200
+      }
+    ],
+    "total_tax_price": -70,
+    "total_price": -870,
+    "order_total_outstanding": -870
+  }
+}

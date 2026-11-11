@@ -1,0 +1,24 @@
+{
+  "$extends": "subscription-active",
+  "$description": "Products expire after one charge and three charges, using Recharge supplied number_charges_until_expiration.",
+  "line_items": [
+    {
+      "product_title": "Porrada Creatine Monohydrate",
+      "quantity": 1,
+      "price": "34.00",
+      "charge_interval_frequency": 1,
+      "order_interval_unit": "month",
+      "number_charges_until_expiration": "1"
+    },
+    {
+      "product_title": "Porrada Hydration",
+      "quantity": 1,
+      "price": "24.00",
+      "charge_interval_frequency": 1,
+      "order_interval_unit": "year",
+      "number_charges_until_expiration": 3
+    }
+  ],
+  "subtotal_price": "58.00",
+  "total_price": "58.00"
+}

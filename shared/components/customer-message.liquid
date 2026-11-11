@@ -1,0 +1,27 @@
+{%- comment -%}
+  Merchant's customer-facing custom_message, rendered as a content block.
+  Keep the literal Shopify output tag so Contact customer remains editable.
+  Never put message HTML inside a paragraph or substitute internal notes.
+  Inputs, reset after use:
+    message_heading     optional label
+    message_content     optional plain text, escaped and preserves newlines
+    message_use_custom  false disables the Contact customer fallback
+  Reads custom_message without changing it.
+{%- endcomment -%}
+{%- assign message_has_content = false -%}
+{%- if message_content != blank -%}
+  {%- assign message_has_content = true -%}
+{%- elsif message_use_custom != false and custom_message != blank -%}
+  {%- assign message_has_content = true -%}
+{%- endif -%}
+{%- if message_has_content -%}
+  {%- if message_heading != blank -%}
+    {%- assign detail_label = message_heading -%}
+    {%- assign detail_space_above = space_lg -%}
+    {%- include 'shared/components/detail' -%}
+  {%- endif -%}
+  <div class="pr-message" style="{{ st_body }} color:{{ c_black }}; padding-top:{{ space_sm }}; overflow-wrap:anywhere; word-break:break-word;{%- if message_content == blank %} white-space:pre-line;{%- endif -%}">{%- if message_content != blank -%}{{ message_content | escape | newline_to_br }}{%- else -%}{{ custom_message }}{%- endif -%}</div>
+{%- endif -%}
+{%- assign message_heading = '' -%}
+{%- assign message_content = '' -%}
+{%- assign message_use_custom = nil -%}

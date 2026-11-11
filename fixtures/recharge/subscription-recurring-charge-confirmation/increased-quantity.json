@@ -1,0 +1,17 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "A quantity update from 2 to 3 is not a removal. Included quantity is 3 and there is no removed-item section.",
+  "line_item_modifications": [
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 2,
+          "value": 3
+        }
+      ]
+    }
+  ]
+}

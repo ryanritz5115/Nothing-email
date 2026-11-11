@@ -1,0 +1,7 @@
+{
+  "$extends": "declined-note",
+  "$description": "The customer-facing note is plain text. Newlines are preserved and ampersands, angle brackets, and HTML-looking text stay escaped.",
+  "order_name": "#1905",
+  "order": { "name": "#1905" },
+  "return": { "decline": { "note": "We need a photo of the item & its packaging.\nPlease include the code printed beside <batch number>.\n<strong>Example text supplied by the merchant</strong>" } }
+}

@@ -1,0 +1,7 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "Singular tracking link fallback when the tracking URL array is absent.",
+  "fulfillment": {
+    "tracking_urls": []
+  }
+}

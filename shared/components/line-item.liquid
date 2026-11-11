@@ -1,0 +1,78 @@
+{%- comment -%}
+  Line item. One product row: image, title x quantity, variant, selling plan,
+  and visible properties. With prices on, also the price, unit price, and
+  line-level discounts. Use inside a full-width table, one include per line.
+  Inputs, reset after use:
+    item             a Shopify line_item
+    item_quantity    quantity text, e.g. 2 or '1 of 2' (defaults to item.quantity)
+    item_show_price  true to show price, unit price, and line discounts
+{%- endcomment -%}
+{%- if item.product.title != blank -%}
+  {%- assign item_title = item.product.title -%}
+{%- elsif item.title_without_variant != blank -%}
+  {%- assign item_title = item.title_without_variant -%}
+{%- else -%}
+  {%- assign item_title = item.title -%}
+{%- endif -%}
+{%- if item_quantity == blank -%}{%- assign item_quantity = item.quantity -%}{%- endif -%}
+<tr>
+  <td style="padding:{{ space_md }} 0; border-bottom:1px solid {{ c_divider }};">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+      <tr>
+        <td width="{{ product_image_size }}" valign="middle" style="width:{{ product_image_size }}px; min-width:{{ product_image_size }}px;">
+          {%- if item.image != blank -%}
+            <img src="{{ item | img_url: 'compact_cropped' }}" width="{{ product_image_size }}" height="{{ product_image_size }}" alt="{{ item_title | escape }}" style="display:block; width:{{ product_image_size }}px; height:{{ product_image_size }}px; border-radius:{{ radius_image }};">
+          {%- endif -%}
+        </td>
+        <td width="100%" valign="middle" style="width:100%; padding:0 {{ space_md }} 0 {{ space_lg }};">
+          <p style="{{ st_body_bold }} color:{{ c_black }};">{{ item_title }} x {{ item_quantity }}</p>
+
+          {%- if item.variant.title and item.variant.title != 'Default Title' -%}
+            <p style="{{ st_small_bold }} color:{{ c_gray }};">{{ item.variant.title }}</p>
+          {%- endif -%}
+
+          {%- if item.selling_plan_allocation -%}
+            <p style="{{ st_small }} color:{{ c_gray }};">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+          {%- endif -%}
+
+          {%- for p in item.properties -%}
+            {%- assign p_first_char = p.first | slice: 0 -%}
+            {%- if p.last != blank and p_first_char != '_' -%}
+              <p style="{{ st_small }} color:{{ c_gray }};">{{ p.first }}: {{ p.last }}</p>
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if item_show_price -%}
+            {%- if item.unit_price_measurement -%}
+              <p style="{{ st_small }} color:{{ c_gray }};">{{ item.unit_price | money }}/{%- if item.unit_price_measurement.reference_value != 1 -%}{{ item.unit_price_measurement.reference_value }}{%- endif -%}{{ item.unit_price_measurement.reference_unit }}</p>
+            {%- endif -%}
+
+            {%- for da in item.discount_allocations -%}
+              {%- if da.discount_application.target_selection != 'all' -%}
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:{{ space_2xs }};">
+                  <tr>
+                    {%- if img_discount_tag != '' -%}
+                      <td valign="middle" style="padding-right:{{ space_2xs }};"><img src="{{ img_discount_tag }}" width="{{ discount_icon_size }}" height="{{ discount_icon_size }}" alt="" style="display:block;"></td>
+                    {%- endif -%}
+                    <td valign="middle"><p style="{{ st_small }} color:{{ c_gray }};">{{ da.discount_application.title | upcase }} (-{{ da.amount | money }})</p></td>
+                  </tr>
+                </table>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </td>
+        {%- if item_show_price -%}
+          <td valign="middle" align="right" style="white-space:nowrap;">
+            {%- if item.original_line_price > item.final_line_price -%}
+              <p style="{{ st_small }} color:{{ c_gray }};"><del>{{ item.original_line_price | money }}</del></p>
+            {%- endif -%}
+            <p style="{{ st_small_bold }} color:{{ c_gray }};">{%- if item.final_line_price > 0 -%}{{ item.final_line_price | money }}{%- else -%}Free{%- endif -%}</p>
+          </td>
+        {%- endif -%}
+      </tr>
+    </table>
+  </td>
+</tr>
+{%- assign item            = nil -%}
+{%- assign item_quantity   = '' -%}
+{%- assign item_show_price = false -%}

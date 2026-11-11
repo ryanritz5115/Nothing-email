@@ -1,0 +1,22 @@
+{%- comment -%}
+  Detail. A small bold label over its value: addresses, methods, tracking,
+  answers. Place inside a <td>. The value must be inline content (text,
+  links, <br>), never block markup.
+  Inputs, reset after use:
+    detail_label
+    detail_value        (optional; leave blank to follow the label with custom markup)
+    detail_emphasis     true to show the value large and black, for the key fact
+    detail_space_above  a spacing token, when stacking details in one cell (optional)
+{%- endcomment -%}
+<p style="{{ st_small_bold }} color:{{ c_gray }};{%- if detail_space_above != blank %} padding-top:{{ detail_space_above }};{%- endif -%}">{{ detail_label }}</p>
+{%- if detail_value != blank -%}
+  {%- if detail_emphasis != blank -%}
+    <p style="{{ st_body_bold }} color:{{ c_black }}; padding-top:{{ space_2xs }};">{{ detail_value }}</p>
+  {%- else -%}
+    <p style="{{ st_small }} color:{{ c_gray }}; padding-top:{{ space_2xs }};">{{ detail_value }}</p>
+  {%- endif -%}
+{%- endif -%}
+{%- assign detail_label       = '' -%}
+{%- assign detail_value       = '' -%}
+{%- assign detail_emphasis    = false -%}
+{%- assign detail_space_above = '' -%}

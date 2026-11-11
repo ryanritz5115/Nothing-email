@@ -1,0 +1,15 @@
+{
+  "$extends": "gift-card-recipient",
+  "$description": "Names and the personal message are escaped. Reserved gift-code characters are encoded inside the cart query and nested sharing URL.",
+  "gift_card": {
+    "code": "  AB&C?12/34+56=78  ",
+    "recipient": {
+      "nickname": "Alex & <Friends>"
+    },
+    "customer": {
+      "name": "Sam \"Sparring\" & <Team>"
+    },
+    "message": "<strong>Happy birthday</strong> & enjoy your gift! \"Choose something you like.\"",
+    "pass_url": "https://example.com/gift-card/wallet?pass=preview&locale=en"
+  }
+}

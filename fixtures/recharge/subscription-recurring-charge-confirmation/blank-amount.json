@@ -1,0 +1,5 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Whitespace-only amount is omitted.",
+  "total_price": "   "
+}

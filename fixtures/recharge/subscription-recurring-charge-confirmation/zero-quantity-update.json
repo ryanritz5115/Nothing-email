@@ -1,0 +1,24 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "A quantity changed to zero has no included row and is listed only among the removed units.",
+  "line_items": [
+    {
+      "title": "Porrada Creatine",
+      "variant_title": "Default Title",
+      "quantity": 2
+    }
+  ],
+  "line_item_modifications": [
+    {
+      "line_item_id": "1",
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": "2",
+          "value": "0"
+        }
+      ]
+    }
+  ]
+}

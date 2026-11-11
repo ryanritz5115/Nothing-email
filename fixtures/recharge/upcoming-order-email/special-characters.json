@@ -1,0 +1,34 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Customer and product details are escaped; internal notes, properties, and quick-action links never appear.",
+  "customer": {
+    "first_name": "Rae & <Co> \"Club\""
+  },
+  "charge": {
+    "note": "INTERNAL NOTE MUST NOT RENDER",
+    "line_items": [
+      {
+        "title": "Creatine & <script>alert(1)</script>",
+        "variant_title": "\"Lemon\" & <Club>",
+        "quantity": 2,
+        "total_price": "68.00",
+        "images": {
+          "src": "https://placehold.co/232x232/png?text=Creatine&variant=1"
+        },
+        "properties": [
+          {
+            "name": "_internal",
+            "value": "PRIVATE PRODUCT PROPERTY"
+          }
+        ]
+      }
+    ],
+    "shipping_address": {
+      "first_name": "Rae & Co",
+      "last_name": "<Club>",
+      "company": "R&D <Warehouse>",
+      "address1": "12 <Example> Avenue",
+      "address2": "Suite \"A\""
+    }
+  }
+}

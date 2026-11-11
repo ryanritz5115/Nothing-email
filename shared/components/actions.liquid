@@ -1,0 +1,24 @@
+{%- comment -%}
+  Actions. A bulletproof pill button, then an optional "or <link>" line.
+  Place inside a <td>, after a text stack or card. Reads tone.
+  Inputs, reset after use:
+    button_label, button_url  the button
+    link_prefix               text before the secondary link, e.g. 'or' (optional)
+    link_label, link_url      the secondary link (optional)
+{%- endcomment -%}
+{%- include 'shared/components/tone' -%}
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:{{ space_lg }};">
+  <tr>
+    <td align="center" bgcolor="{{ tone_button_bg }}" style="border-radius:{{ radius_button }}; background-color:{{ tone_button_bg }};">
+      <a href="{{ button_url }}" target="_blank" style="display:inline-block; padding:{{ button_padding }}; font-family:{{ font_sans }}; font-size:{{ size_body }}; font-weight:{{ weight_bold }}; line-height:1; color:{{ tone_button_text }}; text-decoration:none; border-radius:{{ radius_button }};">{{ button_label }}</a>
+    </td>
+  </tr>
+</table>
+{%- if link_label != blank -%}
+  <p style="{{ st_body }} color:{{ tone_text }}; padding-top:{{ space_md }};">{{ link_prefix }} <a href="{{ link_url }}" target="_blank" style="font-weight:{{ weight_bold }}; color:{{ tone_link }}; text-decoration:none;">{{ link_label }}</a></p>
+{%- endif -%}
+{%- assign button_label = '' -%}
+{%- assign button_url   = '' -%}
+{%- assign link_prefix  = '' -%}
+{%- assign link_label   = '' -%}
+{%- assign link_url     = '' -%}

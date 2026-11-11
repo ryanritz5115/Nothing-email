@@ -1,0 +1,11 @@
+{
+  "$extends": "return-requested",
+  "$description": "Return and cancellation requests coexist. The email promises an update for each and keeps their item lists in separate clearly labeled sections.",
+  "order_name": "#1803",
+  "order": { "name": "#1803" },
+  "requested_edit": {
+    "line_items": [
+      { "title_without_variant": "Power", "variant": { "title": "Default Title" }, "quantity": 2, "image": null, "original_line_price": 10000, "final_line_price": 10000 }
+    ]
+  }
+}

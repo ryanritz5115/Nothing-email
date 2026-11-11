@@ -1,0 +1,65 @@
+{# Official partial-fulfillment contract indexes original line_items with
+   line_item_id - 1. Apply supplied quantity changes and omit deleted rows, so
+   original quantities cannot be mistaken for what was processed. If a change
+   cannot be mapped, omit the included list rather than show uncertain quantities. #}
+{% set recharge_item_mapping = namespace(reliable=true) %}
+{% for change in line_item_modifications|default([], true) %}
+  {% set recharge_change_index = change.line_item_id|default(-1, true)|int(-1) %}
+  {% if change.modification_type|default('') not in ['update', 'delete'] or recharge_change_index < 1 or recharge_change_index > line_items|default([], true)|length %}
+    {% set recharge_item_mapping.reliable = false %}
+  {% elif change.modification_type|default('') == 'update' %}
+    {% set recharge_change_quantity = namespace(available=false) %}
+    {% for attribute in change.modifications|default([], true) %}
+      {% if attribute.attribute|default('') == 'quantity' and attribute.value is defined and attribute.value is not none and attribute.value is not sameas true and attribute.value is not sameas false and attribute.value|int(-1) >= 0 and attribute.value|int(-1) == attribute.value|float(-1) %}
+        {% set recharge_change_quantity.available = true %}
+      {% endif %}
+    {% endfor %}
+    {% if not recharge_change_quantity.available %}
+      {% set recharge_item_mapping.reliable = false %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% set recharge_processed_rows %}
+  {% if recharge_item_mapping.reliable %}
+  {% for item in line_items|default([], true) %}
+    {% set recharge_original_index = loop.index %}
+    {% set recharge_included = namespace(removed=false, quantity=item.quantity|default(none)) %}
+    {% for change in line_item_modifications|default([], true) %}
+      {% if change.line_item_id|default(-1, true)|int(-1) == recharge_original_index %}
+        {% if change.modification_type|default('') == 'delete' %}
+          {% set recharge_included.removed = true %}
+        {% elif change.modification_type|default('') == 'update' %}
+          {% for attribute in change.modifications|default([], true) %}
+            {% if attribute.attribute|default('') == 'quantity' and attribute.value is defined and attribute.value is not none and attribute.value|string|trim != '' %}
+              {% set recharge_included.quantity = attribute.value %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if not recharge_included.removed and (recharge_included.quantity is undefined or recharge_included.quantity is none or recharge_included.quantity|string|trim == '' or recharge_included.quantity|int > 0) %}
+      {% if item.product_title is string and item.product_title|trim %}
+        {% set recharge_row_title = item.product_title %}
+      {% elif item.title is string and item.title|trim %}
+        {% set recharge_row_title = item.title %}
+      {% elif item.name is string and item.name|trim %}
+        {% set recharge_row_title = item.name %}
+      {% else %}
+        {% set recharge_row_title = 'Subscription item' %}
+      {% endif %}
+      {% set recharge_row_variant = item.variant_title|default('') %}
+      {% set recharge_row_quantity = recharge_included.quantity %}
+      {% include 'shared/components/recharge-order-item' %}
+    {% endif %}
+  {% endfor %}
+  {% endif %}
+{% endset %}
+{% if recharge_processed_rows|trim %}
+  {% set section_title = 'Items in this order' %}
+  {% include 'shared/components/section-heading' %}
+  <tr>
+    <td style="padding:0 {{ space_gutter }};">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">{{ recharge_processed_rows }}</table>
+    </td>
+  </tr>
+{% endif %}

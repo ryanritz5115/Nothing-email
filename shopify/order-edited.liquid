@@ -1,0 +1,93 @@
+{%- comment -%}
+=====================================================================
+  ORDER EDITED
+  Shopify > Settings > Notifications > Order edited
+  Paste dist/shopify/order-edited.liquid, not this file.
+=====================================================================
+{%- endcomment -%}
+
+{%- include 'shared/config' -%}
+{%- include 'shared/payment-adjustment' -%}
+
+{%- comment -%}
+  An edit can leave money due, money owed back, or no balance. It does not
+  itself collect payment or issue a refund. Keep historical successful
+  refunds separate from the remaining balance. A missing balance is unknown,
+  never zero. total_outstanding is also used by the order confirmation.
+{%- endcomment -%}
+{%- assign email_title = 'Your order has been updated' -%}
+{%- assign email_body = 'Please review your updated items and totals below. Contact us if anything looks wrong.' -%}
+{%- assign preheader = 'Order ' | append: order_name | append: ' has been updated. Review your latest summary.' -%}
+{%- assign edit_balance_known = false -%}
+{%- assign edit_balance_label = 'Payment details' -%}
+{%- assign edit_balance_value = 'View your order for the latest balance, or contact us for help.' -%}
+{%- assign edit_payment_next_step = 'View your order for the latest payment details. Contact us if you need help confirming the balance.' -%}
+
+{%- if total_outstanding != blank -%}
+  {%- assign edit_balance_known = true -%}
+  {%- if total_outstanding > 0 -%}
+    {%- assign edit_balance_label = 'Amount due' -%}
+    {%- assign edit_balance_value = total_outstanding | money_with_currency -%}
+    {%- if payment_terms.next_payment.due_at -%}
+      {%- capture edit_balance_label -%}Amount due by {{ payment_terms.next_payment.due_at | date: '%b %-d, %Y' }}{%- endcapture -%}
+    {%- endif -%}
+    {%- assign edit_payment_next_step = 'A balance remains on your order. If you received an invoice email, use its payment link. Contact us if you need help paying.' -%}
+  {%- elsif total_outstanding < 0 -%}
+    {%- assign edit_balance_label = 'Refund still owed' -%}
+    {%- assign edit_balance_value = total_outstanding | abs | money_with_currency -%}
+    {%- assign edit_payment_next_step = "We still owe you the amount shown above. You'll receive a separate refund update when it is issued. Contact us if you have questions." -%}
+  {%- else -%}
+    {%- assign edit_balance_label = 'Amount due' -%}
+    {%- assign edit_balance_value = total_outstanding | money_with_currency -%}
+    {%- assign edit_payment_next_step = 'No additional payment is due on this order. Keep this email as a record of the update.' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if payment_has_pending_refund -%}
+  {%- assign edit_payment_next_step = edit_payment_next_step | append: ' A refund is processing. The time it takes to appear depends on your payment provider.' -%}
+{%- endif -%}
+
+{%- assign updated_item_count = 0 -%}
+{%- assign updated_items_known = false -%}
+{%- if subtotal_line_items != nil -%}{%- assign updated_items_known = true -%}{%- endif -%}
+{%- for line in subtotal_line_items -%}
+  {%- assign updated_quantity = line.quantity -%}
+  {%- if line.current_quantity != nil -%}
+    {%- assign updated_quantity = line.current_quantity -%}
+  {%- endif -%}
+  {%- if updated_quantity > 0 -%}
+    {%- assign updated_item_count = updated_item_count | plus: updated_quantity -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- include 'shared/document-start' -%}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {%- assign stack_eyebrow = 'Order ' | append: order_name -%}
+              {%- assign stack_title = email_title -%}
+              {%- assign stack_body = email_body -%}
+              {%- include 'shared/components/text-stack' -%}
+
+              {%- include 'shared/components/order-edit-card' -%}
+
+              {%- if orders_url != blank -%}
+                {%- assign button_label = 'View your updated order' -%}
+                {%- assign button_url = orders_url -%}
+                {%- assign link_prefix = 'or' -%}
+                {%- assign link_label = 'Visit our store' -%}
+                {%- assign link_url = store_url -%}
+              {%- else -%}
+                {%- assign button_label = 'Contact support' -%}
+                {%- assign button_url = support_url -%}
+              {%- endif -%}
+              {%- include 'shared/components/actions' -%}
+            </td>
+          </tr>
+
+          {%- include 'shared/components/updated-order-items' -%}
+          {%- assign order_total_label = 'Updated total' -%}
+          {%- include 'shared/components/order-totals' -%}
+          {%- include 'shared/components/order-edit-faq' -%}
+
+{%- include 'shared/document-end' -%}

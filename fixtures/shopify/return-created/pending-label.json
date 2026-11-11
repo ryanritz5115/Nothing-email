@@ -1,0 +1,15 @@
+{
+  "$extends": "label-ready",
+  "$description": "A Shopify label is being prepared. No print link or send-now instruction appears.",
+  "return": {
+    "deliveries": [
+      {
+        "type": "shopify_label",
+        "carrier_name": "USPS",
+        "tracking_number": null,
+        "tracking_url": null,
+        "return_label": null
+      }
+    ]
+  }
+}

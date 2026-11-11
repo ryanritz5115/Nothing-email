@@ -1,0 +1,17 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "A quantity update from 2 to 2 must not produce a removed-item or uncharged-item claim.",
+  "line_item_modifications": [
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 2,
+          "value": 2
+        }
+      ]
+    }
+  ]
+}

@@ -1,28 +1,39 @@
 {%- comment -%}
   Support footer. Full-bleed black row. The linear-gradient keeps it
   black in clients that force dark mode on background-color.
+  Optional input, reset after use: footer_support_title.
+  Support email always comes from shared config.
+  Defaults preserve the order footer; Recharge supplies subscription wording.
 {%- endcomment -%}
+{%- if footer_support_title == blank -%}
+  {%- assign footer_support_title = 'Need help with your order?' -%}
+{%- endif -%}
     <tr>
       <td align="center" bgcolor="{{ c_black }}" style="background-color:{{ c_black }}; background-image:linear-gradient({{ c_black }},{{ c_black }});">
         <table role="presentation" width="{{ container_width }}" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:{{ container_width }}px;">
           <tr>
             <td style="padding:{{ space_3xl }} {{ space_gutter }};">
-              <p style="{{ st_small_bold }} color:{{ c_white }};">Support</p>
-              <h2 style="{{ st_serif }} color:{{ c_white }}; padding-top:{{ space_xs }};">Need help with your order?</h2>
-              <p style="{{ st_body }} color:{{ c_white }}; padding-top:{{ space_sm }};">Click below to contact support.</p>
+              {%- assign tone = 'dark' -%}
 
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:{{ space_lg }};">
-                <tr>
-                  <td align="center" bgcolor="{{ c_white }}" style="border-radius:{{ radius_button }}; background-color:{{ c_white }};">
-                    <a href="{{ support_url }}" target="_blank" style="display:inline-block; padding:{{ button_padding }}; font-family:{{ font_sans }}; font-size:{{ size_body }}; font-weight:{{ weight_bold }}; line-height:1; color:{{ c_black }}; text-decoration:none; border-radius:{{ radius_button }};">Contact Support</a>
-                  </td>
-                </tr>
-              </table>
+              {%- assign stack_eyebrow = 'Support' -%}
+              {%- assign stack_title   = footer_support_title -%}
+              {%- assign stack_body    = 'Click below to contact support.' -%}
+              {%- assign stack_tag     = 'h2' -%}
+              {%- include 'shared/components/text-stack' -%}
 
-              <p style="{{ st_body }} color:{{ c_white }}; padding-top:{{ space_md }};">or email us directly at</p>
-              <p style="{{ st_body_bold }} color:{{ c_white }};"><a href="mailto:{{ support_email }}" style="color:{{ c_white }}; text-decoration:none;">{{ support_email }}</a></p>
+              {%- assign button_label = 'Contact Support' -%}
+              {%- assign button_url   = support_url -%}
+              {%- assign link_prefix  = 'or email us directly at' -%}
+              {%- assign link_label   = support_email | escape -%}
+              {%- assign link_url     = 'mailto:' | append: support_email | escape -%}
+              {%- include 'shared/components/actions' -%}
+
+              {%- assign tone = 'light' -%}
             </td>
           </tr>
         </table>
       </td>
     </tr>
+
+{%- include 'shared/components/brand-footer' -%}
+{%- assign footer_support_title = nil -%}

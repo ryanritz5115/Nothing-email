@@ -1,0 +1,13 @@
+{
+  "$extends": "shipping-confirmation/all-items",
+  "$description": "Base: latest UPS tracking details for an existing shipment, with an estimate. Copy does not assume the carrier is still in transit.",
+  "fulfillment": {
+    "tracking_numbers": [
+      "1Z999AA10123456800"
+    ],
+    "tracking_url": "https://www.ups.com/track?tracknum=1Z999AA10123456800",
+    "tracking_urls": [
+      "https://www.ups.com/track?tracknum=1Z999AA10123456800"
+    ]
+  }
+}

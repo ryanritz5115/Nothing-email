@@ -1,0 +1,25 @@
+{
+  "$extends": "refunded",
+  "$description": "Successful refund through a provider with no display name or card details uses a safe generic method label.",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    },
+    {
+      "status": "success",
+      "kind": "refund",
+      "gateway": "manual",
+      "gateway_display_name": null,
+      "amount": 9209,
+      "payment_details": null
+    }
+  ]
+}

@@ -2,11 +2,13 @@
   "name": "porrada-email",
   "version": "1.0.0",
   "private": true,
-  "description": "Source of truth for Porrada transactional email templates (Shopify + Recharge)",
+  "description": "Source of truth for Nothing transactional email templates (Shopify + Recharge)",
   "type": "module",
   "scripts": {
     "dev": "tsx scripts/preview.ts",
-    "build": "tsx scripts/build.ts"
+    "build": "tsx scripts/build.ts",
+    "test:recharge": "node --import tsx --test scripts/test-recharge.ts",
+    "setup:recharge": "python3 -m venv .venv && .venv/bin/python -m pip install -r scripts/requirements-recharge.txt"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

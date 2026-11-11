@@ -1,0 +1,24 @@
+{
+  "$description": "Recipient gift with nickname, named sender, personal message, $100 value, expiry date, and Apple Wallet pass.",
+  "shop": {
+    "name": "Porrada Performance Nutrition",
+    "email": "info@porradanutra.com"
+  },
+  "gift_card": {
+    "code": "  ABCD1234EFGH5678  ",
+    "initial_value": 10000,
+    "expires_on": "2027-12-31",
+    "pass_url": "https://example.com/gift-card/wallet",
+    "recipient": {
+      "nickname": "Alex",
+      "name": "Alex Silva",
+      "email": "alex@example.com"
+    },
+    "customer": {
+      "name": "Sam Rivera",
+      "email": "sam@example.com",
+      "phone": "+15555550123"
+    },
+    "message": "A little something to make your day. Enjoy!"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$extends": "refund-due",
+  "$description": "The refund has a successful transaction and the balance is zero. The issued amount is clearly labeled as the total refunded across this order, rather than this edit alone.",
+  "order_name": "#1605",
+  "total_outstanding": 0,
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 17768, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" },
+    { "status": "success", "kind": "refund", "amount": 8559, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

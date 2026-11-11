@@ -1,0 +1,7 @@
+{
+  "$extends": "all-items",
+  "$description": "Uses documented tracking_urls only, without the legacy singular tracking_url. The single array URL still gets the tracking CTA.",
+  "fulfillment": {
+    "tracking_url": null
+  }
+}

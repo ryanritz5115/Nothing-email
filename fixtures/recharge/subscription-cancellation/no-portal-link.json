@@ -1,0 +1,5 @@
+{
+  "$extends": "subscriptions-canceled",
+  "$description": "No Recharge portal link. Account actions still use Porrada’s fixed /account route.",
+  "link": null
+}

@@ -1,0 +1,19 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Null modern context with legacy flat Upcoming charge variables: legacy data is not used for the nested Upcoming order flow.",
+  "customer": null,
+  "charge": null,
+  "name": "LEGACY NAME MUST NOT RENDER",
+  "first_name": "LEGACY FIRST NAME",
+  "charge_currency": "USD",
+  "next_charge_date": "LEGACY DATE MUST NOT RENDER",
+  "line_items": [
+    {
+      "product_title": "LEGACY PRODUCT MUST NOT RENDER",
+      "price": "999.00"
+    }
+  ],
+  "total_price": "999.00",
+  "shipping_address": "LEGACY ADDRESS MUST NOT RENDER",
+  "link": "https://example.com/LEGACY_TOKEN_MUST_NOT_RENDER"
+}

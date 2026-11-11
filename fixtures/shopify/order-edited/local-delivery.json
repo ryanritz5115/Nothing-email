@@ -1,0 +1,11 @@
+{
+  "$extends": "order-updated",
+  "$description": "A local delivery order uses the Delivery total label.",
+  "order_name": "#1613",
+  "delivery_method": "local",
+  "shipping_price": 300,
+  "total_price": 8859,
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 8859, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

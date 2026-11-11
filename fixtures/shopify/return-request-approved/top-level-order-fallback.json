@@ -1,0 +1,5 @@
+{
+  "$extends": "label-ready",
+  "$description": "Top-level order fields remain usable when the nested order object is absent.",
+  "order": null
+}

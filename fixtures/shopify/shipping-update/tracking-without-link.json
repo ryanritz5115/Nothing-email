@@ -1,0 +1,13 @@
+{
+  "$extends": "tracking-updated",
+  "$description": "Tracking number with no carrier, link, or estimate. Show plain text and an order action.",
+  "fulfillment": {
+    "tracking_company": null,
+    "tracking_numbers": [
+      "TBA304819275000"
+    ],
+    "tracking_url": null,
+    "tracking_urls": [],
+    "estimated_delivery_at": null
+  }
+}

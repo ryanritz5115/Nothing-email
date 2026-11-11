@@ -1,0 +1,7 @@
+{
+  "$extends": "sign-in-request",
+  "$description": "The account CTA remains available without any Recharge magic-link variables.",
+  "link": null,
+  "subscription_url": null,
+  "login_url": null
+}

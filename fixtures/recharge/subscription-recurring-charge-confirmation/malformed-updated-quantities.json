@@ -1,0 +1,93 @@
+{
+  "$extends": "recurring-payment-processed",
+  "$description": "Malformed, negative, fractional, boolean, and missing quantity values cannot establish a reduction or a reliable included list.",
+  "line_item_modifications": [
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 3,
+          "value": "not-a-quantity"
+        }
+      ]
+    },
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 3,
+          "value": -1
+        }
+      ]
+    },
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 3,
+          "value": 1.5
+        }
+      ]
+    },
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 3,
+          "value": "   "
+        }
+      ]
+    },
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": -3,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": 3,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_item_id": 1,
+      "modification_type": "update",
+      "modifications": [
+        {
+          "attribute": "quantity",
+          "previous_value": "not-a-quantity",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

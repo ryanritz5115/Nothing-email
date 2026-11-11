@@ -1,0 +1,7 @@
+{
+  "$extends": "access-code",
+  "$description": "Blank name, code and contact email use a neutral greeting, new-request guidance and configured support.",
+  "first_name": "  ",
+  "access_code": "  ",
+  "shop_email": "  "
+}

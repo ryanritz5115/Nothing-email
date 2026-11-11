@@ -1,0 +1,33 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Missing titles, images, quantities, default variants, and prices render safely without manufactured amounts.",
+  "charge": {
+    "line_items": [
+      {},
+      null,
+      {
+        "title": "   ",
+        "variant_title": "Default Title",
+        "quantity": 0,
+        "total_price": ""
+      },
+      {
+        "title": "Porrada Creatine",
+        "variant_title": "   ",
+        "quantity": "not a number",
+        "images": null
+      },
+      {
+        "title": "Porrada Creatine",
+        "quantity": null,
+        "images": {}
+      },
+      {
+        "title": "One-time add-on",
+        "quantity": 2,
+        "total_price": "12.00",
+        "purchase_item_type": "onetime"
+      }
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "$extends": "shipping-confirmation/all-items",
+  "$description": "Base: the whole order is marked as delivered. One UPS tracking link and a carrier estimate. Delivered must hide the old estimate."
+}

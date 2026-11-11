@@ -1,0 +1,26 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "Long product and address content wraps in mobile without widening the email.",
+  "customer": {
+    "first_name": "Alexandria"
+  },
+  "charge": {
+    "line_items": [
+      {
+        "title": "Porrada Creatine Monohydrate Subscription with a Longer Product Name for a Very Detailed Order Summary",
+        "variant_title": "Unflavored / One hundred and twenty servings / Family size",
+        "quantity": 12,
+        "total_price": "1008.00",
+        "images": {
+          "src": "https://placehold.co/232x232/png?text=Creatine"
+        }
+      }
+    ],
+    "shipping_address": {
+      "company": "Long Company Name with Several Departments",
+      "address1": "1234 West International Commerce Boulevard",
+      "address2": "Building B, Apartment 1234",
+      "city": "Long Island City"
+    }
+  }
+}

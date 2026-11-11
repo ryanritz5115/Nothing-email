@@ -1,0 +1,8 @@
+{
+  "$extends": "return-requested",
+  "$description": "All Shopify order links are unavailable. The action still uses configured orders_url and never emits an empty URL.",
+  "order_name": "#1812",
+  "order": { "name": "#1812", "order_status_url": null },
+  "customer_order_url": null,
+  "order_status_url": null
+}

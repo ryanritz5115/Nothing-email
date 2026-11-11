@@ -1,0 +1,14 @@
+{
+  "$extends": "return-requested",
+  "$description": "Defensive mixed list: zero quantities, missing quantities, and missing titles are skipped. A valid flat item remains visible.",
+  "order_name": "#1808",
+  "order": { "name": "#1808" },
+  "return": {
+    "line_items": [
+      { "title_without_variant": "Zero-quantity item", "quantity": 0 },
+      { "title_without_variant": "Quantity unavailable item" },
+      { "quantity": 1 },
+      { "title_without_variant": "Focus", "quantity": 1, "variant": { "title": "Blueberry Pomegranate" } }
+    ]
+  }
+}

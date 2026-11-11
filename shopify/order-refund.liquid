@@ -1,0 +1,63 @@
+{%- comment -%}
+=====================================================================
+  ORDER REFUND
+  Shopify > Settings > Notifications > Order refund
+  Paste dist/shopify/order-refund.liquid, not this file.
+=====================================================================
+{%- endcomment -%}
+{%- include 'shared/config' -%}
+{%- include 'shared/payment-adjustment' -%}
+
+{%- assign email_title = 'Your refund update' -%}
+{%- assign preheader = 'A refund update for order ' | append: order_name | append: '. View the amount and payment details.' -%}
+{%- assign email_body = 'Here are the refund details for your order. Check the payment update below for its status.' -%}
+
+{%- comment -%}
+  `amount` belongs to this refund event. `transactions` belongs to the
+  whole order, so never use its total to label this event as completed.
+{%- endcomment -%}
+{%- if payment_has_problem_refund -%}
+  {%- assign refund_payment_status = 'A refund attempt on this order did not complete. Check the payment history below for later updates, or contact us for help.' -%}
+{%- elsif payment_has_pending_refund -%}
+  {%- assign refund_payment_status = 'The payment history includes a pending refund. Check the individual payment statuses below, or contact us for help.' -%}
+{%- elsif payment_has_unknown_refund -%}
+  {%- assign refund_payment_status = 'The payment history includes a refund without an available status. Check the individual payments below, or contact us for help.' -%}
+{%- elsif payment_has_refund_records -%}
+  {%- assign refund_payment_status = 'The refund payments listed below have been processed. See below for each payment method and timing.' -%}
+{%- elsif financial_status == 'refunded' -%}
+  {%- assign refund_payment_status = 'This order is marked refunded. Timing depends on the payment method. Contact us if you need help checking the refund.' -%}
+{%- else -%}
+  {%- assign refund_payment_status = 'A completed refund payment is not confirmed yet. Contact us if you need help checking the status.' -%}
+{%- endif -%}
+
+{%- include 'shared/document-start' -%}
+<tr>
+  <td style="padding:0 {{ space_gutter }};">
+    {%- assign stack_eyebrow = 'Order ' | append: order_name -%}
+    {%- assign stack_title = email_title -%}
+    {%- assign stack_body = email_body -%}
+    {%- include 'shared/components/text-stack' -%}
+
+    {%- assign adjustment_status = refund_payment_status -%}
+    {%- assign adjustment_amount = nil -%}
+    {%- if amount != nil -%}
+      {%- assign adjustment_amount = amount -%}
+      {%- assign adjustment_amount_label = 'Refund amount in this update' -%}
+    {%- endif -%}
+    {%- include 'shared/components/payment-adjustment-card' -%}
+
+    {%- if orders_url != blank -%}
+      {%- assign button_label = 'View your order' -%}
+      {%- assign button_url = orders_url -%}
+    {%- else -%}
+      {%- assign button_label = 'Contact support' -%}
+      {%- assign button_url = support_url -%}
+    {%- endif -%}
+    {%- include 'shared/components/actions' -%}
+  </td>
+</tr>
+
+{%- include 'shared/components/refund-items' -%}
+{%- include 'shared/components/refund-payments' -%}
+{%- include 'shared/components/payment-adjustment-faq' -%}
+{%- include 'shared/document-end' -%}

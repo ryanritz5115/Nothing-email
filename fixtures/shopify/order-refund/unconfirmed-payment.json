@@ -1,0 +1,18 @@
+{
+  "$extends": "full-refund",
+  "$description": "A refund event amount without successful refund transactions or a refunded order status is not confirmation of payment completion.",
+  "financial_status": "paid",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "$extends": "order-message",
+  "$description": "Nested order context supplies the order number. Its Shopify order link is ignored in favor of the configured orders_url.",
+  "order_name": null,
+  "order_status_url": null,
+  "order": {
+    "name": "#1042",
+    "order_status_url": "https://porradanutra.com/orders/message-preview"
+  }
+}

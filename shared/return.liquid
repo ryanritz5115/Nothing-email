@@ -1,0 +1,55 @@
+{%- comment -%}
+  Shared return notification context. Return notifications can use nested
+  order fields, unlike standard order notifications. Normalize only the
+  order identity, links, delivery availability, and order balance here.
+  Return line items are flat return.line_items and return.exchange_line_items.
+  Never substitute the whole order's items or outgoing fulfillment tracking.
+
+  Shopify's exchange-notification docs document the return fields. Delivery
+  setup follows its default notification's return.deliveries and
+  delivery.return_label.public_file_url. Check these in Shopify's preview.
+{%- endcomment -%}
+{%- assign return_order_name = '' -%}
+{%- if order.name != blank -%}
+  {%- assign return_order_name = order.name -%}
+{%- elsif order_name != blank -%}
+  {%- assign return_order_name = order_name -%}
+{%- elsif name != blank -%}
+  {%- assign return_order_name = name -%}
+{%- endif -%}
+
+{%- assign return_order_url = orders_url -%}
+
+{%- assign return_delivery_count = return.deliveries.size | default: 0 -%}
+{%- assign return_delivery_first = return.deliveries | first -%}
+{%- assign return_has_label = false -%}
+{%- assign return_has_tracking = false -%}
+{%- assign return_label_count = 0 -%}
+{%- assign return_label_url = '' -%}
+{%- for return_delivery_entry in return.deliveries -%}
+  {%- if return_delivery_entry.return_label.public_file_url != blank -%}
+    {%- assign return_has_label = true -%}
+    {%- assign return_label_count = return_label_count | plus: 1 -%}
+    {%- if return_delivery_count == 1 -%}
+      {%- assign return_label_url = return_delivery_entry.return_label.public_file_url -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- if return_delivery_entry.tracking_number != blank or return_delivery_entry.tracking_url != blank -%}
+    {%- assign return_has_tracking = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign return_balance_known = false -%}
+{%- assign return_amount_due = 0 -%}
+{%- assign return_payment_url = '' -%}
+{%- if return.order_total_outstanding != nil and return.order_total_outstanding != blank -%}
+  {%- assign return_balance_known = true -%}
+  {%- if return.order_total_outstanding > 0 -%}
+    {%- assign return_amount_due = return.order_total_outstanding -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if return.checkout_payment_collection_url != blank -%}
+  {%- if return_balance_known == false or return_amount_due > 0 -%}
+    {%- assign return_payment_url = return.checkout_payment_collection_url -%}
+  {%- endif -%}
+{%- endif -%}

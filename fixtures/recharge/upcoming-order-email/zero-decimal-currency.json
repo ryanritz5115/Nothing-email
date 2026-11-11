@@ -1,0 +1,16 @@
+{
+  "$extends": "upcoming-order",
+  "$description": "JPY values are major currency units rather than cents.",
+  "charge": {
+    "currency": "JPY",
+    "subtotal_price": "3400",
+    "total_price": "3850",
+    "line_items": [
+      {
+        "title": "Porrada Creatine Monohydrate",
+        "quantity": 1,
+        "total_price": "3400"
+      }
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "$extends": "order-confirmation/order-paid",
+  "$description": "Base: a manually written message about an order. Keep the merchant message, original paragraph breaks, and configured orders_url action.",
+  "custom_message": "Hi Marcus,\n\nCould you confirm the apartment number for this order? Contact our support team below so we can help.\n\nThank you,\nThe Porrada team"
+}

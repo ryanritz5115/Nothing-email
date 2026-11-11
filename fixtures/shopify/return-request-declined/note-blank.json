@@ -1,0 +1,7 @@
+{
+  "$extends": "declined-note",
+  "$description": "An empty decline note is omitted, including its message heading.",
+  "order_name": "#1903",
+  "order": { "name": "#1903" },
+  "return": { "decline": { "note": "" } }
+}

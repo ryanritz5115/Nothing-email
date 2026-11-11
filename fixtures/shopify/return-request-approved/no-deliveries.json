@@ -1,0 +1,7 @@
+{
+  "$extends": "label-ready",
+  "$description": "No return delivery information. Give a safe way to confirm next steps without assuming that shipping or a future label is required.",
+  "return": {
+    "deliveries": []
+  }
+}

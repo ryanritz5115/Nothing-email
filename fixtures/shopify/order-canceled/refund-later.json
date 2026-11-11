@@ -1,0 +1,19 @@
+{
+  "$extends": "refunded",
+  "$description": "Paid cancellation with no refund yet, as when Refund later was selected.",
+  "cancel_reason": "other",
+  "financial_status": "paid",
+  "transactions": [
+    {
+      "status": "success",
+      "kind": "sale",
+      "gateway": "shopify_payments",
+      "gateway_display_name": "Shopify Payments",
+      "amount": 9209,
+      "payment_details": {
+        "credit_card_company": "Visa",
+        "credit_card_last_four_digits": "4242"
+      }
+    }
+  ]
+}

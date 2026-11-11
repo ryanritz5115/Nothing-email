@@ -1,0 +1,47 @@
+{%- comment -%}
+  CONTACT CUSTOMER
+  Shopify > Settings > Notifications > Contact customer
+  Manual message; its contents come from Shopify's custom_message field.
+  Paste dist/shopify/contact-customer.liquid, not this file.
+{%- endcomment -%}
+{%- include 'shared/config' -%}
+
+{%- assign email_title = 'A message from Porrada' -%}
+{%- assign preheader = 'A message from our team. Contact support if you need help.' -%}
+{%- assign contact_order_name = '' -%}
+{%- assign contact_order_url = '' -%}
+{%- if order_name != blank -%}
+  {%- assign contact_order_name = order_name -%}
+{%- elsif order.name != blank -%}
+  {%- assign contact_order_name = order.name -%}
+{%- endif -%}
+{%- if contact_order_name != blank -%}
+  {%- assign contact_order_url = orders_url -%}
+{%- endif -%}
+
+{%- include 'shared/document-start' -%}
+<tr>
+  <td style="padding:0 {{ space_gutter }};">
+    {%- if contact_order_name != blank -%}
+      {%- assign stack_eyebrow = 'Order ' | append: contact_order_name -%}
+    {%- else -%}
+      {%- assign stack_eyebrow = 'Porrada support' -%}
+    {%- endif -%}
+    {%- assign stack_title = email_title -%}
+    {%- if custom_message == blank -%}
+      {%- assign stack_body = 'Need help or have a question? Contact our support team below.' -%}
+    {%- endif -%}
+    {%- include 'shared/components/text-stack' -%}
+    {%- include 'shared/components/customer-message' -%}
+
+    {%- if contact_order_url != blank -%}
+      {%- assign button_label = 'View your order' -%}
+      {%- assign button_url = contact_order_url -%}
+    {%- else -%}
+      {%- assign button_label = 'Contact support' -%}
+      {%- assign button_url = support_url -%}
+    {%- endif -%}
+    {%- include 'shared/components/actions' -%}
+  </td>
+</tr>
+{%- include 'shared/document-end' -%}

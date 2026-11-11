@@ -1,0 +1,18 @@
+{%- comment -%}
+  Order edit FAQ. Body rows answering the payment next step and how to get
+  help. Requires edit_payment_next_step, computed by the template.
+{%- endcomment -%}
+{%- assign section_title = 'Good to know' -%}
+{%- include 'shared/components/section-heading' -%}
+<tr>
+  <td style="padding:0 {{ space_gutter }};">
+    {%- assign detail_label = 'What happens next?' -%}
+    {%- assign detail_value = edit_payment_next_step -%}
+    {%- include 'shared/components/detail' -%}
+
+    {%- assign detail_label = 'Something doesn’t look right?' -%}
+    {%- assign detail_value = 'Contact us with your order number so we can review the changes with you.' -%}
+    {%- assign detail_space_above = space_md -%}
+    {%- include 'shared/components/detail' -%}
+  </td>
+</tr>

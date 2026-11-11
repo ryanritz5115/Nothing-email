@@ -1,0 +1,96 @@
+{# Recharge > Email > Upcoming order email > Notification > Edit email body.
+   This modern flow uses nested customer/charge objects, unlike legacy flat notifications.
+   Supplied charge amounts are major-unit currency strings. Never reuse legacy fields,
+   apply Shopify cents formatting, or turn the scheduled charge into a delivery promise. #}
+{% include 'shared/config' %}
+{% set upcoming_charge = charge|default({}, true) %}
+{% set upcoming_customer = customer|default({}, true) %}
+{% set upcoming_total_value = '' %}
+{% if upcoming_charge.currency is defined and upcoming_charge.currency and upcoming_charge.currency|trim and upcoming_charge.total_price is defined and upcoming_charge.total_price is not none and upcoming_charge.total_price|string|trim != '' %}
+  {% set upcoming_total_value = upcoming_charge.total_price|amount_with_currency(upcoming_charge.currency) %}
+  {% if upcoming_charge.currency|upper not in upcoming_total_value|upper %}
+    {% set upcoming_total_value = upcoming_total_value ~ ' ' ~ upcoming_charge.currency|e %}
+  {% endif %}
+{% endif %}
+{% set email_title = 'Your next order is coming up' %}
+{% set preheader = 'Review your upcoming Porrada order and make any changes in your account before it processes.' %}
+{% set preview_text = preheader %}
+{% set recharge_contact_email = support_email %}
+{% set email_body %}{% if upcoming_customer.first_name is defined and upcoming_customer.first_name and upcoming_customer.first_name|trim %}Hi {{ upcoming_customer.first_name|e }}, here's{% else %}Here's{% endif %} a look at your upcoming subscription order. Review the details below and visit your account if you need to make a change before it processes.{% endset %}
+{% include 'shared/document-start' %}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set stack_eyebrow = 'Subscription' %}
+              {% set stack_title = email_title %}
+              {% set stack_body = email_body %}
+              {% include 'shared/components/text-stack' %}
+
+              {% set card_body %}
+                {% set detail_label = 'Scheduled charge date' %}
+                {% if upcoming_charge.scheduled_at is defined and upcoming_charge.scheduled_at and upcoming_charge.scheduled_at|string|trim %}
+                  {% set detail_value = upcoming_charge.scheduled_at|e %}
+                {% else %}
+                  {% set detail_value = 'Check your account for the current date.' %}
+                {% endif %}
+                {% set detail_emphasis = true %}
+                {% include 'shared/components/detail' %}
+                {% if upcoming_total_value %}
+                  {% set detail_label = 'Upcoming order total' %}
+                  {% set detail_value = upcoming_total_value %}
+                  {% set detail_emphasis = true %}
+                  {% set detail_space_above = space_md %}
+                  {% include 'shared/components/detail' %}
+                {% endif %}
+              {% endset %}
+              {% include 'shared/components/card' %}
+
+              {% set recharge_action_label = 'View your account' %}
+              {% include 'shared/components/recharge-actions' %}
+            </td>
+          </tr>
+
+          {% if upcoming_charge.line_items|default([], true) %}
+            {% set section_title = 'Your upcoming items' %}
+            {% include 'shared/components/section-heading' %}
+            <tr>
+              <td style="padding:0 {{ space_gutter }};">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                  {% for item in upcoming_charge.line_items %}
+                    {% include 'shared/components/recharge-upcoming-line-item' %}
+                  {% endfor %}
+                </table>
+              </td>
+            </tr>
+          {% endif %}
+
+          {% include 'shared/components/recharge-upcoming-totals' %}
+          {% include 'shared/components/recharge-upcoming-shipping' %}
+
+          {% set section_title = 'Good to know' %}
+          {% include 'shared/components/section-heading' %}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set detail_label = 'Do I need to do anything?' %}
+              {% set detail_value = 'If everything looks right, no action is needed. Your subscription is set to renew automatically.' %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Need to make a change?' %}
+              {% set detail_value %}Visit <a href="{{ account_url }}" style="color:{{ c_brand }}; font-weight:{{ weight_bold }};">your account</a> before the scheduled charge to review the options for your subscription. If you need help, contact us.{% endset %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'What does the total include?' %}
+              {% set detail_value = 'Your upcoming total includes any applicable shipping, taxes and duties. Check your account for the latest amount if your order details change.' %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Is this my delivery date?' %}
+              {% set detail_value = 'The scheduled date is a billing date. Look for a separate shipping email with tracking when your order ships. The details above reflect your upcoming order when this reminder was sent; your account has the latest information.' %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+            </td>
+          </tr>
+
+{% set footer_support_title = 'Need help with your next order?' %}
+{% include 'shared/document-end' %}

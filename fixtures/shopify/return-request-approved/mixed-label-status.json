@@ -1,0 +1,24 @@
+{
+  "$extends": "label-ready",
+  "$description": "The first package has a label and the second is pending. Never apply the first label to both packages.",
+  "return": {
+    "deliveries": [
+      {
+        "type": "shopify_label",
+        "carrier_name": "USPS",
+        "tracking_number": "9400111899560000000000",
+        "tracking_url": "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899560000000000",
+        "return_label": {
+          "public_file_url": "https://example.com/returns/1001/package-1-label.pdf"
+        }
+      },
+      {
+        "type": "shopify_label",
+        "carrier_name": "UPS",
+        "tracking_number": null,
+        "tracking_url": null,
+        "return_label": null
+      }
+    ]
+  }
+}

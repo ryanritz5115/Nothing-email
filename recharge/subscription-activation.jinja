@@ -1,0 +1,69 @@
+{# Recharge > Notifications > Subscription activation.
+   Recharge uses Jinja2, major-unit monetary amounts, and flat notification fields.
+   Paste the built dist/recharge/subscription-activation.html file into Recharge. #}
+{% include 'shared/config' %}
+{% set email_title = 'Your subscription is active' %}
+{% set preheader = 'Your Porrada subscription is active. Review your items and billing details.' %}
+{% set recharge_contact_email = support_email %}
+{% set email_body %}{% if name is string and name|trim %}Hi {{ name|e }}, you're all set. {% else %}You're all set. {% endif %}Your Porrada subscription is active. Review your items and billing details below.{% endset %}
+{% include 'shared/document-start' %}
+
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set stack_eyebrow = 'Subscription' %}
+              {% set stack_title = email_title %}
+              {% set stack_body = email_body %}
+              {% include 'shared/components/text-stack' %}
+
+              {% set card_body %}
+                {% set detail_label = 'Subscription status' %}
+                {% set detail_value = 'Active' %}
+                {% set detail_emphasis = true %}
+                {% include 'shared/components/detail' %}
+              {% endset %}
+              {% include 'shared/components/card' %}
+
+              {% include 'shared/components/recharge-actions' %}
+            </td>
+          </tr>
+
+          {% if line_items|default([]) %}
+            {% set section_title = 'Your items' %}
+            {% include 'shared/components/section-heading' %}
+            <tr>
+              <td style="padding:0 {{ space_gutter }};">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                  {% for item in line_items %}
+                    {% include 'shared/components/recharge-line-item' %}
+                  {% endfor %}
+                </table>
+              </td>
+            </tr>
+          {% endif %}
+
+          {% include 'shared/components/recharge-totals' %}
+
+          {% set section_title = 'Good to know' %}
+          {% include 'shared/components/section-heading' %}
+          <tr>
+            <td style="padding:0 {{ space_gutter }};">
+              {% set detail_label = 'Where can I review my subscription?' %}
+              {% set detail_value = 'Your subscription account has your billing details and upcoming charges. Contact us if you need help making a change.' %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'When will my order arrive?' %}
+              {% set detail_value = 'A charge date is a billing date. Look for a separate shipping email with tracking when your order ships.' %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+
+              {% set detail_label = 'Something look wrong?' %}
+              {% set detail_value %}Email <a href="mailto:{{ recharge_contact_email|e }}" style="color:{{ c_brand }}; font-weight:{{ weight_bold }};">{{ recharge_contact_email|e }}</a> and we'll help you review your subscription.{% endset %}
+              {% set detail_space_above = space_md %}
+              {% include 'shared/components/detail' %}
+            </td>
+          </tr>
+
+          {% set recharge_show_legal = true %}
+          {% include 'shared/components/recharge-merchant-info' %}
+{% set footer_support_title = 'Need help with your subscription?' %}
+{% include 'shared/document-end' %}

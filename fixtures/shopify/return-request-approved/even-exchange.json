@@ -1,0 +1,30 @@
+{
+  "$extends": "label-ready",
+  "$description": "An even exchange has a real zero return total and no payment due. A stale collection URL must not show Pay now.",
+  "return": {
+    "exchange_line_items": [
+      {
+        "title": "Focus - Watermelon Lime",
+        "variant": {
+          "title": "Watermelon Lime"
+        },
+        "quantity": 1,
+        "image": "https://placehold.co/232x232/f2f2f2/555555/png?text=Focus",
+        "original_line_price": 7999,
+        "final_line_price": 7999,
+        "discount_allocations": [],
+        "properties": {},
+        "selling_plan_allocation": null,
+        "unit_price_measurement": null,
+        "gift_card": false,
+        "title_without_variant": "Focus"
+      }
+    ],
+    "checkout_payment_collection_url": "https://porradanutra.com/checkouts/stale-payment",
+    "order_total_outstanding": 0,
+    "line_items_subtotal_price": 0,
+    "fees": [],
+    "total_tax_price": 0,
+    "total_price": 0
+  }
+}

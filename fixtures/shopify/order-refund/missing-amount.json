@@ -1,0 +1,5 @@
+{
+  "$extends": "full-refund",
+  "$description": "No current event amount is available, so no amount card row or zero-value substitute appears.",
+  "amount": null
+}

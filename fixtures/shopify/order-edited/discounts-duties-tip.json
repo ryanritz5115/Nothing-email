@@ -1,0 +1,16 @@
+{
+  "$extends": "order-updated",
+  "$description": "Updated totals include discounts, free shipping, duties, an included tax amount, and a tip. Savings are informational and are not deducted from the already discounted subtotal again.",
+  "order_name": "#1611",
+  "subtotal_price": 7199,
+  "shipping_price": 0,
+  "tax_price": 1200,
+  "taxes_included": true,
+  "total_duties": 500,
+  "total_tip": 250,
+  "total_discounts": 800,
+  "total_price": 7949,
+  "transactions": [
+    { "status": "success", "kind": "sale", "amount": 7949, "gateway": "shopify_payments", "gateway_display_name": "Shopify Payments" }
+  ]
+}

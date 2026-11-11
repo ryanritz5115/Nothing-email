@@ -1,0 +1,48 @@
+{# Display only supplied activation totals, without recalculation or any future-price claims.
+   Values are major-unit decimals, not Shopify cents. Keep zero values visible. #}
+{% if charge_currency is string and charge_currency|trim and ((total_price is defined and total_price is not none and total_price|string|trim != '') or (subtotal_price is defined and subtotal_price is not none and subtotal_price|string|trim != '') or (total_shipping is defined and total_shipping is not none and total_shipping|string|trim != '') or (total_tax is defined and total_tax is not none and total_tax|string|trim != '') or (total_duties is defined and total_duties is not none and total_duties|string|trim != '') or (total_discounts is defined and total_discounts is not none and total_discounts|string|trim != '')) %}
+  <tr>
+    <td style="padding:{{ space_lg }} {{ space_gutter }} 0;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        <tr>
+          <td width="{{ totals_spacer_width }}" style="width:{{ totals_spacer_width }};"></td>
+          <td width="{{ totals_width }}" style="width:{{ totals_width }};">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+              {% if subtotal_price is defined and subtotal_price is not none and subtotal_price|string|trim != '' %}
+                {% set total_label = 'Subtotal' %}
+                {% set total_value = subtotal_price|amount_with_currency(charge_currency, display_currency_code=False) %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+              {% if total_discounts is defined and total_discounts is not none and total_discounts|string|trim != '' and total_discounts|float != 0 %}
+                {% set total_label %}Discount{% if discount_code is string and discount_code|trim %} ({{ discount_code|e }}){% endif %}{% endset %}
+                {% set total_value %}-{{ total_discounts|float|abs|amount_with_currency(charge_currency, display_currency_code=False) }}{% endset %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+              {% if total_shipping is defined and total_shipping is not none and total_shipping|string|trim != '' %}
+                {% set total_label = 'Shipping' %}
+                {% set total_value = total_shipping|amount_with_currency(charge_currency, display_currency_code=False) %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+              {% if total_tax is defined and total_tax is not none and total_tax|string|trim != '' %}
+                {% set total_label = 'Taxes' %}
+                {% set total_value = total_tax|amount_with_currency(charge_currency, display_currency_code=False) %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+              {% if total_duties is defined and total_duties is not none and total_duties|string|trim != '' %}
+                {% set total_label = 'Duties' %}
+                {% set total_value = total_duties|amount_with_currency(charge_currency, display_currency_code=False) %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+              {% if total_price is defined and total_price is not none and total_price|string|trim != '' %}
+                {% set total_label = 'Total' %}
+                {% set total_value = total_price|amount_with_currency(charge_currency, display_currency_code=True) %}
+                {% set total_emphasis = true %}
+                {% include 'shared/components/total-row' %}
+              {% endif %}
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+{% endif %}

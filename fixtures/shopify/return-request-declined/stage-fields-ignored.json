@@ -1,0 +1,13 @@
+{
+  "$extends": "declined-note",
+  "$description": "Defensive case: stale payment, label, and tracking fields coexist with a declined request. None is shown as instructions or an action.",
+  "order_name": "#1910",
+  "order": { "name": "#1910" },
+  "return": {
+    "order_total_outstanding": 2500,
+    "checkout_payment_collection_url": "https://porradanutra.com/checkouts/RETURN_PAYMENT_MUST_NOT_APPEAR",
+    "deliveries": [
+      { "type": "shopify_label", "carrier_name": "USPS", "return_label": { "public_file_url": "https://example.com/RETURN_LABEL_MUST_NOT_APPEAR.pdf" }, "tracking_number": "RETURN_TRACKING_MUST_NOT_APPEAR", "tracking_url": "https://example.com/RETURN_TRACKING_MUST_NOT_APPEAR" }
+    ]
+  }
+}

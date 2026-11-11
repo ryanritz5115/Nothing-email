@@ -1,0 +1,8 @@
+{
+  "$extends": "label-ready",
+  "$description": "A negative order balance suppresses an obsolete payment URL. This return email does not prove a refund was issued.",
+  "return": {
+    "order_total_outstanding": -8559,
+    "checkout_payment_collection_url": "https://porradanutra.com/checkouts/stale-payment"
+  }
+}

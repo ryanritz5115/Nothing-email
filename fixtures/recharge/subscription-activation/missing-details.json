@@ -1,0 +1,17 @@
+{
+  "$extends": "subscription-active",
+  "$description": "No name, portal link, items, totals, merchant terms, email, or address; support uses the shared fallback. Account actions use Porrada’s /account route.",
+  "name": null,
+  "first_name": null,
+  "link": null,
+  "shop_email": null,
+  "shop_address": null,
+  "shop_legal_text": null,
+  "line_items": null,
+  "subtotal_price": null,
+  "total_shipping": null,
+  "total_tax": null,
+  "total_duties": null,
+  "total_discounts": null,
+  "total_price": null
+}

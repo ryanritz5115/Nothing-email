@@ -1,0 +1,7 @@
+{
+  "$extends": "no-tracking",
+  "$description": "A carrier estimate without tracking. Out for delivery shows it as estimated; delivered suppresses the stale estimate completely.",
+  "fulfillment": {
+    "estimated_delivery_at": "2026-10-23T12:00:00-04:00"
+  }
+}

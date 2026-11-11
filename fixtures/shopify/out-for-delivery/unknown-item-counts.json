@@ -1,0 +1,8 @@
+{
+  "$extends": "all-items",
+  "$description": "Missing order and fulfillment quantities. Uses shipment-scoped copy rather than inferring that every order item arrived.",
+  "item_count": null,
+  "fulfillment": {
+    "item_count": null
+  }
+}

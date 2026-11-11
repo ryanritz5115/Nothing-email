@@ -1,0 +1,7 @@
+{
+  "$extends": "discount-included",
+  "$description": "A negative discount also labels the already-discounted subtotal without performing arithmetic.",
+  "charge": {
+    "total_discounts": "-6.80"
+  }
+}

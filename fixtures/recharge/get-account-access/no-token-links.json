@@ -1,0 +1,7 @@
+{
+  "$extends": "account-request",
+  "$description": "No Recharge token URLs are supplied; account access still uses the configured Porrada account page.",
+  "link": null,
+  "subscription_url": null,
+  "login_url": null
+}

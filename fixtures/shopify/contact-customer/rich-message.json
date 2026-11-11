@@ -1,0 +1,5 @@
+{
+  "$extends": "order-message",
+  "$description": "Shopify custom-message HTML can contain paragraphs, emphasis, links, and lists. Do not wrap block content in a paragraph or escape away its formatting.",
+  "custom_message": "<p>Hi Marcus,</p><p>We need one more detail for <strong>your order</strong>.</p><ul><li>Confirm your apartment number.</li><li>Check the <a href=\"https://porradanutra.com/support\">support page</a> if you need help.</li></ul><p>Thank you,<br>The Porrada team</p>"
+}

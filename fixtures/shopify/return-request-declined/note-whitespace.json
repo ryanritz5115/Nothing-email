@@ -1,0 +1,7 @@
+{
+  "$extends": "declined-note",
+  "$description": "A whitespace-only decline note is treated as blank.",
+  "order_name": "#1904",
+  "order": { "name": "#1904" },
+  "return": { "decline": { "note": "   \n   " } }
+}

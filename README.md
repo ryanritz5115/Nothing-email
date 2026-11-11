@@ -82,3 +82,4 @@ Variable reference: [Shopify notification variables](https://help.shopify.com/en
 | Customer token account link | `recharge/customer-token-account-link.jinja` | `dist/recharge/customer-token-account-link.html` |
 
 Recharge uses native Jinja2 and decimal currency amounts. The build converts shared design components to Jinja and validates every Recharge fixture with a real Jinja2 renderer. All account-related links use `https://porradanutra.com/account`. See [Recharge setup and contracts](recharge/README.md) for notification-specific variables, account-access behavior, and final checks in Recharge's Preview.
+# Nothing-email
